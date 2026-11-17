@@ -8,7 +8,7 @@ const HOST = process.env.HOST || '0.0.0.0';
 const GAME_FILE = path.join(__dirname, 'index.html');
 const MAX_BODY = 16 * 1024;
 const RATE_LIMIT_WINDOW_MS = 60 * 1000;
-const RATE_LIMIT_MAX = 12;
+const RATE_LIMIT_MAX = 30;
 const requestCounts = new Map();
 
 function send(res, status, payload, type = 'application/json; charset=utf-8') {
@@ -63,6 +63,97 @@ const server = http.createServer(async (req, res) => {
 
   if (req.method === 'GET' && url.pathname === '/api/status') {
     return send(res, 200, { aiConfigured: Boolean(process.env.OPENAI_API_KEY) });
+  }
+
+  if (req.method === 'POST' && url.pathname === '/api/mission-dialogue') {
+    if (isRateLimited(getClientIp(req))) return send(res, 429, { error: 'Too many AI requests.' });
+    if (!process.env.OPENAI_API_KEY) return send(res, 503, { error: 'AI is not configured.' });
+    try {
+      let raw = '';
+      for await (const chunk of req) { raw += chunk; if (raw.length > MAX_BODY) return send(res, 413, { error: 'Request too large.' }); }
+      const body = JSON.parse(raw || '{}');
+      const prompt = [
+        'GAME: Underworld Autowala, an Indian street-crime action adventure.',
+        'Write a short text-only character conversation in natural Mumbai Hinglish using Roman script.',
+        'The rescued character is Brake Fail Bunty, a nervous but funny mechanic.',
+        'The player has just rescued him from kidnappers. If firstMeeting is true, Bunty must ask who the player is and how they got inside.',
+        'Return valid JSON only: {"lines":[{"speaker":"BRAKE FAIL BUNTY","text":"..."},{"speaker":"YOU","text":"..."},{"speaker":"BRAKE FAIL BUNTY","text":"..."}]}.',
+        'Use exactly 3 short lines. Keep dialogue suitable for a teen-rated game. Do not add markdown.',
+        'CONTEXT:', JSON.stringify(body)
+      ].join('\n');
+      const response = await fetch('https://api.openai.com/v1/responses', {
+        method: 'POST', headers: { 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: process.env.OPENAI_MODEL || 'gpt-5.5', instructions: 'You write concise game character dialogue and must return valid JSON only.', input: prompt, max_output_tokens: 260, store: false }),
+        signal: AbortSignal.timeout(9000)
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) return send(res, 502, { error: 'AI dialogue request failed.' });
+      const rawText = getOutputText(data).replace(/^```(?:json)?\s*|\s*```$/g, '').trim();
+      const parsed = JSON.parse(rawText);
+      if (!Array.isArray(parsed.lines) || parsed.lines.length !== 3 || parsed.lines.some(line => !line.speaker || !line.text)) return send(res, 502, { error: 'AI returned invalid dialogue.' });
+      return send(res, 200, { lines: parsed.lines });
+    } catch (error) {
+      console.error('Mission dialogue error:', error.message);
+      return send(res, 502, { error: 'Could not generate mission dialogue.' });
+    }
+  }
+
+  if (req.method === 'POST' && url.pathname === '/api/passenger-decision') {
+    if (isRateLimited(getClientIp(req))) return send(res, 429, { error: 'Too many AI decision requests.' });
+    if (!process.env.OPENAI_API_KEY) return send(res, 503, { error: 'AI is not configured. Using deterministic passenger behaviour.' });
+    try {
+      let raw = '';
+      for await (const chunk of req) {
+        raw += chunk;
+        if (raw.length > MAX_BODY) return send(res, 413, { error: 'Request too large.' });
+      }
+      const body = JSON.parse(raw || '{}');
+      const passenger = body.passenger || {};
+      const context = body.context || {};
+      const targets = Array.isArray(body.targets) ? body.targets.slice(0, 8).filter(t => t && typeof t.targetId === 'string' && typeof t.distance === 'number') : [];
+      if (!['danger', 'mangesh'].includes(passenger.characterId) || !targets.length) {
+        return send(res, 400, { error: 'Missing supported passenger or valid targets.' });
+      }
+      const expectedAction = passenger.characterId === 'danger' ? 'attack_target' : 'hack_vehicle';
+      const prompt = [
+        'GAME: Underworld Autowala, a top-down Indian street-crime auto-rickshaw game.',
+        'You are making ONE tactical decision for the passenger. The game, not you, executes and validates the action.',
+        'Choose only between the allowed action and hold.',
+        passenger.characterId === 'danger'
+          ? 'DANGER BHAI: choose the most dangerous nearby target for him to shoot. Prefer a rammer or interceptor that threatens the auto. Do not choose a harmless or distant target.'
+          : 'MOBILE MANGESH: he has ONE vehicle hack for this ride. Use it only when danger is meaningful, such as multiple pursuing vehicles, a very close pursuer, or critical auto health. Otherwise save it by choosing hold.',
+        `Allowed action: ${expectedAction}. Other allowed action: hold.`,
+        'targetId must exactly match one of the supplied targetId values. Never invent a target. For hold, use an empty targetId.',
+        'Return valid JSON only in this exact shape: {"action":"' + expectedAction + ' or hold","targetId":"exact supplied targetId or empty string"}.',
+        'PASSENGER:', JSON.stringify(passenger),
+        'LIVE GAME CONTEXT:', JSON.stringify(context),
+        'AVAILABLE TARGETS:', JSON.stringify(targets)
+      ].join('\n');
+
+      const response = await fetch('https://api.openai.com/v1/responses', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: process.env.OPENAI_MODEL || 'gpt-5.5',
+          instructions: 'You are a constrained game AI. Return one valid JSON object only. Never invent targets or actions.',
+          input: prompt,
+          max_output_tokens: 100,
+          store: false
+        }),
+        signal: AbortSignal.timeout(6200)
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) return send(res, 502, { error: 'AI decision request failed.' });
+      const rawText = getOutputText(data).replace(/^```(?:json)?\s*|\s*```$/g, '').trim();
+      const parsed = JSON.parse(rawText);
+      const allowedIds = new Set(targets.map(t => t.targetId));
+      const action = parsed.action === expectedAction && allowedIds.has(parsed.targetId) ? expectedAction : 'hold';
+      const targetId = action === 'hold' ? '' : parsed.targetId;
+      return send(res, 200, { action, targetId });
+    } catch (error) {
+      console.error('Passenger decision error:', error.message);
+      return send(res, 502, { error: 'Could not generate passenger decision.' });
+    }
   }
 
   if (req.method === 'POST' && url.pathname === '/api/passenger-reaction') {
@@ -129,6 +220,36 @@ const server = http.createServer(async (req, res) => {
       console.error('Passenger AI error:', error.message);
       return send(res, 502, { error: 'Could not generate passenger dialogue.' });
     }
+  }
+
+
+  if (req.method === 'POST' && url.pathname === '/api/enemy-brain') {
+    if (isRateLimited(getClientIp(req))) return send(res, 429, { error: 'Too many enemy AI requests.' });
+    if (!process.env.OPENAI_API_KEY) return send(res, 503, { error: 'AI is not configured.' });
+    try {
+      let raw=''; for await (const chunk of req) { raw+=chunk; if(raw.length>MAX_BODY) return send(res,413,{error:'Request too large.'}); }
+      const body=JSON.parse(raw||'{}');
+      const allowed=['close_pressure','road_intercept','spread_attack','hold_fire'];
+      const prompt=['Choose one tactical strategy for enemy drivers in Underworld Autowala.','Use the player history to counter their habits.','Return JSON only: {"strategy":"one_allowed_value"}.','Allowed: '+allowed.join(', '),'PLAYER HISTORY: '+JSON.stringify(body.history||{}),'CURRENT GAME: '+JSON.stringify(body.context||{})].join('\n');
+      const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{'Authorization':`Bearer ${process.env.OPENAI_API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({model:process.env.OPENAI_MODEL||'gpt-5.5',instructions:'You are a constrained tactical game AI. Never invent game entities or mechanics. Return valid JSON only.',input:prompt,max_output_tokens:70,store:false}),signal:AbortSignal.timeout(5000)});
+      const data=await response.json().catch(()=>({}));if(!response.ok)return send(res,502,{error:'Enemy AI failed.'});
+      const parsed=JSON.parse(getOutputText(data).replace(/^```(?:json)?\s*|\s*```$/g,'').trim());
+      return send(res,200,{strategy:allowed.includes(parsed.strategy)?parsed.strategy:'close_pressure'});
+    } catch(error){console.error('Enemy brain error:',error.message);return send(res,502,{error:'Could not update enemy strategy.'});}
+  }
+
+  if (req.method === 'POST' && url.pathname === '/api/enemy-reaction') {
+    if (isRateLimited(getClientIp(req))) return send(res,429,{error:'Too many enemy dialogue requests.'});
+    if (!process.env.OPENAI_API_KEY) return send(res,503,{error:'AI is not configured.'});
+    try {
+      let raw=''; for await (const chunk of req) { raw+=chunk; if(raw.length>MAX_BODY)return send(res,413,{error:'Request too large.'}); }
+      const body=JSON.parse(raw||'{}');
+      const prompt=['Write ONE short natural Mumbai street-gang dialogue line in Roman Hinglish for an enemy driver.','React specifically to the event and the player driving history. Avoid repeating generic taunts.','Return plain text only, maximum 150 characters.','CONTEXT: '+JSON.stringify(body)].join('\n');
+      const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{'Authorization':`Bearer ${process.env.OPENAI_API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({model:process.env.OPENAI_MODEL||'gpt-5.5',instructions:'You write concise, varied, teen-rated game dialogue. No markdown, no quotes.',input:prompt,max_output_tokens:70,store:false}),signal:AbortSignal.timeout(5000)});
+      const data=await response.json().catch(()=>({}));if(!response.ok)return send(res,502,{error:'Enemy dialogue failed.'});
+      const dialogue=getOutputText(data).replace(/[\r\n]+/g,' ').replace(/^['"“”]+|['"“”]+$/g,'').trim();if(!dialogue||dialogue.length>150)return send(res,502,{error:'Invalid enemy dialogue.'});
+      return send(res,200,{dialogue});
+    } catch(error){console.error('Enemy dialogue error:',error.message);return send(res,502,{error:'Could not generate enemy dialogue.'});}
   }
 
   if (req.method === 'GET' && (url.pathname === '/' || url.pathname === '/index.html')) {
