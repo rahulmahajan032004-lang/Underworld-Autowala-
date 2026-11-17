@@ -4,7 +4,7 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="mobile-web-app-capable" content="yes"><meta name="screen-orientation" content="landscape"><meta name="orientation" content="landscape"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Underworld Auto</title>
 <style>
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#101419;color:#fff;font-family:Arial,Helvetica,sans-serif;overscroll-behavior:none;touch-action:none}canvas{display:block;width:100vw;height:100vh;height:100dvh;background:#26332d;touch-action:none}body.menu-state canvas{visibility:hidden}#hud{position:fixed;inset:0;pointer-events:none;text-shadow:0 2px 4px #000} .panel{background:#101820e8;border:1px solid #ffffff30;border-radius:10px;padding:10px 12px;backdrop-filter:blur(6px)}#topLeft{position:absolute;left:12px;top:12px;min-width:215px}#topRight{position:absolute;right:12px;top:12px;text-align:right}#bottom{position:absolute;left:50%;top:8px;bottom:auto;transform:translateX(-50%);text-align:center;min-width:0;width:max-content;max-width:min(330px,48vw);padding:8px 11px}#arrow{font-size:25px;color:#ffd45b;display:inline-block;margin-right:6px}#objective{font-weight:bold;font-size:14px;color:#ffd45b}#prompt{font-size:12px;color:#fff;margin-top:4px}#bars{margin-top:9px;display:grid;gap:7px}.bar{height:9px;width:178px;background:#303941;border-radius:8px;overflow:hidden}.fill{height:100%;width:100%;background:#4bd17b}.anger{background:#ffb347}.small{font-size:12px;color:#c8d0d6}.btn.secondary{background:#394955;color:#fff}.big{font-size:18px;font-weight:bold}.tag{color:#ffd45b}#repProgressHud{position:absolute;left:calc(100% + 8px);top:0;width:128px;padding:8px 9px;border:1px solid #e8b14e88;border-radius:9px;background:#101820ed;box-shadow:0 4px 14px #0008;text-align:left;pointer-events:none}.repHead{display:flex;justify-content:space-between;gap:5px;font-size:10px;font-weight:900;color:#ffe3a0;letter-spacing:.6px}.repTrack{height:7px;background:#303941;border-radius:9px;overflow:hidden;margin-top:6px}.repFill{height:100%;width:0;background:linear-gradient(90deg,#d99a2b,#ffe18b);transition:width .25s}.repSub{font-size:9px;color:#c8d0d6;margin-top:4px;white-space:nowrap}#passengerTalk{position:fixed;z-index:4;left:50%;bottom:22px;transform:translateX(-50%);width:min(780px,92vw);padding:14px 18px 13px;border:1px solid #e8b14f99;border-radius:13px;background:linear-gradient(135deg,#111b24f5,#202b31f5);box-shadow:0 12px 36px #000b;display:none;pointer-events:none}#passengerTalk .talkName{font-size:10px;letter-spacing:1.5px;font-weight:1000;color:#ffd36f;margin-bottom:6px}#passengerTalk .talkLine{font-size:clamp(13px,1.7vw,17px);line-height:1.5;color:#f3f4f2}#passengerTalk .talkHint{font-size:9px;color:#91a1a8;margin-top:6px;text-align:right}@media(max-width:700px){#repProgressHud{left:calc(100% + 5px);width:105px;padding:6px}.repHead{font-size:9px}.repSub{font-size:8px}#passengerTalk{bottom:84px;padding:11px 13px}#passengerTalk .talkLine{font-size:13px}}@media(max-width:430px){#repProgressHud{left:0;top:calc(100% + 5px);width:160px}#serviceNav{top:225px}}#toast{position:absolute;top:23%;left:50%;transform:translateX(-50%);font-weight:bold;font-size:18px;color:#ffe18b;opacity:0;transition:opacity .2s}#overlay{position:fixed;inset:0;background:#080d12e8;display:flex;align-items:center;justify-content:center;z-index:5}#card{width:min(560px,92vw);background:#17212a;border:1px solid #ffffff2c;border-radius:16px;padding:28px;box-shadow:0 20px 70px #000}h1{margin:0 0 8px;font-size:38px;letter-spacing:1px}p{color:#cbd4da;line-height:1.5}.btn{pointer-events:auto;border:0;border-radius:8px;padding:12px 20px;background:#e8a72f;color:#171717;font-weight:bold;font-size:15px;cursor:pointer;margin:8px 8px 0 0}.btn.secondary{background:#394955;color:white}.btn.green{background:#24b85a;color:#fff}.btn.green:hover{background:#35ca6b}.menuTag{color:#e8a72f;font-weight:800;letter-spacing:2px;font-size:12px}.storyBox{background:#0e151b;border:1px solid #ffffff18;border-radius:10px;padding:15px;margin:16px 0;color:#e8edf0;line-height:1.65}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:15px 0}.grid div{background:#0e151b;padding:9px;border-radius:7px;font-size:13px;color:#cbd4da}#gameover{display:none}#serviceNav{position:absolute;left:12px;right:auto;top:169px;min-width:215px;font-size:12px;color:#ffe5a0;padding:10px 12px}#serviceNav b{color:#fff;margin:0 5px}.serviceArrow{display:inline-block;color:#ffd45b;font-size:15px;transform-origin:50% 50%;margin-right:4px}.shopArrow{color:#65d9ff}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;background:#101419;color:#fff;font-family:Arial,Helvetica,sans-serif;overscroll-behavior:none;touch-action:none}canvas{display:block;width:100vw;height:100vh;height:100dvh;background:#26332d;touch-action:none}body.menu-state canvas{visibility:hidden}#hud{position:fixed;inset:0;pointer-events:none;text-shadow:0 2px 4px #000} .panel{background:#101820e8;border:1px solid #ffffff30;border-radius:10px;padding:10px 12px;backdrop-filter:blur(6px)}#topLeft{position:absolute;left:12px;top:12px;min-width:215px}#topRight{position:absolute;right:12px;top:12px;text-align:right}#bottom{position:absolute;left:50%;top:8px;bottom:auto;transform:translateX(-50%);text-align:center;min-width:0;width:max-content;max-width:min(330px,48vw);padding:8px 11px}#arrow{font-size:25px;color:#ffd45b;display:inline-block;margin-right:6px}#objective{font-weight:bold;font-size:14px;color:#ffd45b}#prompt{font-size:12px;color:#fff;margin-top:4px}#bars{margin-top:9px;display:grid;gap:7px}.bar{height:9px;width:178px;background:#303941;border-radius:8px;overflow:hidden}.fill{height:100%;width:100%;background:#4bd17b}.anger{background:#ffb347}.small{font-size:12px;color:#c8d0d6}.btn.secondary{background:#394955;color:#fff}.big{font-size:18px;font-weight:bold}.tag{color:#ffd45b}#repProgressHud{position:absolute;left:calc(100% + 8px);top:0;width:128px;padding:8px 9px;border:1px solid #e8b14e88;border-radius:9px;background:#101820ed;box-shadow:0 4px 14px #0008;text-align:left;pointer-events:none}.repHead{display:flex;justify-content:space-between;gap:5px;font-size:10px;font-weight:900;color:#ffe3a0;letter-spacing:.6px}.repTrack{height:7px;background:#303941;border-radius:9px;overflow:hidden;margin-top:6px}.repFill{height:100%;width:0;background:linear-gradient(90deg,#d99a2b,#ffe18b);transition:width .25s}.repSub{font-size:9px;color:#c8d0d6;margin-top:4px;white-space:nowrap}#passengerTalk{position:fixed;z-index:4;left:50%;bottom:22px;transform:translateX(-50%);width:min(780px,92vw);padding:14px 18px 13px;border:1px solid #e8b14f99;border-radius:13px;background:linear-gradient(135deg,#111b24f5,#202b31f5);box-shadow:0 12px 36px #000b;display:none;pointer-events:none}#passengerTalk .talkName{font-size:10px;letter-spacing:1.5px;font-weight:1000;color:#ffd36f;margin-bottom:6px}#passengerTalk .talkLine{font-size:clamp(13px,1.7vw,17px);line-height:1.5;color:#f3f4f2}#passengerTalk .talkHint{font-size:9px;color:#91a1a8;margin-top:6px;text-align:right}#passengerTalk .talkContinue{display:block;margin:10px 0 0 auto;padding:9px 16px;border:1px solid #f0c76b;border-radius:8px;background:#d99a2b;color:#17130b;font-size:11px;font-weight:1000;letter-spacing:.7px;pointer-events:auto;cursor:pointer}#passengerTalk .talkContinue:active{transform:scale(.98)}@media(max-width:700px){#repProgressHud{left:calc(100% + 5px);width:105px;padding:6px}.repHead{font-size:9px}.repSub{font-size:8px}#passengerTalk{bottom:84px;padding:11px 13px}#passengerTalk .talkLine{font-size:13px}}@media(max-width:430px){#repProgressHud{left:0;top:calc(100% + 5px);width:160px}#serviceNav{top:225px}}#toast{position:absolute;top:23%;left:50%;transform:translateX(-50%);font-weight:bold;font-size:18px;color:#ffe18b;opacity:0;transition:opacity .2s}#overlay{position:fixed;inset:0;background:#080d12e8;display:flex;align-items:center;justify-content:center;z-index:5}#card{width:min(560px,92vw);background:#17212a;border:1px solid #ffffff2c;border-radius:16px;padding:28px;box-shadow:0 20px 70px #000}h1{margin:0 0 8px;font-size:38px;letter-spacing:1px}p{color:#cbd4da;line-height:1.5}.btn{pointer-events:auto;border:0;border-radius:8px;padding:12px 20px;background:#e8a72f;color:#171717;font-weight:bold;font-size:15px;cursor:pointer;margin:8px 8px 0 0}.btn.secondary{background:#394955;color:white}.btn.green{background:#24b85a;color:#fff}.btn.green:hover{background:#35ca6b}.menuTag{color:#e8a72f;font-weight:800;letter-spacing:2px;font-size:12px}.storyBox{background:#0e151b;border:1px solid #ffffff18;border-radius:10px;padding:15px;margin:16px 0;color:#e8edf0;line-height:1.65}.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:15px 0}.grid div{background:#0e151b;padding:9px;border-radius:7px;font-size:13px;color:#cbd4da}#gameover{display:none}#serviceNav{position:absolute;left:12px;right:auto;top:169px;min-width:215px;font-size:12px;color:#ffe5a0;padding:10px 12px}#serviceNav b{color:#fff;margin:0 5px}.serviceArrow{display:inline-block;color:#ffd45b;font-size:15px;transform-origin:50% 50%;margin-right:4px}.shopArrow{color:#65d9ff}
 @media(max-width:700px){#topLeft{left:7px;top:7px;min-width:165px;padding:8px 9px}#topRight{right:7px;top:7px;max-width:155px;padding:8px 9px}#serviceNav{left:7px;top:153px;min-width:175px;font-size:11px;padding:8px 9px}#bottom{top:8px;max-width:min(330px,48vw);min-width:0;padding:7px 9px}#bottom #prompt{font-size:11px}.bar{width:135px}.big{font-size:15px}.small{font-size:10px}}
 
 #mobileControls{position:fixed;inset:0;z-index:4;display:none;pointer-events:none;user-select:none;-webkit-user-select:none}
@@ -247,38 +247,11 @@ body.menu-state canvas{visibility:visible!important}
 .characterFigure .glasses{position:absolute;z-index:4;top:45px;left:29px;width:40px;height:10px;pointer-events:none}
 .characterFigure .glasses.none{display:none}.characterFigure .glasses:not(.none):before,.characterFigure .glasses:not(.none):after{content:'';position:absolute;top:0;width:15px;height:8px;border:2px solid var(--glass-color,#17191b);border-radius:4px;background:#17232c55}.characterFigure .glasses:not(.none):before{left:0}.characterFigure .glasses:not(.none):after{right:0}.characterFigure .glasses:not(.none){--glass-color:#1b2025}.characterFigure .glasses.glass-2{--glass-color:#c49b45}.characterFigure .glasses.glass-3{--glass-color:#b9c3c8}.characterFigure .glasses.glass-4{--glass-color:#6d4d2c}.characterFigure .glasses.glass-6{--glass-color:#4a91b4}.characterFigure .glasses.glass-7{--glass-color:#ad3a3a}.characterFigure .hair-slick .hair{height:11px;border-radius:8px 15px 5px 5px}.characterFigure .hair-side .hair{height:15px;border-radius:18px 8px 7px 6px}.characterFigure .hair-crop .hair{height:9px}.characterFigure .hair-wave .hair{height:22px;border-radius:50% 40% 10% 10%}.characterFigure .hair-messy .hair{height:24px;border-radius:60% 30% 5% 5%}.characterFigure .hair-long .hair{height:24px;border-radius:45% 45% 25% 25%}.characterFigure .hair-quiff .hair{height:24px;border-radius:50% 20% 5% 5%}.characterFigure .hair-fade .hair{height:12px;border-radius:20px 20px 4px 4px}
 
-/* Debug mode: direct access to gameplay and UI test scenarios */
-.debugMenuRoot{width:100%;height:100%;display:flex;align-items:center;justify-content:center;padding:clamp(12px,3vw,36px);background:rgba(5,9,12,.34)}
-.debugMenuPanel{width:min(920px,96vw);max-height:92vh;overflow:auto;padding:clamp(16px,2.6vw,28px);border:1px solid #e8b14e66;border-radius:18px;background:linear-gradient(145deg,#15232cfa,#0b1218fa);box-shadow:0 22px 75px #000c}
-.debugMenuHead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px}
-.debugMenuTitle{font-size:clamp(23px,4vw,36px);font-weight:1000;letter-spacing:1px;color:#f6d18a}
-.debugMenuDesc{color:#b9c6cc;font-size:12px;line-height:1.55;margin:0 0 15px}
-.debugGroupTitle{font-size:11px;font-weight:1000;letter-spacing:1.6px;color:#d9a74d;margin:15px 0 8px}
-.debugGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.debugAction{pointer-events:auto;border:1px solid #ffffff24;border-radius:10px;background:linear-gradient(145deg,#273943,#17232b);color:#edf3f4;text-align:left;padding:11px 13px;min-height:57px;cursor:pointer}
-.debugAction b{display:block;font-size:11px;letter-spacing:.5px;color:#fff}.debugAction small{display:block;font-size:9px;color:#acbbc2;margin-top:4px;line-height:1.35}
-.debugAction:hover{border-color:#e8b14e;background:#3b321f}
-.debugGallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-height:60vh;overflow:auto;margin:12px 0}
-.debugLine{padding:10px 12px;background:#0c171e;border:1px solid #ffffff1c;border-radius:9px;color:#e7edf0;font-size:12px;line-height:1.5}
-.debugLine b{display:block;color:#eac477;font-size:10px;letter-spacing:.6px;margin-bottom:4px}
-.debugPassengerGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0}
-.debugPassengerBtn{pointer-events:auto;border:1px solid #ffffff24;border-radius:10px;background:#1b2b34;color:#fff;padding:11px 8px;font-size:11px;font-weight:900;cursor:pointer}
-.debugPassengerBtn:hover{border-color:#e8b14e;background:#43331f}
-.debugExitBar{position:fixed;z-index:40;top:12px;left:50%;transform:translateX(-50%);pointer-events:auto;border:1px solid #ffd47d;border-radius:9px;background:#111c24ed;color:#ffe3a2;padding:8px 14px;font-size:11px;font-weight:1000;letter-spacing:.8px;box-shadow:0 5px 20px #0009;cursor:pointer}
-@media(max-width:620px){.debugMenuRoot{padding:8px}.debugMenuPanel{padding:14px;max-height:95vh}.debugGrid{grid-template-columns:1fr}.debugGallery{grid-template-columns:1fr;max-height:58vh}.debugPassengerGrid{grid-template-columns:repeat(2,minmax(0,1fr))}.debugMenuHead{align-items:flex-start}}
-
-
-/* Pickup deadline is visible in the HUD directly beneath the direction arrow. */
-.pickupDeadline{display:none;margin:6px auto 0;padding:5px 10px;width:max-content;max-width:100%;border-radius:7px;border:1px solid #f1c75d99;background:linear-gradient(90deg,#382a13ee,#654018ee);color:#ffe5a1;font-size:11px;font-weight:1000;letter-spacing:.6px;box-shadow:0 2px 10px #0007}
-.pickupDeadline.urgent{border-color:#ff766d;background:linear-gradient(90deg,#5a1717ee,#8d2424ee);color:#fff1ed;animation:pickupDeadlinePulse .9s ease-in-out infinite alternate}
-@keyframes pickupDeadlinePulse{from{filter:brightness(1)}to{filter:brightness(1.35)}}
-@media(max-width:900px){.pickupDeadline{font-size:9px;padding:4px 7px;letter-spacing:.2px;margin-top:4px}}
-
 </style></head><body>
 <canvas id="game"></canvas>
 <div id="hud"><div id="topLeft" class="panel"><div class="big">UNDERWORLD <span class="tag">AUTO</span></div><div class="small" id="dayText">DAY 01 · DAY SHIFT</div><div id="bars"><div><span class="small">AUTO HEALTH</span><div class="bar"><div id="healthFill" class="fill"></div></div></div><div><span class="small">PASSENGER PATIENCE</span><div class="bar"><div id="angerFill" class="fill anger"></div></div></div><div id="armorRow" class="meterRow"><div class="meterLabel"><span>AUTO ARMOUR</span><b id="armorValue">0</b></div><div class="bar"><div id="armorFill" class="fill armorFill"></div></div></div><div id="liquorRow" class="meterRow"><div class="meterLabel"><span>LIQUOR BOTTLE HEALTH</span><b id="liquorValue">100</b></div><div class="bar"><div id="liquorFill" class="fill liquorFill"></div></div></div></div><div class="small" style="margin-top:8px">Cash: ₹<b id="cash">0</b> · Speed: <b id="speed">0</b> km/h</div><div class="small" style="margin-top:4px">PASSENGER AI: <b id="aiStatus" style="color:#e5a33a">CHECKING...</b></div><div id="repProgressHud"><div class="repHead"><span>REPUTATION</span><b id="repLevelLabel">LV 0</b></div><div class="repTrack"><div class="repFill" id="repProgressFill"></div></div><div class="repSub" id="repProgressText">0 / 2 successful rides</div></div></div>
 <div id="topRight" class="panel"><div class="big" id="weaponName">SIMPLE PISTOL</div><div class="small">Rides completed: <b id="rides">0</b></div><div class="small" id="status">Find a passenger</div></div>
-<div id="bottom" class="panel"><span id="arrow">↑</span><span id="objective">FIND A PASSENGER</span><div id="prompt">Follow the gold beacon to find your passenger</div><div id="pickupDeadline" aria-live="polite" style="display:none"></div><div id="bossAlert" aria-live="polite"></div></div><div id="toast"></div></div><div id="passengerTalk" aria-live="polite"><div class="talkName" id="passengerTalkName">PASSENGER BRIEFING</div><div class="talkLine" id="passengerTalkLine"></div><div class="talkHint">PASSENGER ON BOARD · LIVE RIDE ADVICE</div></div>
+<div id="bottom" class="panel"><span id="arrow">↑</span><span id="objective">FIND A PASSENGER</span><div id="prompt">Follow the gold beacon to find your passenger</div><div id="pickupDeadline" aria-live="polite" style="display:none"></div><div id="bossAlert" aria-live="polite"></div></div><div id="toast"></div></div><div id="passengerTalk" aria-live="polite"><div class="talkName" id="passengerTalkName">PASSENGER BRIEFING</div><div class="talkLine" id="passengerTalkLine"></div><div class="talkHint">PASSENGER ON BOARD · RIDE BRIEFING</div><button id="passengerTalkContinue" type="button" class="talkContinue">SPACE TO CONTINUE</button></div>
 <button id="adOffer" type="button" aria-label="Claim reward"><span id="adOfferText">SPEED BOOST</span><small>WATCH</small></button>
 <button id="enterShopBtn" type="button">ENTER SHOP</button>
 <button id="enterGarageBtn" type="button">ENTER GARAGE</button>
@@ -343,7 +316,14 @@ const roadY=Array.from({length:22},(_,i)=>400+i*1200+Math.sin(i*1.67)*150+Math.s
 const roads=[];
 roadX.forEach(x=>roads.push({axis:'v',c:x}));roadY.forEach(y=>roads.push({axis:'h',c:y}));
 let player=null,passenger=null,enemies=[],bullets=[],traffic=[],streetShooters=[],buildings=[],closures=[],garages=[],shops=[],smokeParticles=[],skidMarks=[],oilSpillers=[],oilPatches=[],dialogues=[];
-let playerHistory={crashes:0,highSpeedSeconds:0,hardBrakes:0,sharpTurns:0,aggressiveShots:0,lastHeading:0,preferredAxis:'unknown',routeMemory:[],style:'balanced'};let enemyBrainState={strategy:'pressure',updatedAt:0,pending:false};let enemyAiDialogueCooldown=0;
+const PLAYER_HISTORY_KEY='underworldPlayerHistoryV1';
+function loadPlayerHistory(){try{return {...{crashes:0,highSpeedSeconds:0,hardBrakes:0,sharpTurns:0,aggressiveShots:0,lastHeading:0,preferredAxis:'unknown',routeMemory:[],style:'balanced'},...JSON.parse(localStorage.getItem(PLAYER_HISTORY_KEY)||'{}')};}catch(_){return {crashes:0,highSpeedSeconds:0,hardBrakes:0,sharpTurns:0,aggressiveShots:0,lastHeading:0,preferredAxis:'unknown',routeMemory:[],style:'balanced'};}}
+let playerHistory=loadPlayerHistory(),playerHistorySaveClock=5;let enemyBrainState={strategy:'pressure',updatedAt:0,pending:false};let enemyAiDialogueCooldown=0;
+function persistPlayerHistory(){try{playerHistory.routeMemory=(playerHistory.routeMemory||[]).slice(-24);localStorage.setItem(PLAYER_HISTORY_KEY,JSON.stringify(playerHistory));}catch(_){}}
+const MISSION_DIRECTOR_KEY='underworldMissionDirectorV1';
+let missionDirector=(()=>{try{return {...{sinceSpecial:0,dueIn:4,lastType:'',activeJob:null,history:[]},...JSON.parse(localStorage.getItem(MISSION_DIRECTOR_KEY)||'{}')};}catch(_){return {sinceSpecial:0,dueIn:4,lastType:'',activeJob:null,history:[]};}})();
+const AI_MISSION_TEMPLATES={risky_delivery:{title:'RISKY DELIVERY',objective:'Deliver the passenger before the deadline.',deadline:105,bonus:250},informant:{title:'THE INFORMANT',objective:'Get the informant to the drop-off while the gang closes in.',deadline:0,bonus:350},silent_passenger:{title:'SILENT PASSENGER',objective:'Reach the destination quietly. Avoid crashes and unnecessary attention.',deadline:0,bonus:300},roadblock:{title:'ROADBLOCK',objective:'The gang has blocked a route. Find another way to the destination.',deadline:0,bonus:325},vip_escort:{title:'VIP ESCORT',objective:'Protect an important passenger and complete the delivery.',deadline:0,bonus:400},special_request:{title:'SPECIAL REQUEST',objective:'Complete this unusual passenger request and reach the destination.',deadline:0,bonus:300}};
+function saveMissionDirector(){try{localStorage.setItem(MISSION_DIRECTOR_KEY,JSON.stringify(missionDirector));}catch(_){}}
 let nextRideRequestTimer=6,phoneOpen=false,phoneUnread=false,phoneRequestSerial=0;
 
 let phoneScreen='home',journalCategory='autos',journalSelection='';
@@ -365,17 +345,18 @@ let dialogueCooldowns={enemyFollow:0,enemyRam:0,passengerRam:0},dialogueLastLine
 let passengerCrashCount=0,passengerAiRequestSerial=0;
 let recentDamage=[],adaptiveCombat=false,enemyIdCounter=1,activeRammerId=null,enemyBurstShot=0;
 let cash=Math.max(0,Number(localStorage.getItem('underworldCashV1')||0)),rides=0,day=1,game=false,dead=false,toastTimer=0,keys={},mouse={x:0,y:0,down:false},last=0,weapon=0;
-let reputation=Math.max(0,Math.min(4,Number(localStorage.getItem('underworldReputationV1')||0))),repProgress=Math.max(0,Number(localStorage.getItem('underworldRepProgressV1')||0)),activeMiniGame=null,pendingMiniFare=0,pendingMiniRide=0;
-const REP_RIDE_REQUIREMENTS=[2,4,7,8];const REP_UNLOCKS={1:{id:'battery',name:'Battery Baban',desc:'A street-smart tough guy who can add extra protection to your auto.'},2:{id:'pappan',name:'Pappan Batli',desc:'A short-tempered liquor smuggler. Keep his bottles safe and he pays well.'},3:{id:'danger',name:'Danger Bhai',desc:'An armed mafia passenger who fights back and expects a fast getaway.'},4:{id:'bhau',name:'Bhau Karkhanis',desc:'A powerful underworld boss who values calm, careful driving.'}};
+let reputation=Math.max(0,Math.min(9,Number(localStorage.getItem('underworldReputationV1')||0))),repProgress=Math.max(0,Number(localStorage.getItem('underworldRepProgressV1')||0)),activeMiniGame=null,pendingMiniFare=0,pendingMiniRide=0;
+const REP_RIDE_REQUIREMENTS=[2,4,7,8,9,10,11,12,13];const REP_UNLOCKS={1:{id:'bunty',name:'Bunty Brakefail',desc:'A nervous petty criminal whose brakes are always a problem.'},2:{id:'chikna',name:'Chikna Chintu',desc:'A hot-headed street criminal with a short fuse.'},3:{id:'battery',name:'Battery Baban',desc:'A street-smart tough guy who can add extra protection to your auto.'},4:{id:'koita',name:'Koita Kumar',desc:'A loud, impatient goon who loves speed.'},5:{id:'bhau',name:'Bhau Karkhanis',desc:'A powerful underworld boss who values calm, careful driving.'},6:{id:'pappan',name:'Pappan Batli',desc:'A short-tempered liquor smuggler with valuable cargo.'},7:{id:'mangesh',name:'Mobile Mangesh',desc:'A clever phone hacker who can help with digital trouble.'},8:{id:'danger',name:'Danger Bhai',desc:'An armed mafia passenger who fights back and expects a fast getaway.'},9:{id:'danger',name:'DANGER BHAI · BOSS CONTRACT',desc:'You have reached the top of the underworld. Accept the final Danger Bhai contract and survive twice the usual enemy force.'}};
+const BOSS_RIDE_KEY='underworldDangerBossRideCompletedV1';let bossRideCompleted=localStorage.getItem(BOSS_RIDE_KEY)==='1';
 let pendingDeliveredPassenger=null;let passengerRideMemory=(()=>{try{return JSON.parse(localStorage.getItem('underworldPassengerRideMemoryV1')||'{}')||{};}catch(_){return {};}})();let passengerRecentLines=(()=>{try{return JSON.parse(localStorage.getItem('underworldPassengerRecentLinesV1')||'[]').slice(-12);}catch(_){return [];}})();
 let mobileMode=false,mobileDrive={left:false,right:false,accelerate:false,reverse:false},interceptorSpawnTimer=6;
-let introPaused=false,tutorialDone=false,enemyWaveNumber=0,firstWarningShown=false,ramGlobalCooldown=0;
+let introPaused=false,passengerConversationPaused=false,tutorialDone=false,enemyWaveNumber=0,firstWarningShown=false,ramGlobalCooldown=0;
 const SAVE_KEY='underworldAutoSaveV14';
-let debugModeActive=false,debugScenarioName='',debugSnapshot=null,pendingDropMiniGame=null;
+let pendingDropMiniGame=null;
 const weaponUnlocked=(()=>{try{const v=JSON.parse(localStorage.getItem('underworldWeaponsV1')||'null');const a=Array.isArray(v)?v.slice(0,10):[];while(a.length<10)a.push(false);a[0]=true;return a.map(Boolean);}catch(_){return [true,false,false,false,false,false,false,false,false,false];}})(),weaponPrices=[0,250,450,700,950,1300,1800,0,0,0];
 let autoMax=Math.max(100,Number(localStorage.getItem('underworldAutoMaxV1')||100)||100),upgrade=Math.max(0,Number(localStorage.getItem('underworldAutoUpgradeV1')||0)||0),gameSeconds=12*3600;
 let camera={x:2090,y:1830,a:0,zoom:0.70,shake:0};
-const PLAYER_MAX_KMH=120, ENEMY_MAX_KMH=130, PLAYER_MAX_V=PLAYER_MAX_KMH/20, ENEMY_MAX_V=ENEMY_MAX_KMH/20;
+const PLAYER_MAX_KMH=150, ENEMY_MAX_KMH=145, PLAYER_MAX_V=PLAYER_MAX_KMH/20, ENEMY_MAX_V=ENEMY_MAX_KMH/20;
 const weapons=[{name:'SIMPLE PISTOL',dmg:15,rate:.42,desc:'Reliable starter sidearm'},{name:'REVOLVER',dmg:24,rate:.58,desc:'Heavy single shots'},{name:'SUBMACHINE GUN',dmg:18,rate:.16,desc:'Fast close-range fire'},{name:'SHOTGUN',dmg:42,rate:.72,desc:'Wide three-pellet blast'},{name:'MACHINE GUN',dmg:25,rate:.11,desc:'Rapid automatic fire'},{name:'ASSAULT RIFLE',dmg:33,rate:.20,desc:'Balanced range and power'},{name:'HEAVY RIFLE',dmg:62,rate:.65,desc:'Slow, hard-hitting rounds'},{name:'GRENADE LAUNCHER',dmg:78,rate:.85,desc:'Explosive area damage'},{name:'PLASMA CANNON',dmg:92,rate:.95,desc:'High-energy projectile'},{name:'LASER',dmg:9,rate:.7,desc:'Continuous precision beam'}];
 const colors=['#a96e4c','#8c9b9b','#c3a45e','#788ca2','#ad8172','#7c8f70','#8e78a8','#c6c1a9'];
 
@@ -553,7 +534,7 @@ function passengerCrashLine(eventType='auto crash'){
   if(!passenger?.accepted)return;
   if((dialogueCooldowns.passengerRam||0)>0)return;
   dialogueCooldowns.passengerRam=rand(5,8);
-  passengerCrashCount++;
+  passengerCrashCount++;if(passenger.specialMission?.type==='silent_passenger')passenger.missionCrashes=(passenger.missionCrashes||0)+1;
   const p=passenger,requestSerial=++passengerAiRequestSerial;
   const fallback=uniquePassengerFallback(p,eventType);
   const entry=addDialogue('passenger','player',fallback);
@@ -593,13 +574,14 @@ async function requestEnemyDialogue(entry,e,event){
 function speakEnemyDialogue(key,e,event){const cooldown=dialogueCooldowns[key]||0;if(cooldown>0)return false;let line=enemyFallbackLine(e,event);if(dialogueLastLines[key]===line){const pool=(key==='enemyRam'?ENEMY_RAM_LINES:ENEMY_FOLLOW_LINES).filter(v=>v!==dialogueLastLines[key]);line=pool[Math.floor(Math.random()*pool.length)]||line;}dialogueLastLines[key]=line;dialogueCooldowns[key]=rand(7,10);const entry=addDialogue('enemy',e?.id||0,line);requestEnemyDialogue(entry,e,event);return true;}
 
 
-function repRidesNeeded(){return reputation>=4?0:REP_RIDE_REQUIREMENTS[reputation]||0;}
+function repRidesNeeded(){return reputation>=9?0:REP_RIDE_REQUIREMENTS[reputation]||0;}
 function updateReputationHud(){const need=repRidesNeeded(),fill=ui('repProgressFill');ui('repLevelLabel').textContent='LV '+reputation;if(need<=0){fill.style.width='100%';ui('repProgressText').textContent='MAX REPUTATION';}else{fill.style.width=Math.min(100,repProgress/need*100)+'%';ui('repProgressText').textContent=repProgress+' / '+need+' successful rides';}}
-function awardSuccessfulRideReputation(){if(reputation>=4)return 0;repProgress++;let unlocked=0;const need=repRidesNeeded();if(repProgress>=need){reputation=Math.min(4,reputation+1);unlocked=reputation;}saveWallet();return unlocked;}
-function showReputationUnlock(level,afterContinue=null){const reward=REP_UNLOCKS[level];if(!reward)return;const contact=RIDE_CONTACTS.find(c=>c.id===reward.id);introPaused=true;renderOverlay(`<div class="menuScreen" style="max-width:560px;text-align:center"><div class="menuTag">REPUTATION LEVEL ${level} REACHED</div><div class="editorTitle" style="margin:12px 0">NEW PASSENGER UNLOCKED!</div><div style="font-size:58px;margin:10px">${level===1?'🔋':level===2?'🍾':level===3?'🔫':'👔'}</div><h2 style="color:#ffe09a;margin:8px 0">${escapeHtml(reward.name)}</h2><p>${escapeHtml(reward.desc)}</p><div class="noticeStrip">${escapeHtml(contact?.category||'PASSENGER')} · NOW ADDED TO YOUR RIDE REQUEST POOL</div><button class="menuPrimary" id="repUnlockContinue">CONTINUE DRIVING</button></div>`);ui('repUnlockContinue').onclick=()=>{if(afterContinue){afterContinue();return;}introPaused=false;ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';updateHud();};}
-function recordPassengerRideMemory(p){if(!p?.characterId)return;const before=p.rideStartHistory||{crashes:0,highSpeedSeconds:0,hardBrakes:0,sharpTurns:0};const summary={crashes:Math.max(0,(playerHistory.crashes||0)-before.crashes),highSpeedSeconds:Math.round(Math.max(0,(playerHistory.highSpeedSeconds||0)-before.highSpeedSeconds)),hardBrakes:Math.round(Math.max(0,(playerHistory.hardBrakes||0)-before.hardBrakes)),sharpTurns:Math.round(Math.max(0,(playerHistory.sharpTurns||0)-before.sharpTurns)),style:(Math.max(0,(playerHistory.crashes||0)-before.crashes)>=3?'reckless':Math.max(0,(playerHistory.highSpeedSeconds||0)-before.highSpeedSeconds)>=25?'speedster':Math.max(0,(playerHistory.sharpTurns||0)-before.sharpTurns)>=8?'evasive':'careful'),deliveredAt:Date.now()};const prior=passengerRideMemory[p.characterId]||{};passengerRideMemory[p.characterId]={count:(prior.count||0)+1,last:summary};try{localStorage.setItem('underworldPassengerRideMemoryV1',JSON.stringify(passengerRideMemory));}catch(_){}}
-function pickupBriefingFallback(p){const memory=passengerRideMemory[p.characterId]?.last;const name=p.name||'Passenger';if(!memory)return p.shootersOnly?`${name}: Is ride mein gang cars nahi, sirf road ke street shooters se bachna. Nazar road par rakh aur mujhe safely destination tak le chal.`:`${name}: Seedha destination tak le chal. Do gaadiyan peeche se fire karengi, aur do alag rammers takkar maarne ki koshish karenge. Nazar road par rakh.`;let feedback=memory.crashes>=3?'Pichhli baar tune kaafi takkar maari thi, iss baar auto sambhaal ke chala.':memory.highSpeedSeconds>=25?'Last ride mein tu bahut tez bhaaga tha. Speed ka faayda le, par junction pe dhyaan rakh.':memory.hardBrakes>=5?'Pichhli baar brakes bahut maare the. Smooth drive kar, warna peeche wale pakad lenge.':memory.sharpTurns>=8?'Pichhli ride mein tu har mod pe zigzag kar raha tha. Is baar route pakad ke chal.':'Pichhli ride theek thi. Is baar bhi clean driving rakh.';return p.shootersOnly?`${feedback} Is ride mein sirf street shooters ka khatra hai. Mujhe destination tak safely pahunchana.`:`${feedback} Ab mujhe destination tak jaldi aur safely pahunchana. Do shooters peeche se fire karenge, aur do rammers takkar maarne ki koshish karenge.`;}
-async function showPassengerPickupTalk(p){const box=ui('passengerTalk'),line=ui('passengerTalkLine');if(!box||!line)return;box.style.display='block';if(window.passengerTalkTimeout)clearTimeout(window.passengerTalkTimeout);window.passengerTalkTimeout=setTimeout(hidePassengerTalk,11000);ui('passengerTalkName').textContent=(p.name||'PASSENGER').toUpperCase()+' · RIDE ORDERS';let fallback=pickupBriefingFallback(p);if(passengerRecentLines.slice(-6).includes(fallback))fallback+=' Is baar naya route hai, dhyaan se chala.';line.textContent=fallback;passengerRecentLines.push(fallback);if(passengerRecentLines.length>12)passengerRecentLines.shift();try{localStorage.setItem('underworldPassengerRecentLinesV1',JSON.stringify(passengerRecentLines));}catch(_){}const memory=passengerRideMemory[p.characterId]||null;try{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5000);const response=await fetch('/api/passenger-reaction',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({passenger:{name:p.name,characterId:p.characterId,category:p.category,personality:p.personality||PASSENGER_PERSONALITIES[p.characterId]},context:{event:'pickup briefing and ride orders',lastRideMemory:memory,recentDialogue:passengerRecentLines.slice(-6),enemySetup:p.shootersOnly?'No gang cars on this passenger ride; only street shooters are active.':'Exactly two shooter cars follow and fire but never ram. Exactly two rammer cars do not shoot and try to hit the auto.',instructions:'Speak directly to the driver. Give one or two practical orders and comment on how the driver performed with this same passenger on the previous ride if memory exists. If no previous ride memory, welcome them and explain the enemy roles.'}}),signal:controller.signal});clearTimeout(timer);if(!response.ok)throw Error('offline');const data=await response.json();if(data.dialogue&&passenger?.accepted&&passenger.requestId===p.requestId&&!passengerRecentLines.slice(-5).includes(data.dialogue)){line.textContent=data.dialogue;passengerRecentLines.push(data.dialogue);if(passengerRecentLines.length>12)passengerRecentLines.shift();try{localStorage.setItem('underworldPassengerRecentLinesV1',JSON.stringify(passengerRecentLines));}catch(_){}if(window.passengerTalkTimeout)clearTimeout(window.passengerTalkTimeout);window.passengerTalkTimeout=setTimeout(hidePassengerTalk,11000);}}catch(_){/* prepared passenger briefing remains visible offline */}}
+function awardSuccessfulRideReputation(){if(reputation>=9)return 0;repProgress++;let unlocked=0;const need=repRidesNeeded();if(repProgress>=need){reputation=Math.min(9,reputation+1);repProgress=0;unlocked=reputation;}saveWallet();return unlocked;}
+function showReputationUnlock(level,afterContinue=null){const reward=REP_UNLOCKS[level];if(!reward)return;const contact=RIDE_CONTACTS.find(c=>c.id===reward.id);introPaused=true;renderOverlay(`<div class="menuScreen" style="max-width:560px;text-align:center"><div class="menuTag">REPUTATION LEVEL ${level} REACHED</div><div class="editorTitle" style="margin:12px 0">${level===9?'BOSS LEVEL UNLOCKED!':'NEW PASSENGER UNLOCKED!'}</div><div style="font-size:58px;margin:10px">${({1:'🛠️',2:'😎',3:'🔋',4:'🔪',5:'👔',6:'🍾',7:'📱',8:'🔫',9:'👑'})[level]||'⭐'}</div><h2 style="color:#ffe09a;margin:8px 0">${escapeHtml(reward.name)}</h2><p>${escapeHtml(reward.desc)}</p><div class="noticeStrip">${level===9?'FINAL BOSS CONTRACT · DOUBLE ENEMY FORCE':'PASSENGER · NOW ADDED TO YOUR RIDE REQUEST POOL'}</div><button class="menuPrimary" id="repUnlockContinue">CONTINUE DRIVING</button></div>`);ui('repUnlockContinue').onclick=()=>{if(afterContinue){afterContinue();return;}introPaused=false;ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';updateHud();};}
+function recordPassengerRideMemory(p){persistPlayerHistory();if(!p?.characterId)return;const before=p.rideStartHistory||{crashes:0,highSpeedSeconds:0,hardBrakes:0,sharpTurns:0};const summary={crashes:Math.max(0,(playerHistory.crashes||0)-before.crashes),highSpeedSeconds:Math.round(Math.max(0,(playerHistory.highSpeedSeconds||0)-before.highSpeedSeconds)),hardBrakes:Math.round(Math.max(0,(playerHistory.hardBrakes||0)-before.hardBrakes)),sharpTurns:Math.round(Math.max(0,(playerHistory.sharpTurns||0)-before.sharpTurns)),style:(Math.max(0,(playerHistory.crashes||0)-before.crashes)>=3?'reckless':Math.max(0,(playerHistory.highSpeedSeconds||0)-before.highSpeedSeconds)>=25?'speedster':Math.max(0,(playerHistory.sharpTurns||0)-before.sharpTurns)>=8?'evasive':'careful'),deliveredAt:Date.now()};const prior=passengerRideMemory[p.characterId]||{};passengerRideMemory[p.characterId]={count:(prior.count||0)+1,last:summary};try{localStorage.setItem('underworldPassengerRideMemoryV1',JSON.stringify(passengerRideMemory));}catch(_){}}
+function pickupBriefingFallback(p){const memory=passengerRideMemory[p.characterId]?.last;const name=p.name||'Passenger';if(p.characterId==='unknown')return `${name}: Is ride mein koi gang tumhara peecha nahi karegi. Mujhe chup-chaap drop kar dena. Fare kam hai, par kaam aasan hai.`;if(!memory)return p.shootersOnly?`${name}: Is ride mein gang cars nahi, sirf road ke street shooters se bachna. Nazar road par rakh aur mujhe safely destination tak le chal.`:`${name}: Seedha destination tak le chal. Do gaadiyan peeche se fire karengi, aur do alag rammers takkar maarne ki koshish karenge. Nazar road par rakh.`;let feedback=memory.crashes>=3?'Pichhli baar tune kaafi takkar maari thi, iss baar auto sambhaal ke chala.':memory.highSpeedSeconds>=25?'Last ride mein tu bahut tez bhaaga tha. Speed ka faayda le, par junction pe dhyaan rakh.':memory.hardBrakes>=5?'Pichhli baar brakes bahut maare the. Smooth drive kar, warna peeche wale pakad lenge.':memory.sharpTurns>=8?'Pichhli ride mein tu har mod pe zigzag kar raha tha. Is baar route pakad ke chal.':'Pichhli ride theek thi. Is baar bhi clean driving rakh.';let briefing=p.shootersOnly?`${feedback} Is ride mein sirf street shooters ka khatra hai. Mujhe destination tak safely pahunchana.`:`${feedback} Ab mujhe destination tak jaldi aur safely pahunchana. Do shooters peeche se fire karenge, aur do rammers takkar maarne ki koshish karenge.`;if(p.specialMission?.status==='active')briefing+=' Special job: '+p.specialMission.objective;return briefing;}
+async function showPassengerPickupTalk(p){const box=ui('passengerTalk'),line=ui('passengerTalkLine');if(!box||!line)return;passengerConversationPaused=true;keys={};mobileDrive={left:false,right:false,accelerate:false,reverse:false};box.style.display='block';if(window.passengerTalkTimeout)clearTimeout(window.passengerTalkTimeout);ui('passengerTalkName').textContent=(p.name||'PASSENGER').toUpperCase()+' · RIDE ORDERS';const continueBtn=ui('passengerTalkContinue');if(continueBtn)continueBtn.textContent=mobileMode?'TAP TO CONTINUE':'SPACE TO CONTINUE';let fallback=pickupBriefingFallback(p);if(passengerRecentLines.slice(-6).includes(fallback))fallback+=' Is baar naya route hai, dhyaan se chala.';line.textContent=fallback;passengerRecentLines.push(fallback);if(passengerRecentLines.length>12)passengerRecentLines.shift();try{localStorage.setItem('underworldPassengerRecentLinesV1',JSON.stringify(passengerRecentLines));}catch(_){}const memory=passengerRideMemory[p.characterId]||null;try{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5000);const response=await fetch('/api/passenger-reaction',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({passenger:{name:p.name,characterId:p.characterId,category:p.category,personality:p.personality||PASSENGER_PERSONALITIES[p.characterId]},context:{event:'pickup briefing and ride orders',specialMission:p.specialMission?{title:p.specialMission.title,objective:p.specialMission.objective,deadline:p.specialMission.deadline}:null,lastRideMemory:memory,recentDialogue:passengerRecentLines.slice(-6),enemySetup:p.characterId==='unknown'?'No enemies at all on this Unknown Criminal ride. This passenger pays a very low fare.':(p.shootersOnly?'No gang cars on this passenger ride; only street shooters are active.':'Two shooter cars follow and fire but never ram. Two rammer cars do not shoot and try to hit the auto.'),instructions:'Speak directly to the driver. Give one or two practical orders and comment on how the driver performed with this same passenger on the previous ride if memory exists. If no previous ride memory, welcome them and explain the enemy roles. Unknown Criminal rides have no enemies and pay very little. If a special mission is active, explain its objective and one practical instruction.'}}),signal:controller.signal});clearTimeout(timer);if(!response.ok)throw Error('offline');const data=await response.json();if(data.dialogue&&passenger?.accepted&&passenger.requestId===p.requestId&&!passengerRecentLines.slice(-5).includes(data.dialogue)){line.textContent=data.dialogue;passengerRecentLines.push(data.dialogue);if(passengerRecentLines.length>12)passengerRecentLines.shift();try{localStorage.setItem('underworldPassengerRecentLinesV1',JSON.stringify(passengerRecentLines));}catch(_){}}}catch(_){/* prepared passenger briefing remains visible offline */}}
+function resumePassengerConversation(){if(!passengerConversationPaused)return;passengerConversationPaused=false;hidePassengerTalk();notify('RIDE STARTED · STAY SHARP!');}
 function hidePassengerTalk(){const box=ui('passengerTalk');if(box)box.style.display='none';}
 
 function makePlayer(){const spawn=mapSpawnPoint();return{x:spawn.x,y:spawn.y,a:0,v:0,steer:0,skidX:0,skidY:0,hp:100,fire:0,hitCooldown:0,buildingHitCooldown:0,smokeClock:0,shake:0,oilSlipTimer:0,oilSlipDir:1,oilSlipStrength:0};}
@@ -644,15 +626,16 @@ function nearbyFootpathPoint(from=player){
   return candidates[0]||{x:rx+offset,y:ry+offset};
 }
 const RIDE_CONTACTS=[
-  {id:'pappan',name:'Pappan Batli',category:'mafia',minRep:2,style:'Keep the engine running. I am carrying a box of expensive liquor bottles. Get me across the city without damaging a single bottle.',speedBonus:30},
-  {id:'danger',name:'Danger Bhai',category:'mafia',minRep:3,style:'I am coming with my own gun. We will clear the road together, but get me to the destination before my patience runs out.',timeLimit:90,allyShooter:true},
-  {id:'bhau',name:'Bhau Karkhanis',category:'mafia',minRep:4,style:'I will make sure your auto survives this ride. Keep me comfortable and I will make sure you are paid properly.'},
-  {id:'koita',name:'Koita Kumar',category:'local goon',style:'Drive fast, driver. I hate slow autos. And do not you dare smash my ride.',speedBonus:20},
-  {id:'battery',name:'Battery Baban',category:'local goon',minRep:1,style:'My usual driver disappeared. Pick me up and I will give your auto a little extra protection.'},
-  {id:'chikna',name:'Chikna Chintu',category:'local goon',style:'No enemy cars on this ride. Just those street shooters. But do not keep me waiting or I will lose my temper.',shootersOnly:true,angerMultiplier:2},
-  {id:'bunty',name:'Bunty Brakefail',category:'petty criminal',style:'Boss has called me across town. One thing, driver: do not touch the brakes until you drop me off.',brakesDisabled:true},
-  {id:'lamboo',name:'Lamboo Lala',category:'petty criminal',style:'Take me to my destination. I have got the fare ready. We will settle up when we get there.',minigame:'pickpocket'},
-  {id:'mangesh',name:'Mobile Mangesh',category:'petty criminal',style:'Need a ride. Keep your phone close, driver. I might need to borrow it for a moment.',minigame:'hack'}
+  {id:'unknown',name:'Unknown Criminal',category:'unknown passenger',minRep:0,style:'I am nobody important. Just drop me at the location and keep your head down. I will pay a little, nothing more.'},
+  {id:'pappan',name:'Pappan Batli',category:'mafia',minRep:6,style:'Keep the engine running. I am carrying a box of expensive liquor bottles. Get me across the city without damaging a single bottle.',speedBonus:30},
+  {id:'danger',name:'Danger Bhai',category:'mafia',minRep:8,style:'I am coming with my own gun. We will clear the road together, but get me to the destination before my patience runs out.',timeLimit:90,allyShooter:true},
+  {id:'bhau',name:'Bhau Karkhanis',category:'mafia',minRep:5,style:'I will make sure your auto survives this ride. Keep me comfortable and I will make sure you are paid properly.'},
+  {id:'koita',name:'Koita Kumar',category:'local goon',minRep:4,style:'Drive fast, driver. I hate slow autos. And do not you dare smash my ride.',speedBonus:20},
+  {id:'battery',name:'Battery Baban',category:'local goon',minRep:3,style:'My usual driver disappeared. Pick me up and I will give your auto a little extra protection.'},
+  {id:'chikna',name:'Chikna Chintu',category:'local goon',minRep:2,style:'No enemy cars on this ride. Just those street shooters. But do not keep me waiting or I will lose my temper.',shootersOnly:true,angerMultiplier:2},
+  {id:'bunty',name:'Bunty Brakefail',category:'petty criminal',minRep:1,style:'Boss has called me across town. One thing, driver: do not touch the brakes until you drop me off.',brakesDisabled:true},
+  {id:'lamboo',name:'Lamboo Lala',category:'petty criminal',minRep:0,style:'Take me to my destination. I have got the fare ready. We will settle up when we get there.',minigame:'pickpocket'},
+  {id:'mangesh',name:'Mobile Mangesh',category:'petty criminal',minRep:7,style:'Need a ride. Keep your phone close, driver. I might need to borrow it for a moment.',minigame:'hack'}
 ];
 const PASSENGER_PERSONALITIES={
   pappan:'A wealthy, short-tempered liquor smuggler. He is protective of his expensive bottles, speaks like a local Mumbai don, and reacts dramatically when his cargo is endangered.',
@@ -662,6 +645,7 @@ const PASSENGER_PERSONALITIES={
   battery:'A practical, street-smart local tough guy. He values protection and survival, complains bluntly when the ride gets rough, and uses casual Mumbai slang.',
   chikna:'A hot-headed, cocky street criminal with a short fuse. He gets irritated quickly, boasts about himself and reacts loudly to danger.',
   bunty:'A nervous but talkative petty criminal whose brakes are already a problem. He is anxious about crashes, constantly worries about the auto and uses sarcastic humour.',
+  unknown:'A low-profile, anonymous petty criminal who keeps conversation short, avoids attention and pays very little for a quiet ride.',
   lamboo:'A cunning, greedy pickpocket who acts friendly while looking for an advantage. He makes sly jokes, complains about losing money and rarely admits fault.',
   mangesh:'A clever, tech-obsessed phone hacker. He speaks casually with digital and mobile references, acts smug, and is more concerned about his phone and data than the crash.'
 };
@@ -681,20 +665,48 @@ function drawRideContact(){
   return eligible.find(c=>c.id===selectedId)||eligible[0];
 }
 const PICKUP_AREAS=['Old Market Road','Railway Quarter','Cinema Lane','Industrial Gate','Dockyard Road','Clock Tower Crossing','East Market'];
+function missionFallbackDecision(p){
+  const h=playerHistory,style=h.style||'balanced';
+  const pool=style==='reckless'?['risky_delivery','informant','vip_escort']:style==='speedster'?['risky_delivery','roadblock','informant']:style==='evasive'?['roadblock','silent_passenger','special_request']:['informant','silent_passenger','special_request','vip_escort'];
+  const type=pool[Math.floor(Math.random()*pool.length)];return {special:true,type,objective:AI_MISSION_TEMPLATES[type].objective,deadline:AI_MISSION_TEMPLATES[type].deadline,bonus:AI_MISSION_TEMPLATES[type].bonus,enemyPlan:style==='reckless'?'intercept':'pressure',reason:'Selected from the driver\'s recent driving pattern'};
+}
+function applyMissionDecision(p,decision){
+  if(!p||passenger!==p||!decision)return;
+  const allowed=Object.keys(AI_MISSION_TEMPLATES);const type=allowed.includes(decision.type)?decision.type:'';
+  if(!decision.special||!type){p.adaptiveRide={type:'adaptive_ride',reason:String(decision.reason||'Passenger and enemy reactions adapt to your driving.'),enemyPlan:['pressure','intercept','spread'].includes(decision.enemyPlan)?decision.enemyPlan:'pressure'};enemyBrainState.strategy=p.adaptiveRide.enemyPlan==='intercept'?'road_intercept':p.adaptiveRide.enemyPlan==='spread'?'spread_attack':'close_pressure';enemyBrainState.updatedAt=Date.now();if(playerHistory.style==='balanced'&&playerHistory.crashes<2&&playerHistory.highSpeedSeconds<10){p.angerMultiplier=Math.max(.75,(p.angerMultiplier||1)*.92);p.ambushDelay=(p.ambushDelay||0)+2;}return;}
+  const base=AI_MISSION_TEMPLATES[type];const job={id:'job-'+Date.now(),type,title:base.title,objective:String(decision.objective||base.objective).slice(0,180),deadline:Math.max(0,Math.min(180,Number(decision.deadline)||base.deadline)),bonus:Math.max(100,Math.min(500,Number(decision.bonus)||base.bonus)),status:'active',createdAt:Date.now(),reason:String(decision.reason||'The Mission Director selected this job.').slice(0,140)};
+  p.specialMission=job;p.adaptiveRide={type:'special',enemyPlan:decision.enemyPlan||'pressure'};enemyBrainState.strategy=decision.enemyPlan==='intercept'?'road_intercept':decision.enemyPlan==='spread'?'spread_attack':'close_pressure';enemyBrainState.updatedAt=Date.now();missionDirector.activeJob=job;missionDirector.lastType=type;saveMissionDirector();
+  if(phoneOpen&&(phoneScreen==='specialJobs'||phoneScreen==='home'))renderPhoneContent();notify('SPECIAL JOB AVAILABLE · '+job.title);
+}
+async function requestMissionDirector(p){
+  if(!p)return;
+  const eligible=reputation>=1&&missionDirector.sinceSpecial>=missionDirector.dueIn;
+  const fallback=eligible?missionFallbackDecision(p):{special:false,reason:'Normal ride adapted to the driver\'s history.',enemyPlan:playerHistory.style==='speedster'?'intercept':playerHistory.style==='reckless'?'spread':'pressure'};
+  applyMissionDecision(p,fallback);
+  try{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5500);const response=await fetch('/api/mission-director',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({specialEligible:eligible,reputation,rides,history:{style:playerHistory.style,crashes:playerHistory.crashes,highSpeedSeconds:Math.round(playerHistory.highSpeedSeconds),hardBrakes:playerHistory.hardBrakes,sharpTurns:playerHistory.sharpTurns,preferredAxis:playerHistory.preferredAxis,recentRoads:playerHistory.routeMemory.slice(-8),recentMissions:missionDirector.history.slice(-4)},passenger:{name:p.name,characterId:p.characterId,pickupArea:p.pickupArea},recentSpecialType:missionDirector.lastType}),signal:controller.signal});clearTimeout(timer);if(!response.ok)throw Error('AI unavailable');const data=await response.json();if(passenger===p)applyMissionDecision(p,data);}catch(_){/* validated local mission selection remains active */}
+}
+function updateSpecialMission(dt){const p=passenger;if(!p?.accepted||!p.specialMission||p.specialMission.status!=='active')return;const m=p.specialMission;if(m.deadline>0){m.timeLeft=Math.max(0,(m.timeLeft??m.deadline)-dt);if(m.timeLeft<=0){m.status='failed';missionDirector.activeJob={...m,status:'failed'};saveMissionDirector();notify('SPECIAL JOB FAILED · NORMAL FARE STILL COUNTS');}}
+  if(m.type==='silent_passenger'&&(p.missionCrashes||0)>=2){m.status='failed';missionDirector.activeJob={...m,status:'failed'};saveMissionDirector();notify('SILENT PASSENGER JOB FAILED · TOO MUCH NOISE');}
+  if(m.type==='special_request'&&player.hp<autoMax*.5){m.status='failed';missionDirector.activeJob={...m,status:'failed'};saveMissionDirector();notify('SPECIAL REQUEST FAILED · PASSENGER AUTO HEALTH TOO LOW');}
+}
+function finishSpecialMission(p){const m=p?.specialMission;if(!m)return 0;if(m.status==='active'){m.status='complete';missionDirector.activeJob={...m,status:'complete'};missionDirector.history.push({type:m.type,status:'complete',reputation,style:playerHistory.style});missionDirector.history=missionDirector.history.slice(-12);saveMissionDirector();notify('SPECIAL JOB COMPLETE · +₹'+m.bonus+' FARE BONUS');return m.bonus;}if(m.status==='failed'){missionDirector.history.push({type:m.type,status:'failed',reputation,style:playerHistory.style});missionDirector.history=missionDirector.history.slice(-12);missionDirector.activeJob={...m};saveMissionDirector();return 0;}return 0;}
+function noteSuccessfulRideForDirector(p){if(p?.specialMission){missionDirector.sinceSpecial=0;missionDirector.dueIn=3+Math.floor(Math.random()*3);}else missionDirector.sinceSpecial++;saveMissionDirector();}
+
 function makePassenger(){
   if(!player||passenger)return;
   const number=rides+1,spot=roadSidePoint(1750,3300,player);
   // Mafia bosses enter the request pool only after the driver's reputation reaches their threshold.
-  const contact=drawRideContact()||RIDE_CONTACTS.find(c=>!c.minRep||reputation>=c.minRep);
-  let minDistance=number>=8?19000:4800+(number-1)*650,maxDistance=number>=8?27500:10300+(number-1)*850;
+  const bossContract=reputation>=9&&!bossRideCompleted;const contact=bossContract?(RIDE_CONTACTS.find(c=>c.id==='danger')):(drawRideContact()||RIDE_CONTACTS.find(c=>!c.minRep||reputation>=c.minRep));
+  let minDistance=(bossContract||number>=8)?19000:4800+(number-1)*650,maxDistance=(bossContract||number>=8)?27500:10300+(number-1)*850;
   if(contact.id==='pappan'){minDistance=Math.max(minDistance,12500);maxDistance=Math.max(maxDistance,18500);}
   if(contact.id==='danger'){minDistance=Math.max(minDistance,8500);maxDistance=Math.max(maxDistance,15000);}
-  const dest=roadSidePoint(minDistance,maxDistance,spot),area=PICKUP_AREAS[Math.floor(Math.random()*PICKUP_AREAS.length)];
+  const dest=roadSidePoint(minDistance,maxDistance,spot),district=districtForPoint(spot.x,spot.y),area=({market:'Market Bazaar',railway:'Railway Station',industrial:'Industrial Estate',dockyard:'Dockyard Port',oldCity:'Old City'}[district]||'Old City');
   phoneRequestSerial++;
   const missed=Number(missedPickupCounts[contact.id]||0),revenge=missed>=5;
   const missedLine=missed>0?(revenge?REVENGE_LINES[Math.floor(Math.random()*REVENGE_LINES.length)]:MISSED_SARCASM[Math.floor(Math.random()*MISSED_SARCASM.length)]):contact.style;
-  passenger={number,x:spot.x,y:spot.y,destX:dest.x,destY:dest.y,name:contact.name,characterId:contact.id,category:contact.category,personality:PASSENGER_PERSONALITIES[contact.id]||'A local passenger with a distinct street personality.',isMafiaBoss:contact.category==='mafia',message:missedLine,pickupArea:area,danger:!contact.shootersOnly,shootersOnly:!!contact.shootersOnly,angerMultiplier:contact.angerMultiplier||1,speedBonus:contact.speedBonus||0,brakesDisabled:!!contact.brakesDisabled,allyShooter:!!contact.allyShooter,timeLimit:contact.timeLimit||0,bottleHp:contact.id==='pappan'?100:undefined,minigame:contact.minigame||'',anger:0,accepted:false,requestAccepted:false,messagePending:true,requestId:phoneRequestSerial,rideTimer:0,enemySpawnElapsed:0,ambushDelay:0,shootersSpawned:0,missedCount:missed,revengeOffer:revenge,revengeFareMultiplier:revenge?2:1,pickupTimerStarted:false,pickupTimeLeft:null,pickupTimeLimit:rand(45,60),pickupEarlyGoal:0,rideDamageAtPickup:0};
+  passenger={number,x:spot.x,y:spot.y,destX:dest.x,destY:dest.y,name:contact.name,characterId:contact.id,category:contact.category,personality:PASSENGER_PERSONALITIES[contact.id]||'A local passenger with a distinct street personality.',isMafiaBoss:contact.category==='mafia',bossLevel:!!bossContract,message:missedLine,pickupArea:area,danger:contact.id!=='unknown'&&!contact.shootersOnly,shootersOnly:!!contact.shootersOnly,angerMultiplier:contact.angerMultiplier||1,speedBonus:contact.speedBonus||0,brakesDisabled:!!contact.brakesDisabled,allyShooter:!!contact.allyShooter,timeLimit:contact.timeLimit||0,bottleHp:contact.id==='pappan'?100:undefined,minigame:contact.minigame||'',anger:0,accepted:false,requestAccepted:false,messagePending:true,requestId:phoneRequestSerial,rideTimer:0,enemySpawnElapsed:0,ambushDelay:0,shootersSpawned:0,missedCount:missed,revengeOffer:revenge,revengeFareMultiplier:revenge?2:1,pickupTimerStarted:false,pickupTimeLeft:null,pickupTimeLimit:rand(45,60),pickupEarlyGoal:0,rideDamageAtPickup:0};
   phoneUnread=true;syncPhoneBadge();renderPhoneContent();
+  requestMissionDirector(passenger);
   notify('NEW RIDE REQUEST · PRESS TAB TO OPEN PHONE');
   enemies=[];activeRammerId=null;enemyBurstShot=0;
 }
@@ -707,6 +719,9 @@ function updateRideRequestTimer(dt){
   if(nextRideRequestTimer<=0){makePassenger();nextRideRequestTimer=0;}
 }
 function insideBuilding(x,y,pad=0){return buildings.some(b=>x>b.x-pad&&x<b.x+b.w+pad&&y>b.y-pad&&y<b.y+b.h+pad)}
+function districtForBlock(ix,iy){if(ix>=25&&iy>=14)return 'dockyard';if(ix>=17&&ix<=23&&iy>=10&&iy<=16)return 'industrial';if(ix>=11&&ix<=16&&iy>=6&&iy<=12)return 'railway';if(ix>=5&&ix<=10&&iy>=3&&iy<=9)return 'market';return 'oldCity';}
+function districtForPoint(x,y){const ix=closestIndex(roadX,x),iy=closestIndex(roadY,y);return districtForBlock(Math.min(ix,roadX.length-2),Math.min(iy,roadY.length-2));}
+function closestIndex(arr,v){let bi=0,bd=Infinity;for(let i=0;i<arr.length;i++){const d=Math.abs(arr[i]-v);if(d<bd){bd=d;bi=i;}}return bi;}
 function makeBuildings(){
   buildings=[];
   for(let ix=0;ix<roadX.length-1;ix++)for(let iy=0;iy<roadY.length-1;iy++){
@@ -716,7 +731,7 @@ function makeBuildings(){
     for(let sx=0;sx<2;sx++)for(let sy=0;sy<2;sy++){
       let x=left+sx*cw+rand(16,35),y=top+sy*ch+rand(16,35);
       let w=Math.max(105,cw-rand(62,100)),h=Math.max(95,ch-rand(60,95));
-      buildings.push({x,y,w,h,color:colors[Math.floor(rand(0,colors.length))],roof:Math.random()<.42? '#424b51':'#29343a',kind:Math.random()<.3?'shop':'building',seed:Math.random()});
+      const district=districtForBlock(ix,iy);const kind=district==='market'?(Math.random()<.62?'marketShop':'marketStall'):district==='dockyard'?(Math.random()<.72?'warehouse':'containerYard'):district==='industrial'?(Math.random()<.65?'factory':'tankYard'):district==='railway'?(Math.random()<.62?'railDepot':'platform'):Math.random()<.35?'shop':'apartment';buildings.push({x,y,w,h,color:colors[Math.floor(rand(0,colors.length))],roof:Math.random()<.42?'#424b51':'#29343a',kind,district,seed:Math.random()});
     }
   }
 }
@@ -733,20 +748,19 @@ function destroyEnemyVehicle(e,reason='shot'){
   e.rewarded=true;e.dead=true;e.hp=0;
   progressMission('enemyCars',1);if(reason==='shot'||reason==='laser')progressMission('blastCars',1);
   if(activeRammerId===e.id)activeRammerId=null;
-  notify('ENEMY CAR DESTROYED · NO CASH REWARD');
   updateHud();
 }
 function destroyStreetShooter(s,reason='runover'){
   if(!s||s.rewarded||s.dead)return;
   s.dead=true;s.rewarded=true;progressMission('streetShooters',1);
-  notify('STREET SHOOTER ELIMINATED · NO CASH REWARD');
   updateHud();
 }
-function destroyOilSpiller(s){if(!s||s.dead)return;s.dead=true;s.state='gone';progressMission('oilSpillers',1);notify('OIL SPILLER STOPPED · NO CASH REWARD');updateHud();}
+function destroyOilSpiller(s){if(!s||s.dead)return;s.dead=true;s.state='gone';progressMission('oilSpillers',1);updateHud();}
 function passengerNumber(){return passenger?.number||rides+1;}
+function enemyDifficulty(){const r=Math.max(0,Math.min(9,reputation));if(passenger?.characterId==='unknown')return {shooters:0,rammers:0,ambush:999,shotGap:[99,99],ramGap:[99,99],ramGlobal:99,bulletDamage:0,speedBonus:0};const boss=!!(passenger?.bossLevel);return {shooters:boss?4:2,rammers:boss?4:2,ambush:r<=1?10:r<=3?8:7,shotGap:r<=1?[8,10]:r<=3?[7,8.5]:[6,7.5],ramGap:r<=1?[12,15]:r<=3?[10,13]:[9,12],ramGlobal:r<=1?8:r<=3?7:6,bulletDamage:r<=3?1:r<=6?2:3,speedBonus:Math.min(.18,r*.02)};}
 function currentEnemyHealth(){return 140+(hardModeEnabled?40:0);}
 function currentRamTruckHealth(){return currentEnemyHealth()*2;}
-function enemySpeedForGap(gap){const base=gap>1000?250:gap>700?220:185;return (base+(hardModeEnabled&&gap>420?10:0))/20;}
+function enemySpeedForGap(gap){const base=gap>1000?165:gap>700?150:138;return (base+(hardModeEnabled&&gap>420?5:0)+enemyDifficulty().speedBonus*100)/20;}
 function canEnemyOccupy(x,y){return x>35&&y>35&&x<world.w-35&&y<world.h-35&&!hitBuilding(x,y);}
 function moveEnemySafely(e,dx,dy){
   const nx=e.x+dx,ny=e.y+dy;
@@ -758,8 +772,8 @@ function moveEnemySafely(e,dx,dy){
 }
 function pointVisibleToPlayer(x,y,margin=70){const a=-camera.a-Math.PI/2,dx=x-camera.x,dy=y-camera.y,px=W/2+(dx*Math.cos(a)-dy*Math.sin(a))*camera.zoom,py=H/2+(dx*Math.sin(a)+dy*Math.cos(a))*camera.zoom;return px>-margin&&px<W+margin&&py>-margin&&py<H+margin;}
 function spawnStreetShooter(){
-  if(!player||!passenger?.accepted)return;
-  const n=passengerNumber(),budget=passenger.shootersOnly?5:(passenger.isMafiaBoss?5:(n>=5?2:(n>=2?3:0)));
+  if(!player||!passenger?.accepted||passenger.characterId==='unknown')return;
+  const n=passengerNumber(),budget=passenger.shootersOnly?5:(reputation===0?0:reputation===1?1:reputation===2?2:3);
   if(!budget||passenger.shootersSpawned>=budget||streetShooters.filter(s=>!s.dead).length>=2)return;
   const road=playerRoadInfo();let x,y,tries=0;
   do{const ahead=Math.max(1350,Math.hypot(W,H)/Math.max(.5,camera.zoom)*.60+280)+rand(0,180);if(road.axis==='v'){x=road.coord+rand(-roadW*.18,roadW*.18);y=clamp(player.y+road.dir*ahead,130,world.h-130);}else{x=clamp(player.x+road.dir*ahead,130,world.w-130);y=road.coord+rand(-roadW*.18,roadW*.18);}tries++;}while((insideBuilding(x,y,8)||pointVisibleToPlayer(x,y,40))&&tries<18);
@@ -769,8 +783,8 @@ function spawnStreetShooter(){
 }
 
 function updateStreetShooters(dt){
-  if(!passenger?.accepted||(!passenger.shootersOnly&&passengerNumber()<2)){streetShooters=[];return;}if((passenger.ambushDelay||0)>0)return;
-  const n=passengerNumber(),budget=passenger.shootersOnly?5:(passenger.isMafiaBoss?5:(n>=5?2:3)),alive=streetShooters.filter(s=>!s.dead).length;
+  if(!passenger?.accepted||passenger.characterId==='unknown'||(!passenger.shootersOnly&&reputation===0)){streetShooters=[];return;}if((passenger.ambushDelay||0)>0)return;
+  const n=passengerNumber(),budget=passenger.shootersOnly?5:(reputation===0?0:reputation===1?1:reputation===2?2:3),alive=streetShooters.filter(s=>!s.dead).length;
   streetShooterSpawnTimer-=dt;
   if(streetShooterSpawnTimer<=0&&alive<2&&(passenger.shootersSpawned||0)<budget){spawnStreetShooter();streetShooterSpawnTimer=rand(6.5,9.5);}
   for(const shooter of streetShooters){
@@ -840,113 +854,8 @@ function showMenuNotice(message){
   if(menuNoticeTimer)clearTimeout(menuNoticeTimer);
   menuNoticeTimer=setTimeout(()=>{notice?.classList.remove('visible');},2400);
 }
-const DEBUG_ENEMY_FOLLOW_DIALOGUE=ENEMY_FOLLOW_LINES.map(line=>['ENEMY · FOLLOWING',line]);
-const DEBUG_ENEMY_RAM_DIALOGUE=ENEMY_RAM_LINES.map(line=>['ENEMY · RAMMING',line]);
-const DEBUG_PASSENGER_RAM_DIALOGUE=PASSENGER_RAM_LINES.map(line=>['PASSENGER · IMPACT REACTION',line]);
-// Keep a combined alias for older debug-gallery references.
-const DEBUG_ENEMY_DIALOGUE=DEBUG_ENEMY_FOLLOW_DIALOGUE.concat(DEBUG_ENEMY_RAM_DIALOGUE);
-const DEBUG_PASSENGER_DIALOGUE=DEBUG_PASSENGER_RAM_DIALOGUE.concat([
-  ['KOITA KUMAR','Move it, driver! I did not hire you to crawl!'],
-  ['KOITA KUMAR','You smashed my ride! Take this!']
-]);
-function captureDebugSnapshot(){
-  if(debugSnapshot)return;
-  debugSnapshot={cash,goldBars,rides,day,reputation,repProgress,autoMax,upgrade,weapon,weaponUnlocked:weaponUnlocked.slice(),missedPickupCounts:{...missedPickupCounts},missionCycle:JSON.parse(JSON.stringify(missionCycle)),cardInventory:{...cardInventory},cosmeticUnlocks:{...cosmeticUnlocks},characterTypeUnlocks:characterTypeUnlocks.slice(),autoTypeUnlocks:autoTypeUnlocks.slice(),characterApplied:{...characterApplied},autoCustomizationApplied:{...autoCustomizationApplied},unlockedMapIds:unlockedMapIds.slice(),selectedMapId,hardModeEnabled:!!hardModeEnabled,pendingDropMiniGame:pendingDropMiniGame?{...pendingDropMiniGame}:null};
-}
-function restoreDebugSnapshot(){
-  if(!debugSnapshot)return;
-  cash=debugSnapshot.cash;goldBars=debugSnapshot.goldBars;rides=debugSnapshot.rides;day=debugSnapshot.day;reputation=debugSnapshot.reputation;autoMax=debugSnapshot.autoMax;upgrade=debugSnapshot.upgrade;weapon=debugSnapshot.weapon;weaponUnlocked.splice(0,weaponUnlocked.length,...debugSnapshot.weaponUnlocked);missedPickupCounts={...debugSnapshot.missedPickupCounts};missionCycle=JSON.parse(JSON.stringify(debugSnapshot.missionCycle));cardInventory={...debugSnapshot.cardInventory};cosmeticUnlocks={...debugSnapshot.cosmeticUnlocks};characterTypeUnlocks=debugSnapshot.characterTypeUnlocks.slice();autoTypeUnlocks=debugSnapshot.autoTypeUnlocks.slice();characterApplied={...debugSnapshot.characterApplied};autoCustomizationApplied={...debugSnapshot.autoCustomizationApplied};unlockedMapIds=debugSnapshot.unlockedMapIds.slice();selectedMapId=debugSnapshot.selectedMapId;hardModeEnabled=debugSnapshot.hardModeEnabled;pendingDropMiniGame=debugSnapshot.pendingDropMiniGame?{...debugSnapshot.pendingDropMiniGame}:null;
-  saveWallet();try{localStorage.setItem(MISSED_KEY,JSON.stringify(missedPickupCounts));localStorage.setItem(MISSION_KEY,JSON.stringify(missionCycle));localStorage.setItem(CARD_KEY,JSON.stringify(cardInventory));localStorage.setItem(COSMETIC_UNLOCK_KEY,JSON.stringify(cosmeticUnlocks));localStorage.setItem(CHAR_TYPE_UNLOCK_KEY,JSON.stringify(characterTypeUnlocks));localStorage.setItem(AUTO_TYPE_UNLOCK_KEY,JSON.stringify(autoTypeUnlocks));localStorage.setItem(CHAR_KEY,JSON.stringify(characterApplied));localStorage.setItem(AUTO_KEY,JSON.stringify(autoCustomizationApplied));localStorage.setItem(MAP_UNLOCK_KEY,JSON.stringify(unlockedMapIds));localStorage.setItem(MAP_KEY,selectedMapId);}catch(_){}
-  debugSnapshot=null;
-}
-function removeDebugExitBar(){document.getElementById('debugExitBar')?.remove();}
-function showDebugExitBar(){
-  removeDebugExitBar();const b=document.createElement('button');b.id='debugExitBar';b.className='debugExitBar';b.textContent='DEBUG TEST · EXIT TO DEBUG MENU';b.onclick=()=>stopDebugDriveTest('Test ended. No normal-game progress was changed.');document.body.appendChild(b);
-}
-function stopDebugDriveTest(message='Returned from debug test.'){
-  debugModeActive=false;debugScenarioName='';activeMiniGame=null;pendingMiniFare=0;pendingMiniRide=0;game=false;introPaused=false;closePhone();removeDebugExitBar();hideGameLayers();showDebugMenu(message);
-}
-function showDebugMenu(message=''){
-  captureDebugSnapshot();game=false;introPaused=false;debugModeActive=false;debugScenarioName='';activeMiniGame=null;removeDebugExitBar();menuAmbient=true;closePhone();
-  const groups=[
-    ['DIALOGUE TESTS',[
-      ['enemyFollowChats','Enemy following chats','View all 10 taunts used while gang cars follow your auto.'],
-      ['enemyRamChats','Enemy ramming chats','View all 10 lines used when an enemy successfully rams your auto.'],
-      ['passengerRamChats','Passenger impact reactions','View all 10 passenger reactions when your auto gets rammed.']
-    ]],
-    ['GAMEPLAY TESTS',[
-      ['enemyChase','Enemy follow / chase test','Drive with followers and interceptors active to test their behaviour and chatter.'],
-      ['rideRequest','Ride request test','Generate a request and test the phone message, pickup timer and route arrow.'],
-      ['passengerPicker','Passenger ability tests','Choose any passenger, then test their perks and drawbacks in a live ride.']
-    ]],
-    ['MINI-GAMES',[
-      ['pickpocket','Lamboo Lala · Pickpocketing','Launch the 6×6 cash-hiding and hand-search mini-game directly.'],
-      ['hacking','Mobile Mangesh · Hacking','Launch the 25-maze, three-ball hacking mini-game directly.']
-    ]],
-    ['PHONE, PROGRESSION & CUSTOMIZATION',[
-      ['missions','Missions app','Open the real missions app and inspect progress and rewards.'],
-      ['journal','Journal / card collection','Open the journal and inspect card counts and unlock progress.'],
-      ['garage','Garage / customization','Open the garage, character customizer and auto customizer.'],
-      ['weaponShop','Weapon shop','Inspect all ten weapons and their purchase requirements.']
-    ]]
-  ];
-  const markup=groups.map(([title,items])=>`<div class="debugGroupTitle">${title}</div><div class="debugGrid">${items.map(([id,label,desc])=>`<button class="debugAction" data-debug-action="${id}"><b>${label}</b><small>${desc}</small></button>`).join('')}</div>`).join('');
-  renderOverlay(`<div class="debugMenuRoot"><section class="debugMenuPanel"><div class="debugMenuHead"><div><div class="menuTag">UNDERWORLD AUTOWALA · DEVELOPER TOOLS</div><div class="debugMenuTitle">DEBUG MODE</div></div><button class="backBtn" id="debugBackBtn">← MAIN MENU</button></div><p class="debugMenuDesc">Launch a system directly without completing the full game. Debug tests do not award normal ride cash, reputation or mission rewards, and they do not overwrite your save checkpoint.</p>${message?`<div class="noticeStrip">${escapeHtml(message)}</div>`:''}${markup}</section></div>`,'menu');
-  ui('debugBackBtn').onclick=()=>showMainMenu();
-  document.querySelectorAll('[data-debug-action]').forEach(b=>b.onclick=()=>runDebugAction(b.dataset.debugAction));
-}
-function showDebugDialogueGallery(kind){
-  const enemy=kind==='enemyFollow'||kind==='enemyRam';
-  const title=kind==='enemyFollow'?'ENEMY FOLLOWING CHATS':kind==='enemyRam'?'ENEMY RAMMING CHATS':'PASSENGER IMPACT REACTIONS';
-  const entries=kind==='enemyFollow'?DEBUG_ENEMY_FOLLOW_DIALOGUE:kind==='enemyRam'?DEBUG_ENEMY_RAM_DIALOGUE:DEBUG_PASSENGER_RAM_DIALOGUE;
-  const rows=entries.map(([who,line],i)=>`<div class="debugLine"><b>${String(i+1).padStart(2,'0')} · ${escapeHtml(who)}</b>${escapeHtml(line)}</div>`).join('');
-  const testLabel=kind==='enemyFollow'?'START ENEMY CHASE TEST':kind==='enemyRam'?'START ENEMY RAM TEST':'TEST PASSENGER IMPACT';
-  renderOverlay(`<div class="debugMenuRoot"><section class="debugMenuPanel"><div class="debugMenuHead"><div><div class="menuTag">DEBUG MODE · DIALOGUE LIBRARY</div><div class="debugMenuTitle">${title}</div></div><button class="backBtn" id="debugGalleryBack">← DEBUG</button></div><p class="debugMenuDesc">These are the exact lines used in gameplay. Each dialogue category has a 5–8 second cooldown and will not repeat the immediately previous line from its category.</p><div class="debugGallery">${rows}</div><button class="menuPrimary" id="debugGalleryTest">${testLabel}</button></section></div>`,'menu');
-  ui('debugGalleryBack').onclick=()=>showDebugMenu();
-  ui('debugGalleryTest').onclick=()=>kind==='passengerRam'?showDebugPassengerPicker():startDebugDriveScenario(kind==='enemyRam'?'enemyRam':'enemy');
-}
-function showDebugPassengerPicker(){
-  const buttons=RIDE_CONTACTS.map(c=>`<button class="debugPassengerBtn" data-debug-passenger="${c.id}">${escapeHtml(c.name)}</button>`).join('');
-  renderOverlay(`<div class="debugMenuRoot"><section class="debugMenuPanel"><div class="debugMenuHead"><div><div class="menuTag">DEBUG MODE · LIVE RIDE</div><div class="debugMenuTitle">CHOOSE A PASSENGER</div></div><button class="backBtn" id="debugPassengerBack">← DEBUG</button></div><p class="debugMenuDesc">Choose any passenger, including mafia bosses, without meeting their normal reputation requirement. The ride begins at a nearby pickup point.</p><div class="debugPassengerGrid">${buttons}</div></section></div>`,'menu');
-  ui('debugPassengerBack').onclick=()=>showDebugMenu();
-  document.querySelectorAll('[data-debug-passenger]').forEach(b=>b.onclick=()=>startDebugDriveScenario('passenger',b.dataset.debugPassenger));
-}
-function makeDebugPassenger(contact){
-  const spot=nearbyFootpathPoint(player),dest=roadSidePoint(2600,5200,spot),number=Math.max(1,rides+1);
-  passenger={number,x:spot.x,y:spot.y,destX:dest.x,destY:dest.y,name:contact.name,characterId:contact.id,category:contact.category,personality:PASSENGER_PERSONALITIES[contact.id]||'A local passenger with a distinct street personality.',isMafiaBoss:contact.category==='mafia',message:contact.style,pickupArea:'DEBUG PICKUP ZONE',danger:!contact.shootersOnly,shootersOnly:!!contact.shootersOnly,angerMultiplier:contact.angerMultiplier||1,speedBonus:contact.speedBonus||0,brakesDisabled:!!contact.brakesDisabled,allyShooter:!!contact.allyShooter,timeLimit:contact.timeLimit||0,bottleHp:contact.id==='pappan'?100:undefined,minigame:contact.minigame||'',anger:0,accepted:false,requestAccepted:true,messagePending:false,requestId:++phoneRequestSerial,rideTimer:0,enemySpawnElapsed:0,ambushDelay:0,shootersSpawned:0,missedCount:0,revengeOffer:false,revengeFareMultiplier:1,pickupTimerStarted:true,pickupTimeLeft:180,pickupTimeLimit:180,pickupEarlyGoal:0,followersSpawned:false,interceptorsSpawned:false};
-  nextRideRequestTimer=0;phoneUnread=false;syncPhoneBadge();renderPhoneContent();
-}
-function startDebugDriveScenario(mode,contactId=null){
-  debugModeActive=true;debugScenarioName=mode;tutorialDone=true;start();debugModeActive=true;showDebugExitBar();
-  if(mode==='enemy'||mode==='enemyRam'){
-    const contact={id:'debug',name:'DEBUG PASSENGER',category:'test',style:'This is a debug chase. Keep driving and watch the gang cars.'};
-    makeDebugPassenger(contact);passenger.accepted=true;passenger.requestAccepted=true;passenger.followersSpawned=false;passenger.interceptorsSpawned=false;passenger.ambushDelay=0;passenger.danger=true;passenger.number=Math.max(2,rides+1);passenger.destX=clamp(player.x+6500,200,world.w-200);passenger.destY=clamp(player.y+6500,200,world.h-200);spawnFollowers();spawnInterceptors(true);
-    if(mode==='enemyRam'){
-      const road=playerRoadInfo(),heading=player.a+(player.v<-.05?Math.PI:0);let rx,ry;
-      if(road.axis==='v'){rx=road.coord;ry=clamp(player.y-road.dir*410,130,world.h-130);}else{rx=clamp(player.x-road.dir*410,130,world.w-130);ry=road.coord;}
-      if(!insideBuilding(rx,ry,18)){enemies.push({id:enemyIdCounter++,x:rx,y:ry,a:heading,hp:currentEnemyHealth(),role:'follower',combatType:'shooter',ramCooldown:0,stunTime:0,ramState:'following',chargeTimer:0,chargeAngle:heading,ramSide:1,warningTogglesRemaining:0,warningFlashTimer:0,warningFlashOn:false,fire:0,shotCooldown:99,shotPattern:0,ramDoneOnce:false,speed:ENEMY_MAX_V,tauntCooldown:99});}
-      notify('DEBUG RAM TEST ACTIVE · THE NEARBY GANG CAR WILL ATTEMPT A RAM');
-    }else notify('DEBUG CHASE ACTIVE · DRIVE ABOVE 65 KM/H TO HEAR ENEMY TAUNTS');
-  }else if(mode==='passenger'&&contactId){const c=RIDE_CONTACTS.find(v=>v.id===contactId)||RIDE_CONTACTS[0];makeDebugPassenger(c);notify('DEBUG RIDE · '+c.name.toUpperCase()+' · FOLLOW THE PICKUP MARKER');}
-  else if(mode==='request'){
-    makePassenger();if(passenger){passenger.x=nearbyFootpathPoint(player).x;const pt=nearbyFootpathPoint(player);passenger.x=pt.x;passenger.y=pt.y;}openPhone();phoneSetScreen('rides');notify('DEBUG REQUEST · OPEN THE MESSAGE TO START THE TIMER');
-  }else if(mode==='missions'){openPhone();phoneSetScreen('missions');}
-  else if(mode==='journal'){openPhone();phoneSetScreen('journal');}
-  else if(mode==='garage'){const g=nearestPoint(garages);if(g){player.x=g.x;player.y=g.y;camera.x=g.x;camera.y=g.y;}openGaragePanel();}
-  else if(mode==='weaponShop'){openGunShopScreen(null);}
-  updateHud();
-}
-function runDebugAction(action){
-  if(action==='enemyChats'||action==='enemyFollowChats'){showDebugDialogueGallery('enemyFollow');return;}
-  if(action==='enemyRamChats'){showDebugDialogueGallery('enemyRam');return;}
-  if(action==='passengerChats'||action==='passengerRamChats'){showDebugDialogueGallery('passengerRam');return;}
-  if(action==='passengerPicker'){showDebugPassengerPicker();return;}
-  if(action==='pickpocket'){debugModeActive=true;debugScenarioName='pickpocket';showDebugExitBar();startPickpocketIntro(500,1);return;}
-  if(action==='hacking'){debugModeActive=true;debugScenarioName='hacking';showDebugExitBar();startMobileHack(500,1);return;}
-  startDebugDriveScenario(action==='enemyChase'?'enemy':action);
-}
 function showMainMenu(message=''){
-  if(debugSnapshot)restoreDebugSnapshot();debugModeActive=false;debugScenarioName='';activeMiniGame=null;removeDebugExitBar();game=false;introPaused=false;dead=false;menuAmbient=false;adState.phase='';adState.offerVisible=false;
+  activeMiniGame=null;game=false;introPaused=false;dead=false;menuAmbient=false;adState.phase='';adState.offerVisible=false;
   hideGameLayers();
   menuWorldReady=false;menuBackdrop();menuAmbient=true;
   const save=readSaveGame();
@@ -959,8 +868,7 @@ function showMainMenu(message=''){
         <button class="newMenuButton" id="continueGameBtn"><span>CONTINUE GAME</span><small>${save?'Resume your last saved ride':'Load your saved progress'}</small></button>
         <button class="newMenuButton primary" id="newGameBtn"><span>NEW GAME</span><small>Start a fresh underworld contract</small></button>
         <button class="newMenuButton" id="quitGameBtn"><span>QUIT</span><small>Leave the city</small></button>
-        <button class="newMenuButton" id="debugModeBtn"><span>DEBUG MODE</span><small>Test dialogue, enemies, passengers and mini-games</small></button>
-      </div>
+        </div>
     </section>
   </div>`,'menu');
   ui('continueGameBtn').onclick=()=>{
@@ -969,7 +877,6 @@ function showMainMenu(message=''){
   };
   ui('newGameBtn').onclick=showNewGameIntro;
   ui('quitGameBtn').onclick=showQuitConfirm;
-  ui('debugModeBtn').onclick=showDebugMenu;
 }
 function showNewGameIntro(){
   game=false;dead=false;introPaused=true;menuAmbient=true;hideGameLayers();
@@ -1171,12 +1078,12 @@ function openRideMessage(){
 }
 function renderPhoneContent(){
   const panel=ui('phoneContent');if(!panel)return;
-  const title=ui('phoneTitle');if(title)title.textContent=phoneScreen==='home'?'UNDERWORLD PHONE':phoneScreen==='rides'?'RIDES REQUEST':phoneScreen==='rideMessage'?'RIDE MESSAGE':phoneScreen==='missions'?'MISSIONS':phoneScreen==='journal'?'JOURNAL':phoneScreen==='journalList'?'JOURNAL · COLLECTION': 'UNDERWORLD PHONE';
+  const title=ui('phoneTitle');if(title)title.textContent=phoneScreen==='home'?'UNDERWORLD PHONE':phoneScreen==='rides'?'RIDES REQUEST':phoneScreen==='rideMessage'?'RIDE MESSAGE':phoneScreen==='missions'?'MISSIONS':phoneScreen==='specialJobs'?'SPECIAL JOBS':phoneScreen==='journal'?'JOURNAL':phoneScreen==='journalList'?'JOURNAL · COLLECTION': 'UNDERWORLD PHONE';
   const back=phoneScreen==='home'?'':`<button class="phoneBack" id="phoneBackBtn">← HOME</button>`;
   if(phoneScreen==='home'){
     const incoming=passenger?.messagePending?'<i class="appDot"></i>':'';
-    panel.innerHTML=`<div class="phoneStatus">UNDERWORLD NETWORK · HOME</div><div class="phoneHomeGrid"><button class="phoneApp" id="appRides"><span class="appIcon">🚕</span>RIDES REQUEST ${incoming}</button><button class="phoneApp" id="appMissions"><span class="appIcon">🎯</span>MISSIONS</button><button class="phoneApp" id="appJournal"><span class="appIcon">📒</span>JOURNAL</button></div><div class="phoneEmpty">Select an app to manage your rides, daily work and collected unlock cards.</div>`;
-    ui('appRides').onclick=()=>phoneSetScreen('rides');ui('appMissions').onclick=()=>{ensureMissionCycle();phoneSetScreen('missions');};ui('appJournal').onclick=()=>phoneSetScreen('journal');return;
+    panel.innerHTML=`<div class="phoneStatus">UNDERWORLD NETWORK · HOME</div><div class="phoneHomeGrid"><button class="phoneApp" id="appRides"><span class="appIcon">🚕</span>RIDES REQUEST ${incoming}</button><button class="phoneApp" id="appMissions"><span class="appIcon">🎯</span>MISSIONS</button><button class="phoneApp" id="appSpecial"><span class="appIcon">🚨</span>SPECIAL JOBS</button><button class="phoneApp" id="appJournal"><span class="appIcon">📒</span>JOURNAL</button></div><div class="phoneEmpty">Select an app to manage your rides, daily work and collected unlock cards.</div>`;
+    ui('appRides').onclick=()=>phoneSetScreen('rides');ui('appMissions').onclick=()=>{ensureMissionCycle();phoneSetScreen('missions');};ui('appSpecial').onclick=()=>phoneSetScreen('specialJobs');ui('appJournal').onclick=()=>phoneSetScreen('journal');return;
   }
   if(phoneScreen==='rides'){
     let content='';
@@ -1198,6 +1105,13 @@ function renderPhoneContent(){
     const allDone=missionCycle.missions.length===3&&missionCycle.missions.every(m=>m.done);
     panel.innerHTML=back+`<div class="phoneSectionTitle">Today's Missions</div>${list||'<div class="phoneEmpty">No missions available.</div>'}${allDone?'<button class="missionRewardBtn" id="claimMissionReward">GET REWARD</button>':''}<div class="phoneTime" style="text-align:center;margin-top:8px">Reward: 1–3 random cards for an auto, character or character customization. Complete all three missions to claim it.</div>`;
     const bb=ui('phoneBackBtn');if(bb)bb.onclick=phoneAppHome;const claim=ui('claimMissionReward');if(claim)claim.onclick=claimMissionRewards;return;
+  }
+  if(phoneScreen==='specialJobs'){
+    const job=passenger?.specialMission||missionDirector.activeJob;
+    const state=job?.status==='active'?'ACTIVE':job?.status==='complete'?'COMPLETED':job?.status==='failed'?'FAILED':'WAITING';
+    const jobMarkup=job?`<div class="missionCard"><div class="missionMeta"><span>AI MISSION DIRECTOR</span><span>${state}</span></div><b>${escapeHtml(job.title||'SPECIAL JOB')}</b><p>${escapeHtml(job.objective||'Complete the passenger delivery.')}</p>${job.deadline>0?`<div class="phoneTimer">${job.status==='active'&&passenger?.accepted?Math.ceil(job.timeLeft??job.deadline)+' SEC LEFT':job.deadline+' SEC LIMIT'}</div>`:''}<div class="missionMeta"><span>REPUTATION ${reputation}</span><span>FARE BONUS ₹${job.bonus||0}</span></div><p class="phoneTime">${escapeHtml(job.reason||'The Director selected this job based on your recent rides.')}</p></div>`:'<div class="phoneEmpty">No special job right now. Complete a few successful rides. The AI Mission Director will occasionally offer a job based on your driving style.</div>';
+    panel.innerHTML=back+`<div class="phoneSectionTitle">Special Jobs</div>${jobMarkup}<div class="phoneEmpty">Normal rides also adapt to your driving. Special jobs appear occasionally, usually every 3–5 successful rides.</div>`;
+    const bb=ui('phoneBackBtn');if(bb)bb.onclick=phoneAppHome;return;
   }
   if(phoneScreen==='journal'){
     panel.innerHTML=back+`<div class="phoneSectionTitle">Journal</div><div class="phoneHomeGrid"><button class="phoneApp" id="journalAutos"><span class="appIcon">🛺</span>AUTO TYPES</button><button class="phoneApp" id="journalChars"><span class="appIcon">🧍</span>CHARACTERS</button><button class="phoneApp" id="journalCustom"><span class="appIcon">🎨</span>CUSTOMIZATION</button></div><div class="phoneEmpty">Collect cards from missions. Ten cards unlock one collection item.</div>`;
@@ -1255,36 +1169,36 @@ function showControlsTutorial(){
   ui('controlsOk').onclick=()=>{tutorialDone=true;introPaused=false;menuAmbient=false;ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');document.body.classList.remove('menu-state');ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';notify('Contract accepted. Stay alive, Autowala.');};
 }
 
-function start(){playerHistory={crashes:0,highSpeedSeconds:0,hardBrakes:0,sharpTurns:0,aggressiveShots:0,lastHeading:0,preferredAxis:'unknown',routeMemory:[],style:'balanced'};enemyBrainState={strategy:'pressure',updatedAt:0,pending:false};enemyAiDialogueCooldown=0;mobileDrive={left:false,right:false,accelerate:false,reverse:false};menuAmbient=false;closePhone();phoneScreen='home';phoneUnread=false;syncPhoneBadge();ensureMissionCycle();player=makePlayer();player.hp=autoMax;camera={x:player.x,y:player.y,a:player.a,zoom:0.70,shake:0};newDayWorld();repositionServicesNearPlayer();passenger=null;nextRideRequestTimer=6;enemies=[];bullets=[];streetShooters=[];streetShooterSpawnTimer=4;streetShooterId=1;smokeParticles=[];skidMarks=[];oilSpillers=[];oilPatches=[];dialogues=[];hidePassengerTalk();passengerCrashCount=0;passengerAiRequestSerial++;recentDamage=[];adaptiveCombat=false;enemyIdCounter=1;enemyWaveNumber=0;gameSeconds=12*3600;roadWatchTimer=5;interceptTimer=8;skidMarkTimer=0;enemyShotTimer=99;enemyShotIndex=0;enemyBurstShot=0;activeRammerId=null;ramGlobalCooldown=0;interceptorSpawnTimer=6;oilDirectorTimer=7;enemyTauntTimer=6;passengerCrashTalkCooldown=0;dialogueCooldowns={enemyFollow:0,enemyRam:0,passengerRam:0};dialogueLastLines={enemyFollow:'',enemyRam:'',passengerRam:''};firstWarningShown=false;game=true;dead=false;introPaused=!tutorialDone;ui('hud').style.visibility=tutorialDone?'visible':'hidden';ui('mobileControls').style.display=mobileMode?'block':'none';ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');ui('dayText').textContent='DAY '+String(day).padStart(2,'0')+' · DAY SHIFT';updateHud();if(!tutorialDone)showControlsTutorial();}
-function startNewGame(){enterImmersiveMode();clearSaveGame();pendingDropMiniGame=null;rides=0;reputation=0;repProgress=0;try{localStorage.setItem('underworldReputationV1','0');localStorage.setItem('underworldRepProgressV1','0');}catch(_){}day=1;weaponUnlocked[0]=true;weapon=weaponUnlocked[weapon]?weapon:0;firstWarningShown=false;tutorialDone=true;obstacleBriefingsSeen=new Set();bossOutroTimer=0;adState={offerTimer:20,offerVisible:false,offerLife:7,phase:'',countdown:0,reward:null};saveWallet();start();}
+function start(){passengerConversationPaused=false;hidePassengerTalk();playerHistory=loadPlayerHistory();enemyBrainState={strategy:'pressure',updatedAt:0,pending:false};enemyAiDialogueCooldown=0;mobileDrive={left:false,right:false,accelerate:false,reverse:false};menuAmbient=false;closePhone();phoneScreen='home';phoneUnread=false;syncPhoneBadge();ensureMissionCycle();player=makePlayer();player.hp=autoMax;camera={x:player.x,y:player.y,a:player.a,zoom:0.70,shake:0};newDayWorld();repositionServicesNearPlayer();passenger=null;nextRideRequestTimer=6;enemies=[];bullets=[];streetShooters=[];streetShooterSpawnTimer=4;streetShooterId=1;smokeParticles=[];skidMarks=[];oilSpillers=[];oilPatches=[];dialogues=[];hidePassengerTalk();passengerCrashCount=0;passengerAiRequestSerial++;recentDamage=[];adaptiveCombat=false;enemyIdCounter=1;enemyWaveNumber=0;gameSeconds=12*3600;roadWatchTimer=5;interceptTimer=8;skidMarkTimer=0;enemyShotTimer=99;enemyShotIndex=0;enemyBurstShot=0;activeRammerId=null;ramGlobalCooldown=0;interceptorSpawnTimer=6;oilDirectorTimer=7;enemyTauntTimer=6;passengerCrashTalkCooldown=0;dialogueCooldowns={enemyFollow:0,enemyRam:0,passengerRam:0};dialogueLastLines={enemyFollow:'',enemyRam:'',passengerRam:''};firstWarningShown=false;game=true;dead=false;introPaused=!tutorialDone;ui('hud').style.visibility=tutorialDone?'visible':'hidden';ui('mobileControls').style.display=mobileMode?'block':'none';ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');ui('dayText').textContent='DAY '+String(day).padStart(2,'0')+' · DAY SHIFT';updateHud();if(!tutorialDone)showControlsTutorial();}
+function startNewGame(){enterImmersiveMode();clearSaveGame();pendingDropMiniGame=null;missionDirector={sinceSpecial:0,dueIn:4,lastType:'',activeJob:null,history:[]};saveMissionDirector();playerHistory={crashes:0,highSpeedSeconds:0,hardBrakes:0,sharpTurns:0,aggressiveShots:0,lastHeading:0,preferredAxis:'unknown',routeMemory:[],style:'balanced'};persistPlayerHistory();rides=0;reputation=0;repProgress=0;try{localStorage.setItem('underworldReputationV1','0');localStorage.setItem('underworldRepProgressV1','0');}catch(_){}day=1;weaponUnlocked[0]=true;weapon=weaponUnlocked[weapon]?weapon:0;firstWarningShown=false;tutorialDone=true;obstacleBriefingsSeen=new Set();bossOutroTimer=0;adState={offerTimer:20,offerVisible:false,offerLife:7,phase:'',countdown:0,reward:null};saveWallet();start();}
 function readSaveGame(){
   try{const raw=localStorage.getItem(SAVE_KEY)||localStorage.getItem('underworldAutoSaveV13');if(!raw)return null;const data=JSON.parse(raw);if(![13,14,15,16,17,18,19].includes(data.version)||!data.player||!Number.isFinite(data.rides))return null;return data;}catch(e){return null;}
 }
 function clearSaveGame(){try{localStorage.removeItem(SAVE_KEY);localStorage.removeItem('underworldAutoSaveV13');}catch(e){}}
 function saveGame(){
-  if(!player||!game||debugModeActive)return false;
-  const data={version:19,savedAt:Date.now(),checkpoint:'after-passenger-dropoff',cash,goldBars,rides,day,reputation,repProgress,autoMax,upgrade,weapon,weaponUnlocked:weaponUnlocked.slice(),gameSeconds,firstWarningShown,selectedMapId,unlockedMapIds:unlockedMapIds.slice(),nextRideRequestTimer,phoneUnread,player:{...player},passenger:passenger?{...passenger}:null,closures:closures.map(c=>({...c})),missedPickupCounts:{...missedPickupCounts},missionCycle:JSON.parse(JSON.stringify(missionCycle)),cardInventory:{...cardInventory},cosmeticUnlocks:{...cosmeticUnlocks},characterTypeUnlocks:characterTypeUnlocks.slice(),autoTypeUnlocks:autoTypeUnlocks.slice(),characterApplied:{...characterApplied},autoCustomizationApplied:{...autoCustomizationApplied},hardModeEnabled:!!hardModeEnabled,pendingDropMiniGame:pendingDropMiniGame?{...pendingDropMiniGame}:null};
+  if(!player||!game)return false;
+  const data={version:19,savedAt:Date.now(),checkpoint:'after-passenger-dropoff',cash,goldBars,rides,day,reputation,repProgress,autoMax,upgrade,weapon,weaponUnlocked:weaponUnlocked.slice(),gameSeconds,firstWarningShown,selectedMapId,unlockedMapIds:unlockedMapIds.slice(),nextRideRequestTimer,phoneUnread,player:{...player},passenger:passenger?{...passenger}:null,closures:closures.map(c=>({...c})),missedPickupCounts:{...missedPickupCounts},missionCycle:JSON.parse(JSON.stringify(missionCycle)),missionDirector:JSON.parse(JSON.stringify(missionDirector)),cardInventory:{...cardInventory},cosmeticUnlocks:{...cosmeticUnlocks},characterTypeUnlocks:characterTypeUnlocks.slice(),autoTypeUnlocks:autoTypeUnlocks.slice(),characterApplied:{...characterApplied},autoCustomizationApplied:{...autoCustomizationApplied},hardModeEnabled:!!hardModeEnabled,pendingDropMiniGame:pendingDropMiniGame?{...pendingDropMiniGame}:null};
   try{localStorage.setItem(SAVE_KEY,JSON.stringify(data));return true;}catch(e){notify('Autosave unavailable in this browser.');return false;}
 }
 function continueSavedGame(){
   enterImmersiveMode();const data=readSaveGame();if(!data){notify('No valid save file found.');showMainMenu();return;}
   cash=Number.isFinite(data.cash)?data.cash:0;goldBars=Number.isFinite(data.goldBars)?data.goldBars:goldBars;rides=data.rides;day=data.day||1;reputation=Math.min(4,Math.max(0,Number.isFinite(data.reputation)?data.reputation:Number(localStorage.getItem('underworldReputationV1')||0)));repProgress=Number.isFinite(data.repProgress)?data.repProgress:Math.max(0,Number(localStorage.getItem('underworldRepProgressV1')||0));autoMax=data.autoMax||100;upgrade=data.upgrade||0;weapon=data.weapon||0;
-  if(data.missedPickupCounts)missedPickupCounts={...data.missedPickupCounts};if(data.missionCycle)missionCycle=data.missionCycle;if(data.cardInventory)cardInventory={...data.cardInventory};if(data.cosmeticUnlocks)cosmeticUnlocks={...data.cosmeticUnlocks};if(Array.isArray(data.characterTypeUnlocks))characterTypeUnlocks=data.characterTypeUnlocks.slice();if(Array.isArray(data.autoTypeUnlocks))autoTypeUnlocks=data.autoTypeUnlocks.slice();if(data.characterApplied)characterApplied={...CHAR_DEFAULT,...data.characterApplied};if(data.autoCustomizationApplied)autoCustomizationApplied={...AUTO_DEFAULT,...data.autoCustomizationApplied};if(Array.isArray(data.unlockedMapIds))unlockedMapIds=Array.from(new Set(['oldCity',...data.unlockedMapIds]));if(typeof data.hardModeEnabled==='boolean')hardModeEnabled=data.hardModeEnabled;
+  if(data.missedPickupCounts)missedPickupCounts={...data.missedPickupCounts};if(data.missionCycle)missionCycle=data.missionCycle;if(data.missionDirector)missionDirector={...missionDirector,...data.missionDirector};if(data.playerHistory){playerHistory={...playerHistory,...data.playerHistory};persistPlayerHistory();}if(data.cardInventory)cardInventory={...data.cardInventory};if(data.cosmeticUnlocks)cosmeticUnlocks={...data.cosmeticUnlocks};if(Array.isArray(data.characterTypeUnlocks))characterTypeUnlocks=data.characterTypeUnlocks.slice();if(Array.isArray(data.autoTypeUnlocks))autoTypeUnlocks=data.autoTypeUnlocks.slice();if(data.characterApplied)characterApplied={...CHAR_DEFAULT,...data.characterApplied};if(data.autoCustomizationApplied)autoCustomizationApplied={...AUTO_DEFAULT,...data.autoCustomizationApplied};if(Array.isArray(data.unlockedMapIds))unlockedMapIds=Array.from(new Set(['oldCity',...data.unlockedMapIds]));if(typeof data.hardModeEnabled==='boolean')hardModeEnabled=data.hardModeEnabled;
   try{localStorage.setItem(MISSED_KEY,JSON.stringify(missedPickupCounts));localStorage.setItem(MISSION_KEY,JSON.stringify(missionCycle));localStorage.setItem(CARD_KEY,JSON.stringify(cardInventory));localStorage.setItem(COSMETIC_UNLOCK_KEY,JSON.stringify(cosmeticUnlocks));localStorage.setItem(CHAR_TYPE_UNLOCK_KEY,JSON.stringify(characterTypeUnlocks));localStorage.setItem(AUTO_TYPE_UNLOCK_KEY,JSON.stringify(autoTypeUnlocks));localStorage.setItem(CHAR_KEY,JSON.stringify(characterApplied));localStorage.setItem(AUTO_KEY,JSON.stringify(autoCustomizationApplied));localStorage.setItem(MAP_UNLOCK_KEY,JSON.stringify(unlockedMapIds));}catch(_){}if(data.selectedMapId&&unlockedMapIds.includes(data.selectedMapId)){selectedMapId=data.selectedMapId;try{localStorage.setItem(MAP_KEY,selectedMapId);}catch(_){}}else{selectedMapId='oldCity';try{localStorage.setItem(MAP_KEY,selectedMapId);}catch(_){}}const savedUnlocks=(data.weaponUnlocked||[true]).slice(0,10);while(savedUnlocks.length<10)savedUnlocks.push(false);savedUnlocks[0]=true;weaponUnlocked.splice(0,weaponUnlocked.length,...savedUnlocks);
   gameSeconds=data.gameSeconds||12*3600;firstWarningShown=!!data.firstWarningShown;pendingDropMiniGame=data.pendingDropMiniGame?{...data.pendingDropMiniGame}:null;newDayWorld();
   if(Array.isArray(data.closures))closures=data.closures.map(c=>({...c}));if(Array.isArray(data.garages)&&data.garages.length)garages=data.garages.map(g=>({...g}));if(Array.isArray(data.shops)&&data.shops.length)shops=data.shops.map(sh=>({...sh}));
   player={...makePlayer(),...data.player};passenger=data.passenger?{...data.passenger,requestAccepted:data.passenger.requestAccepted??true,messagePending:!!data.passenger.messagePending}:null;nextRideRequestTimer=Number.isFinite(data.nextRideRequestTimer)?data.nextRideRequestTimer:(passenger?0:6);phoneUnread=!!data.phoneUnread;phoneOpen=false;syncPhoneBadge();renderPhoneContent();repositionServicesNearPlayer();
   enemies=[];bullets=[];streetShooters=[];streetShooterSpawnTimer=4;streetShooterId=1;smokeParticles=[];skidMarks=[];oilSpillers=[];oilPatches=[];dialogues=[];hidePassengerTalk();passengerCrashCount=0;passengerAiRequestSerial++;recentDamage=[];adaptiveCombat=false;enemyIdCounter=1;enemyWaveNumber=0;enemyShotTimer=99;enemyShotIndex=0;enemyBurstShot=0;activeRammerId=null;ramGlobalCooldown=0;interceptorSpawnTimer=6;roadWatchTimer=5;oilDirectorTimer=7;enemyTauntTimer=6;passengerCrashTalkCooldown=0;
   camera={x:player.x,y:player.y,a:player.a,zoom:0.70,shake:0};saveWallet();game=true;menuAmbient=false;dead=false;introPaused=false;tutorialDone=true;
-  ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';ui('dayText').textContent='DAY '+String(day).padStart(2,'0')+' · DAY SHIFT';updateHud();notify('Saved drive restored. Your last completed rides are safe.');if(pendingDropMiniGame){const pending={...pendingDropMiniGame};setTimeout(()=>{if(!game||debugModeActive)return;if(pending.type==='pickpocket')startPickpocketIntro(pending.fare,pending.ride);else if(pending.type==='hack')startMobileHack(pending.fare,pending.ride);},0);}
+  ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';ui('dayText').textContent='DAY '+String(day).padStart(2,'0')+' · DAY SHIFT';updateHud();notify('Saved drive restored. Your last completed rides are safe.');if(pendingDropMiniGame){const pending={...pendingDropMiniGame};setTimeout(()=>{if(!game)return;if(pending.type==='pickpocket')startPickpocketIntro(pending.fare,pending.ride);else if(pending.type==='hack')startMobileHack(pending.fare,pending.ride);},0);}
 }
 function endDay(){game=false;dead=true;closePhone();ui('overlay').style.display='flex';ui('card').innerHTML=`<h1>SHIFT <span style="color:#e8a72f">ENDED</span></h1><p>The shift is over.</p><div class="grid"><div>Today you earned<br><b>₹${cash}</b></div><div>Rides completed<br><b>${rides}</b></div><div>Auto health<br><b>${Math.max(0,Math.round(player.hp))}</b></div><div>Auto upgrades<br><b>${upgrade}</b></div></div><button class="btn" id="nextDay">START NEW DAY</button>`;ui('nextDay').onclick=()=>{day++;cash=0;rides=0;start()}}
-function playerDied(){if(debugModeActive){stopDebugDriveTest('DEBUG TEST ENDED · AUTO DESTROYED. Your normal save was not changed.');return;}game=false;dead=true;introPaused=false;menuAmbient=false;closePhone();adState.phase='';adState.offerVisible=false;ui('adOffer').classList.remove('active');streetShooters=[];const lostFare=!!(passenger&&passenger.accepted);const checkpoint=readSaveGame();if(checkpoint){cash=Math.max(0,(Number(checkpoint.cash)||0)-100);checkpoint.cash=cash;checkpoint.savedAt=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(checkpoint));}catch(_){}}else cash=Math.max(0,cash-100);saveWallet();passenger=null;enemies=[];bullets=[];oilSpillers=[];oilPatches=[];dialogues=[];streetShooters=[];player=makePlayer();player.hp=autoMax;camera={x:player.x,y:player.y,a:player.a,zoom:.52,shake:0};repositionServicesNearPlayer();showMainMenu(`AUTO DESTROYED · ${lostFare?'Current fare forfeited · ':''}₹100 fine paid · LAST COMPLETED DROP-OFF SAVED.`);}
-function respawn(){cash=Math.max(0,cash-100);player=makePlayer();player.x=roadX[2];player.y=roadY[2];player.a=0;player.hp=autoMax;camera={x:player.x,y:player.y,a:player.a,zoom:0.70,shake:0};passenger=null;nextRideRequestTimer=8;phoneUnread=false;phoneOpen=false;syncPhoneBadge();enemies=[];bullets=[];streetShooters=[];streetShooterSpawnTimer=4;streetShooterId=1;smokeParticles=[];skidMarks=[];oilSpillers=[];oilPatches=[];dialogues=[];hidePassengerTalk();passengerCrashCount=0;passengerAiRequestSerial++;recentDamage=[];adaptiveCombat=false;repositionServicesNearPlayer();enemyShotTimer=99;enemyShotIndex=0;enemyBurstShot=0;activeRammerId=null;interceptorSpawnTimer=6;interceptTimer=8;roadWatchTimer=5;oilDirectorTimer=7;enemyTauntTimer=6;passengerCrashTalkCooldown=0;dialogueCooldowns={enemyFollow:0,enemyRam:0,passengerRam:0};dialogueLastLines={enemyFollow:'',enemyRam:'',passengerRam:''};game=true;dead=false;introPaused=false;ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';ui('overlay').style.display='none';ui('dayText').textContent='DAY '+String(day).padStart(2,'0')+' · DAY SHIFT';notify('Respawned. ₹100 fine paid. A new ride request will arrive on your phone.');updateHud();}
-function getSpeedLimitKmh(){const passengerBonus=passenger?.accepted?(passenger.speedBonus||0):0;return Math.max(PLAYER_MAX_KMH+passengerBonus,player?.speedBoostTimer>0?150:0);}
+function playerDied(){game=false;dead=true;introPaused=false;menuAmbient=false;closePhone();adState.phase='';adState.offerVisible=false;ui('adOffer').classList.remove('active');streetShooters=[];const lostFare=!!(passenger&&passenger.accepted);const checkpoint=readSaveGame();if(checkpoint){cash=Math.max(0,(Number(checkpoint.cash)||0)-100);checkpoint.cash=cash;checkpoint.savedAt=Date.now();try{localStorage.setItem(SAVE_KEY,JSON.stringify(checkpoint));}catch(_){}}else cash=Math.max(0,cash-100);saveWallet();passenger=null;enemies=[];bullets=[];oilSpillers=[];oilPatches=[];dialogues=[];streetShooters=[];player=makePlayer();player.hp=autoMax;camera={x:player.x,y:player.y,a:player.a,zoom:.52,shake:0};repositionServicesNearPlayer();showMainMenu(`AUTO DESTROYED · ${lostFare?'Current fare forfeited · ':''}₹100 fine paid · LAST COMPLETED DROP-OFF SAVED.`);}
+function respawn(){passengerConversationPaused=false;hidePassengerTalk();cash=Math.max(0,cash-100);player=makePlayer();player.x=roadX[2];player.y=roadY[2];player.a=0;player.hp=autoMax;camera={x:player.x,y:player.y,a:player.a,zoom:0.70,shake:0};passenger=null;nextRideRequestTimer=8;phoneUnread=false;phoneOpen=false;syncPhoneBadge();enemies=[];bullets=[];streetShooters=[];streetShooterSpawnTimer=4;streetShooterId=1;smokeParticles=[];skidMarks=[];oilSpillers=[];oilPatches=[];dialogues=[];hidePassengerTalk();passengerCrashCount=0;passengerAiRequestSerial++;recentDamage=[];adaptiveCombat=false;repositionServicesNearPlayer();enemyShotTimer=99;enemyShotIndex=0;enemyBurstShot=0;activeRammerId=null;interceptorSpawnTimer=6;interceptTimer=8;roadWatchTimer=5;oilDirectorTimer=7;enemyTauntTimer=6;passengerCrashTalkCooldown=0;dialogueCooldowns={enemyFollow:0,enemyRam:0,passengerRam:0};dialogueLastLines={enemyFollow:'',enemyRam:'',passengerRam:''};game=true;dead=false;introPaused=false;ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';ui('overlay').style.display='none';ui('dayText').textContent='DAY '+String(day).padStart(2,'0')+' · DAY SHIFT';notify('Respawned. ₹100 fine paid. A new ride request will arrive on your phone.');updateHud();}
+function getSpeedLimitKmh(){const passengerBonus=passenger?.accepted?(passenger.speedBonus||0):0;return Math.max(PLAYER_MAX_KMH+passengerBonus,player?.speedBoostTimer>0?180:0);}
 function getSpeedKmh(){return Math.min(getSpeedLimitKmh(),Math.round(Math.abs(player?.v||0)*20))}
 function nearestPoint(list,from=player){return list.reduce((best,n)=>!best||dist(n,from)<dist(best,from)?n:best,null)}
-function updateHud(){if(!player)return;ui('cash').textContent=cash;ui('rides').textContent=rides;ui('healthFill').style.width=Math.max(0,player.hp/autoMax*100)+'%';ui('angerFill').style.width=(passenger&&passenger.accepted?passenger.anger:0)+'%';const armor=player.armor||0;ui('armorRow').style.display=armor>0?'block':'none';ui('armorFill').style.width=Math.min(100,armor)+'%';ui('armorValue').textContent=Math.round(armor);const liquor=passenger?.accepted&&passenger.characterId==='pappan';ui('liquorRow').style.display=liquor?'block':'none';if(liquor){ui('liquorFill').style.width=Math.max(0,passenger.bottleHp)+'%';ui('liquorValue').textContent=Math.max(0,Math.round(passenger.bottleHp));}ui('speed').textContent=getSpeedKmh();ui('weaponName').textContent=weapons[weapon].name;updateReputationHud();}
+function updateHud(){if(!player)return;ui('cash').textContent=cash;ui('rides').textContent=rides;ui('healthFill').style.width=Math.max(0,player.hp/autoMax*100)+'%';ui('angerFill').style.width=(passenger&&passenger.accepted?passenger.anger:0)+'%';const armor=player.armor||0;ui('armorRow').style.display=armor>0?'block':'none';ui('armorFill').style.width=Math.min(100,armor)+'%';ui('armorValue').textContent=Math.round(armor);const liquor=passenger?.accepted&&passenger.characterId==='pappan';ui('liquorRow').style.display=liquor?'block':'none';if(liquor){ui('liquorFill').style.width=Math.max(0,passenger.bottleHp)+'%';ui('liquorValue').textContent=Math.max(0,Math.round(passenger.bottleHp));}ui('speed').textContent=Math.max(0,getSpeedKmh()-30);ui('weaponName').textContent=weapons[weapon].name;updateReputationHud();}
 function getObstacleBriefing(number){
   if(passenger?.characterId==='pappan')return 'Pappan Batli is carrying expensive liquor bottles. Every crash or enemy-vehicle ram destroys 7% bottle health. If the bottles break, Pappan will shoot you. His ride is long, but he gives your auto +30 km/h.';
   if(passenger?.characterId==='danger')return 'Danger Bhai will help shoot enemies from your auto. You have 90 seconds from pickup to reach his destination. Fail the deadline and he will shoot you.';
@@ -1296,15 +1210,15 @@ function getObstacleBriefing(number){
   const briefings={
     1:["Passenger: Easy money, driver, but the rival boys have left oil on some streets. Watch for dark slick patches. One bad turn and this auto will slide straight into trouble.","Passenger: A warning before we move. Their gang has been spilling oil along the roads. Keep your eyes on the asphalt and don't throw the auto into a sharp turn."],
     2:["Passenger: Listen, our faces and this auto are known now. Rival gang shooters are walking the streets with guns. Keep moving, and if one starts firing, you can run them down. The boss will deal with the police.","Passenger: Heads up, Autowala. Gunmen from the other gang are watching the roads. They'll shoot if you get close. Don't stop for them. Run them over and keep driving."],
-    5:["Passenger: The rivalry has turned ugly. A heavy Ram Truck is joining the chase, and some roads are being blocked. That truck won't follow our tail; it'll try to meet us head-on. Keep checking the road ahead.","Passenger: New trouble today. They have sent a Ram Truck to smash us, and road crews have blocked routes for the gang. The truck will come from the opposite direction, so stay alert at every junction."],
-    8:["Passenger: That's the Mafia Boss riding with you. Every gang in the city wants this drop-off stopped. Expect a Ram Truck, roadblocks and gunmen spread along your route. No second chances. Get him there alive.","Passenger: Driver, this is the Boss. The whole city is watching this ride. They'll try to cut off our route with cars, a truck and shooters. Keep your head clear and don't let them box us in."]
+    5:["Passenger: The rivalry has turned ugly. Two dedicated rammer cars are joining the chase, and some roads are being blocked. That truck won't follow our tail; it'll try to meet us head-on. Keep checking the road ahead.","Passenger: New trouble today. They have sent two dedicated rammer cars to smash us, and road crews have blocked routes for the gang. The truck will come from the opposite direction, so stay alert at every junction."],
+    8:["Passenger: That's the Mafia Boss riding with you. Every gang in the city wants this drop-off stopped. Expect two rammer cars, two shooters and roadblocks along your route. No second chances. Get him there alive.","Passenger: Driver, this is the Boss. The whole city is watching this ride. They'll try to cut off our route with two rammers and two shooters. Keep your head clear and don't let them box us in."]
   };
   const list=briefings[number];return list?list[Math.floor(Math.random()*list.length)]:'';
 }
 function showObstacleBriefing(text,number){
   introPaused=true;ui('hud').style.visibility='hidden';ui('mobileControls').style.display='none';ui('mobileActions').style.display='none';
   const boss=!!passenger?.isMafiaBoss;renderOverlay(`<div class="menuTag">PASSENGER BRIEFING · RIDE ${number}</div><h1>${boss?'MAFIA BOSS CONTRACT':'PASSENGER SPECIAL ABILITY'}</h1>${boss?'<div class="noticeStrip" style="background:repeating-linear-gradient(135deg,#751c21 0 8px,#17191d 8px 16px);color:#fff;border-color:#ff6060">IT’S THE MAFIA BOSS · BE ON HIGH ALERT</div>':''}<div class="storyBox" style="max-width:760px;margin:22px auto;font-size:clamp(14px,2vw,18px)">${escapeHtml(text)}</div><button class="menuPrimary" id="briefingContinue">CONTINUE</button>`);
-  ui('briefingContinue').onclick=()=>{ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');document.body.classList.remove('menu-state');introPaused=false;passenger.ambushDelay=4;passenger.enemySpawnElapsed=0;ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';notify('Keep moving. Trouble is on the way.');};
+  ui('briefingContinue').onclick=()=>{ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');document.body.classList.remove('menu-state');introPaused=false;passenger.ambushDelay=enemyDifficulty().ambush;passenger.enemySpawnElapsed=0;ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';notify(passenger.characterId==='unknown'?'Quiet ride. No gang cars are coming.':'Keep moving. Trouble is on the way.');};
 }
 
 function applyPassengerPickupPerks(){
@@ -1340,6 +1254,10 @@ function updatePassengerSupport(dt){
       p.allyShotCooldown=1.05;
     }
   }
+  if(p.specialMission?.type==='vip_escort'&&p.specialMission.status==='active'&&p.characterId!=='danger'){
+    p.missionAllyShotCooldown=(p.missionAllyShotCooldown??1)-dt;
+    if(p.missionAllyShotCooldown<=0){const targets=collectPassengerTargets(1250,true);const target=targets.length?findPassengerTargetByKey(chooseFallbackPassengerTarget(targets).targetId):null;if(target){const a=Math.atan2(target.y-player.y,target.x-player.x);bullets.push({x:player.x+Math.cos(a)*20-Math.sin(a)*8,y:player.y+Math.sin(a)*20+Math.cos(a)*8,vx:Math.cos(a)*18,vy:Math.sin(a)*18,dmg:12,life:3,enemy:false,friendlyPassenger:true,targetId:target.id});}p.missionAllyShotCooldown=2.1;}
+  }
   if(p.characterId==='mangesh'&&!p.mangeshHackUsed){
     p.mangeshCheckCooldown=Math.max(0,(p.mangeshCheckCooldown||0)-dt);
     const threats=collectPassengerTargets(1350,true);
@@ -1366,24 +1284,22 @@ function updatePassengerSupport(dt){
 
 function resumeAfterMiniGame(){activeMiniGame=null;introPaused=false;ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';updateHud();}
 function settleDeliveredRide(pay,deliveredNumber,message=''){
-  if(debugModeActive){stopDebugDriveTest('DEBUG DELIVERY TEST COMPLETE · NORMAL CASH, REPUTATION AND SAVE DATA WERE NOT CHANGED.');return;}
-  pendingDropMiniGame=null;rides++;const unlockedLevel=awardSuccessfulRideReputation();recordPassengerRideMemory(passenger||pendingDeliveredPassenger);pendingDeliveredPassenger=null;cash+=Math.max(0,Math.round(pay));saveWallet();notify(message||('Drop-off complete! +₹'+Math.max(0,Math.round(pay))));
+  pendingDropMiniGame=null;const completedRide=passenger||pendingDeliveredPassenger;if(completedRide?.bossLevel){bossRideCompleted=true;try{localStorage.setItem(BOSS_RIDE_KEY,'1');}catch(_){}}rides++;noteSuccessfulRideForDirector(completedRide);const unlockedLevel=awardSuccessfulRideReputation();recordPassengerRideMemory(passenger||pendingDeliveredPassenger);pendingDeliveredPassenger=null;cash+=Math.max(0,Math.round(pay));saveWallet();notify(message||('Drop-off complete! +₹'+Math.max(0,Math.round(pay))));
   enemies=[];bullets=[];activeRammerId=null;ramGlobalCooldown=0;streetShooters=[];streetShooterSpawnTimer=rand(3.5,6);oilSpillers=[];oilPatches=[];dialogues=[];hidePassengerTalk();
-  if(deliveredNumber===8){goldBars+=100;saveWallet();passenger=null;nextRideRequestTimer=0;phoneUnread=false;syncPhoneBadge();saveGame();bossOutroTimer=unlockedLevel?0:5;game=false;introPaused=true;ui('hud').style.visibility='hidden';ui('mobileControls').style.display='none';ui('adOffer').classList.remove('active');closePhone();notify('CONTRACT MILESTONE REACHED! +100 GOLD BARS');if(unlockedLevel)showReputationUnlock(unlockedLevel,showPrototypeComplete);return;}
+  // The reputation ladder now continues through the Danger Bhai boss contract; no early 8-ride prototype ending.
   scheduleNextRideRequest(rand(7,12));saveGame();updateHud();if(unlockedLevel)showReputationUnlock(unlockedLevel);
 }
 function completePassengerDelivery(basePay,deliveredNumber){
-  if(debugModeActive){stopDebugDriveTest('DEBUG PASSENGER REACHED DROP-OFF · TEST COMPLETE.');return;}
   const delivered=passenger;pendingDeliveredPassenger=delivered;
   if(delivered){progressMission('healthyRides',1,{health:delivered.rideMinHp??player.hp});if(!delivered.rideTookDamage)progressMission('noDamageRides',1);}
-  const finalPay=Math.round(basePay*(delivered?.revengeFareMultiplier||1));pendingMiniFare=finalPay;pendingMiniRide=deliveredNumber;
+  const specialBonus=finishSpecialMission(delivered);const finalPay=Math.round((basePay+specialBonus)*(delivered?.revengeFareMultiplier||1));pendingMiniFare=finalPay;pendingMiniRide=deliveredNumber;
   if(delivered?.minigame==='pickpocket'||delivered?.minigame==='hack'){
     pendingDropMiniGame={type:delivered.minigame,fare:finalPay,ride:deliveredNumber};passenger=null;nextRideRequestTimer=0;phoneUnread=false;syncPhoneBadge();saveGame();
     if(delivered.minigame==='pickpocket')startPickpocketIntro(finalPay,deliveredNumber);else startMobileHack(finalPay,deliveredNumber);return;
   }
   settleDeliveredRide(finalPay,deliveredNumber);
 }
-function finishMiniGameWithFare(pay,message){const ride=pendingMiniRide;pendingMiniFare=0;pendingMiniRide=0;if(debugModeActive){pendingDropMiniGame=null;activeMiniGame=null;introPaused=false;removeDebugExitBar();showDebugMenu('MINI-GAME TEST COMPLETE · '+message+' · NORMAL SAVE WAS NOT CHANGED.');return;}resumeAfterMiniGame();settleDeliveredRide(pay,ride,message);}
+function finishMiniGameWithFare(pay,message){const ride=pendingMiniRide;pendingMiniFare=0;pendingMiniRide=0;resumeAfterMiniGame();settleDeliveredRide(pay,ride,message);}
 function startPickpocketIntro(fare,ride){pendingMiniFare=fare;pendingMiniRide=ride;introPaused=true;closePhone();ui('hud').style.visibility='hidden';ui('mobileControls').style.display='none';renderOverlay(`<div class="miniGameWrap"><div class="miniEyebrow">LAMBOO LALA · AFTER-RIDE TRICK</div><h2>HE'S GOING FOR YOUR CASH!</h2><p>Lamboo has spotted your fare. The money is marked in one square. Drag it to another square before the timer runs out. Then watch the hand: it will search the 3×3 area around your hiding place. Keep your cash out of his reach!</p><div class="miniActions"><button class="miniGameBtn" id="pickIntroContinue">CONTINUE</button></div></div>`);ui('pickIntroContinue').onclick=()=>startPickpocketGame(fare,ride);}
 function startPickpocketGame(fare,ride){
   const cashCell=Math.floor(Math.random()*36);activeMiniGame={type:'pickpocket',phase:'hide',fare,ride,cashCell,selectedCell:null,dragging:false,hideLeft:6,scanLeft:2.5,scanClock:0,handCell:null,scanCells:[],finalTarget:null,resolveLeft:0};
@@ -1547,7 +1463,7 @@ function advanceHackBall(escaped){
 }
 function hackAccountTimeout(){
   const st=activeMiniGame;if(!st||st.type!=='hack'||st.phase==='timeout')return;
-  st.phase='timeout';st.hacked=true;if(!debugModeActive){cash=Math.max(0,cash-50);saveWallet();}
+  st.phase='timeout';st.hacked=true;cash=Math.max(0,cash-50);saveWallet();
   renderOverlay(`<div class="miniGameWrap"><div class="miniEyebrow">MOBILE MANGESH · CONNECTION LOST</div><h2>ACCOUNT HACKED!</h2><p><b>02:00 has expired.</b> You did not get all three data balls through the escape before the deadline. Mobile Mangesh breached your account and stole the entire fare plus ₹50 from your cash.</p><div class="miniActions"><button class="miniGameBtn" id="hackTimeoutContinue">CONTINUE</button></div></div>`);
   ui('hackTimeoutContinue').onclick=()=>finishMiniGameWithFare(0,'TIME EXPIRED. MOBILE MANGESH HACKED YOUR ACCOUNT. ENTIRE FARE AND ₹50 STOLEN.');
 }
@@ -1585,7 +1501,7 @@ function updateMiniGame(dt){const st=activeMiniGame;if(!st)return;
 }
 
 function accept(){if(!passenger||passenger.accepted)return;if(!passenger.requestAccepted||!passenger.pickupTimerStarted){notify('Open the ride request message in your phone first.');return;}if(dist(player,passenger)<115){
-  const earlyLeft=passenger.pickupTimeLeft||0;passenger.accepted=true;passenger.rideStartHistory={crashes:playerHistory.crashes||0,highSpeedSeconds:playerHistory.highSpeedSeconds||0,hardBrakes:playerHistory.hardBrakes||0,sharpTurns:playerHistory.sharpTurns||0};passengerCrashCount=0;passengerAiRequestSerial++;passenger.messagePending=false;passenger.anger=0;passenger.rideTimer=0;passenger.rideDamageAtPickup=player.hp;passenger.rideMinHp=player.hp;passenger.rideTookDamage=false;passenger.enemySpawnElapsed=0;passenger.followersSpawned=false;passenger.interceptorsSpawned=false;passenger.emptyEnemyWaveTimer=0;passenger.ambushDelay=4;passenger.shootersSpawned=0;passenger.ramTruckSpawned=false;passenger.ramTruckTimer=rand(10,13);passenger.bossTimeLeft=passenger.timeLimit||0;passenger.aiTargetKey='';passenger.aiDecisionTimer=.6;passenger.aiDecisionPending=false;passenger.aiHoldTimer=0;passenger.mangeshHackUsed=false;passenger.mangeshDecisionPending=false;passenger.mangeshCheckCooldown=2;passenger.mangeshAiChecks=0;passenger.situationTalkCooldown=0;passenger.reactiveHealthWarned=false;passenger.reactiveEnemyWarned=false;passenger.koitaSlowClock=0;passenger.koitaBeatCooldown=0;streetShooters=[];streetShooterSpawnTimer=rand(4,6);enemies=[];bullets=bullets.filter(b=>!b.enemy);enemyShotTimer=99;enemyShotIndex=0;enemyBurstShot=0;activeRammerId=null;ramGlobalCooldown=0;interceptorSpawnTimer=6;oilDirectorTimer=rand(14,18);enemyTauntTimer=6;phoneUnread=false;syncPhoneBadge();renderPhoneContent();applyPassengerPickupPerks();showPassengerPickupTalk(passenger);
+  const earlyLeft=passenger.pickupTimeLeft||0;passenger.accepted=true;passengerConversationPaused=false;passenger.rideStartHistory={crashes:playerHistory.crashes||0,highSpeedSeconds:playerHistory.highSpeedSeconds||0,hardBrakes:playerHistory.hardBrakes||0,sharpTurns:playerHistory.sharpTurns||0};passengerCrashCount=0;passengerAiRequestSerial++;passenger.messagePending=false;passenger.anger=0;passenger.rideTimer=0;passenger.rideDamageAtPickup=player.hp;passenger.rideMinHp=player.hp;passenger.rideTookDamage=false;passenger.enemySpawnElapsed=0;passenger.followersSpawned=false;passenger.interceptorsSpawned=false;passenger.emptyEnemyWaveTimer=0;passenger.ambushDelay=enemyDifficulty().ambush;passenger.shootersSpawned=0;passenger.ramTruckSpawned=false;passenger.ramTruckTimer=rand(10,13);passenger.bossTimeLeft=passenger.timeLimit||0;passenger.aiTargetKey='';passenger.aiDecisionTimer=.6;passenger.aiDecisionPending=false;passenger.aiHoldTimer=0;passenger.mangeshHackUsed=false;passenger.mangeshDecisionPending=false;passenger.mangeshCheckCooldown=2;passenger.mangeshAiChecks=0;passenger.situationTalkCooldown=0;passenger.reactiveHealthWarned=false;passenger.reactiveEnemyWarned=false;passenger.koitaSlowClock=0;passenger.koitaBeatCooldown=0;streetShooters=[];streetShooterSpawnTimer=rand(4,6);enemies=[];bullets=bullets.filter(b=>!b.enemy);enemyShotTimer=99;enemyShotIndex=0;enemyBurstShot=0;activeRammerId=null;ramGlobalCooldown=0;interceptorSpawnTimer=6;oilDirectorTimer=rand(14,18);enemyTauntTimer=6;phoneUnread=false;syncPhoneBadge();renderPhoneContent();if(passenger.specialMission?.status==='active'){const mt=passenger.specialMission.type;if(mt==='risky_delivery'){passenger.specialMission.timeLeft=passenger.specialMission.deadline||105;passenger.angerMultiplier=Math.max(1,passenger.angerMultiplier||1)*1.18;}else if(mt==='informant'){passenger.ambushDelay=Math.max(2,passenger.ambushDelay-2);passenger.danger=true;enemyBrainState.strategy='road_intercept';enemyBrainState.updatedAt=Date.now();}else if(mt==='silent_passenger'){passenger.ambushDelay+=7;passenger.missionCrashes=0;}else if(mt==='roadblock'){passenger.ambushDelay+=2;passenger.forceRoadblock=true;}else if(mt==='vip_escort'){passenger.allyShooter=true;passenger.ambushDelay=Math.max(2,passenger.ambushDelay-1);}else if(mt==='special_request'){passenger.angerMultiplier=Math.max(1,passenger.angerMultiplier||1)*1.1;} }applyPassengerPickupPerks();showPassengerPickupTalk(passenger);
   if(earlyLeft>=10)progressMission('earlyPickup',1);if(earlyLeft>=15)progressMission('earlyPickupHard',1);if(passenger.revengeOffer){const line=REVENGE_LINES[Math.floor(Math.random()*REVENGE_LINES.length)];passenger.revengeShotTimer=5;passenger.revengeLine=line;addDialogue('passenger','player',line);notify('DOUBLE FARE · BUT THIS PASSENGER HAS A SCORE TO SETTLE!');}
   const number=passengerNumber(),briefing=getObstacleBriefing(number);if(briefing&&!obstacleBriefingsSeen.has(number)){obstacleBriefingsSeen.add(number);showObstacleBriefing(briefing,number);}else{ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';notify('Passenger picked up. Stay alert.');}
   updateHud();
@@ -1687,8 +1603,8 @@ function playerRoadInfo(){
   const vertical=dx<=dy;
   return vertical?{axis:'v',coord:roadX[ix],dir:Math.sin(heading)>=0?1:-1,index:ix,along:player.y}:{axis:'h',coord:roadY[iy],dir:Math.cos(heading)>=0?1:-1,index:iy,along:player.x};
 }
-function spawnAdaptiveClosure(){
-  if(!passenger?.accepted||passengerNumber()<5)return;
+function spawnAdaptiveClosure(force=false){
+  if(!passenger?.accepted||(!force&&passengerNumber()<5))return;
   if(!player||closures.some(c=>c.adaptive&&c.expires>0&&Math.hypot(c.x+c.w/2-player.x,c.y+c.h/2-player.y)<1050))return;
   const road=playerRoadInfo(),ahead=760;
   if(road.axis==='v'){
@@ -1701,17 +1617,17 @@ function spawnAdaptiveClosure(){
   // Road closure is communicated through the visible barrier, not a HUD alert.
 }
 function spawnFollowers(){
-  if(!player||!passenger?.accepted||!passenger.danger)return;
-  const existing=enemies.filter(e=>e.combatType==='shooter'&&!e.dead).length,count=Math.max(0,2-existing);if(!count){passenger.followersSpawned=true;return;}
+  if(!player||!passenger?.accepted||!passenger.danger||passenger.characterId==='unknown')return;
+  const targetCount=enemyDifficulty().shooters,existing=enemies.filter(e=>e.combatType==='shooter'&&!e.dead).length,count=Math.max(0,targetCount-existing);if(!count){passenger.followersSpawned=true;return;}
   const road=playerRoadInfo(),heading=player.a+(player.v<-.05?Math.PI:0),dir=road.dir;
   for(let i=0;i<count;i++){
-    const offset=Math.max(620,Math.hypot(W,H)/Math.max(.5,camera.zoom)*.30+140)+i*115;let x,y;
+    const offset=Math.max(390,Math.hypot(W,H)/Math.max(.5,camera.zoom)*.16+90)+i*95;let x,y;
     if(road.axis==='v'){x=road.coord;y=clamp(player.y-dir*offset,130,world.h-130);}else{x=clamp(player.x-dir*offset,130,world.w-130);y=road.coord;}
     if(pointVisibleToPlayer(x,y,25)){const farther=offset+650;if(road.axis==='v')y=clamp(player.y-dir*farther,130,world.h-130);else x=clamp(player.x-dir*farther,130,world.w-130);}
     if(insideBuilding(x,y,12)||pointVisibleToPlayer(x,y,25)){const farther=offset+1750;if(road.axis==='v'){x=road.coord;y=clamp(player.y-dir*farther,130,world.h-130);}else{x=clamp(player.x-dir*farther,130,world.w-130);y=road.coord;}}
-    enemies.push({id:enemyIdCounter++,x,y,a:heading,hp:currentEnemyHealth(),role:'follower',combatType:'shooter',ramCooldown:0,stunTime:0,ramState:'following',chargeTimer:0,chargeAngle:heading,ramSide:i%2===0?-1:1,warningTogglesRemaining:0,warningFlashTimer:0,warningFlashOn:false,fire:0,shotCooldown:rand(.15,1.1),shotPattern:0,ramDoneOnce:false,speed:ENEMY_MAX_V,tauntCooldown:rand(4,8)});
+    enemies.push({id:enemyIdCounter++,x,y,a:heading,hp:currentEnemyHealth(),role:'follower',combatType:'shooter',ramCooldown:0,stunTime:0,ramState:'following',chargeTimer:0,chargeAngle:heading,ramSide:i%2===0?-1:1,warningTogglesRemaining:0,warningFlashTimer:0,warningFlashOn:false,fire:0,shotCooldown:rand(...enemyDifficulty().shotGap),shotPattern:0,ramDoneOnce:false,speed:ENEMY_MAX_V,tauntCooldown:rand(4,8)});
   }
-  passenger.followersSpawned=true;enemyShotTimer=.5;
+  passenger.followersSpawned=true;enemyShotTimer=3.5;
 }
 
 function getRouteInterceptPoint(){
@@ -1736,19 +1652,21 @@ function getInterceptorWaypoint(e){
   return {x:crossingX,y:playerRoad.axis==='h'?playerRoad.coord:goal.y};
 }
 function spawnInterceptors(force=false,count=null){
-  if(!player||!passenger?.accepted||!passenger.danger||(!force&&passenger.interceptorsSpawned))return;
-  const targetCount=2,road=playerRoadInfo(),heading=player.a+(player.v<-.05?Math.PI:0),routePoint=getRouteInterceptPoint();
+  if(!player||!passenger?.accepted||!passenger.danger||passenger.characterId==='unknown'||(!force&&passenger.interceptorsSpawned))return;
+  const targetCount=enemyDifficulty().rammers,road=playerRoadInfo(),heading=player.a+(player.v<-.05?Math.PI:0),routePoint=getRouteInterceptPoint();
   const existing=enemies.filter(e=>e.combatType==='rammer'&&e.role==='interceptor'&&!e.dead).length,needed=Math.max(0,targetCount-existing),toSpawn=Math.min(count===null?needed:count,needed);
   for(let i=0;i<toSpawn;i++){
-    const offset=Math.max(720,Math.hypot(W,H)/Math.max(.5,camera.zoom)*.34+160)+i*150;let x,y;
+    const offset=Math.max(470,Math.hypot(W,H)/Math.max(.5,camera.zoom)*.19+110)+i*115;let x,y;
     if(road.axis==='v'){x=road.coord;y=clamp(player.y+road.dir*offset,150,world.h-150);}else{x=clamp(player.x+road.dir*offset,150,world.w-150);y=road.coord;}
     if(pointVisibleToPlayer(x,y,25)){const farther=offset+700;if(road.axis==='v')y=clamp(player.y+road.dir*farther,150,world.h-150);else x=clamp(player.x+road.dir*farther,150,world.w-150);}
     if(insideBuilding(x,y,12)||pointVisibleToPlayer(x,y,25)){const farther=offset+1750;if(road.axis==='v'){x=road.coord;y=clamp(player.y+road.dir*farther,150,world.h-150);}else{x=clamp(player.x+road.dir*farther,150,world.w-150);y=road.coord;}}
-    enemies.push({id:enemyIdCounter++,x,y,a:heading+Math.PI,hp:currentEnemyHealth(),role:'interceptor',combatType:'rammer',ramState:'following',ramCooldown:0,stunTime:0,chargeTimer:0,chargeAngle:heading+Math.PI,ramSide:i%2===0?-1:1,warningTogglesRemaining:0,warningFlashTimer:0,warningFlashOn:false,targetX:routePoint.x,targetY:routePoint.y,retarget:0,fire:0,shotCooldown:rand(.15,1.1),shotPattern:0,ramDoneOnce:false,speed:ENEMY_MAX_V,tauntCooldown:rand(4,8)});
+    enemies.push({id:enemyIdCounter++,x,y,a:heading+Math.PI,hp:currentEnemyHealth(),role:'interceptor',combatType:'rammer',ramState:'following',ramCooldown:0,stunTime:0,chargeTimer:0,chargeAngle:heading+Math.PI,ramSide:i%2===0?-1:1,warningTogglesRemaining:0,warningFlashTimer:0,warningFlashOn:false,targetX:routePoint.x,targetY:routePoint.y,retarget:0,fire:0,shotCooldown:rand(2.5,4.0),shotPattern:0,ramDoneOnce:false,speed:ENEMY_MAX_V,tauntCooldown:rand(4,8)});
   }
-  passenger.interceptorsSpawned=true;interceptorSpawnTimer=6;
+  passenger.interceptorsSpawned=true;interceptorSpawnTimer=18;
 }
 function spawnRamTruck(){
+  // Four-role encounter cap: no extra ram truck joins the two dedicated rammers.
+  return false;
   if(!player||!passenger?.accepted||passengerNumber()<5||enemies.some(e=>e.role==='ramTruck'))return false;
   const road=playerRoadInfo(),offset=Math.max(1700,Math.hypot(W,H)/Math.max(.5,camera.zoom)*.68+260),dir=-road.dir;let x,y,a;
   if(road.axis==='v'){x=road.coord;y=clamp(player.y+road.dir*offset,180,world.h-180);a=dir>0?Math.PI/2:-Math.PI/2;}
@@ -1818,15 +1736,15 @@ function startRamCharge(e,p){
     if(road.axis==='v')angle=(predictedY-e.y)>=0?Math.PI/2:-Math.PI/2;
     else angle=(predictedX-e.x)>=0?0:Math.PI;
   }
-  e.ramState='charging';e.chargeAngle=angle;e.chargeTimer=e.role==='interceptor'?1.25:1.05;e.chargeSpeed=ENEMY_MAX_V;e.ramming=true;e.shotCooldown=Math.max(e.shotCooldown||0,1.5);
+  e.ramState='charging';e.chargeAngle=angle;e.chargeTimer=e.role==='interceptor'?1.0:.9;e.chargeSpeed=ENEMY_MAX_V*(reputation===0?.72:reputation===1?.82:reputation===2?.9:1);e.ramming=true;e.shotCooldown=Math.max(e.shotCooldown||0,1.5);
   e.warningTogglesRemaining=8;e.warningFlashTimer=.16;e.warningFlashOn=true;e.ramTargetX=predictedX;e.ramTargetY=predictedY;
   activeRammerId=e.id;
 }
 function finishRamAttempt(e,hit){
-  e.ramState='cooldown';e.ramCooldown=3;e.chargeTimer=0;e.ramming=false;e.ramDoneOnce=true;e.shotCooldown=1.5;e.stunTime=hit?.35:0;
+  e.ramState='cooldown';e.ramCooldown=rand(...enemyDifficulty().ramGap);e.chargeTimer=0;e.ramming=false;e.ramDoneOnce=true;e.shotCooldown=1.5;e.stunTime=hit?.35:0;
   e.warningTogglesRemaining=0;e.warningFlashOn=false;
   if(activeRammerId===e.id)activeRammerId=null;
-  ramGlobalCooldown=.65;
+  ramGlobalCooldown=enemyDifficulty().ramGlobal;
 }
 function updateRamFlash(e,dt){
   if(e.warningTogglesRemaining>0){e.warningFlashTimer-=dt;if(e.warningFlashTimer<=0){e.warningTogglesRemaining--;e.warningFlashOn=e.warningTogglesRemaining>0&&(e.warningTogglesRemaining%2===0);e.warningFlashTimer=.16;}}
@@ -1887,6 +1805,7 @@ const AD_REWARDS=[
 function beginPrototypeAd(){if(!game||introPaused||adState.phase||!adState.offerVisible)return;closePhone();const reward=adState.reward;adState.phase='playing';adState.countdown=Math.floor(rand(5,9));adState.offerVisible=false;adState.offerTimer=20;ui('adOffer').classList.remove('active');introPaused=true;renderOverlay(`<div class="adModal"><div class="menuTag">OPTIONAL REWARD</div><h1>AD ONGOING</h1><p class="adSub">Your ${escapeHtml(reward.name.toLowerCase())} reward is almost ready.</p><div class="adCountdown" id="adCountdown">${adState.countdown}</div><div class="adSub">Prototype advertisement · no real ad is being shown</div></div>`);}
 function applyAdReward(reward){if(!player)return;if(reward.kind==='speed')player.speedBoostTimer=10;else if(reward.kind==='bullets')player.bulletRainTimer=10;else if(reward.kind==='heal')player.hp=Math.min(autoMax,player.hp+40);else if(reward.kind==='shield')player.shieldTimer=13;else if(reward.kind==='tires'){player.stickyTiresTimer=15;player.oilSlipTimer=0;player.oilSlipStrength=0;}updateHud();notify(reward.name+' ACTIVATED!');}
 function updateAdSystem(dt){
+  if(passengerConversationPaused)return;
   if(game&&!introPaused&&adState.phase===''){if(adState.offerVisible){adState.offerLife-=dt;if(adState.offerLife<=0){adState.offerVisible=false;ui('adOffer').classList.remove('active');adState.offerTimer=20;}}else{adState.offerTimer-=dt;if(adState.offerTimer<=0){adState.reward=AD_REWARDS[Math.floor(Math.random()*AD_REWARDS.length)];adState.offerVisible=true;adState.offerLife=7;ui('adOfferText').textContent=adState.reward.name;ui('adOffer').classList.add('active');}}}
   if(adState.phase==='playing'){adState.countdown-=dt;if(ui('adCountdown'))ui('adCountdown').textContent=Math.max(0,Math.ceil(adState.countdown));if(adState.countdown<=0){adState.phase='resume';adState.countdown=3;renderOverlay(`<div class="adModal"><div class="menuTag">REWARD READY</div><h1>GET READY</h1><div class="adCountdown" id="adCountdown">3</div><div class="adSub">Driving resumes in a moment.</div></div>`);}}
   else if(adState.phase==='resume'){adState.countdown-=dt;if(ui('adCountdown'))ui('adCountdown').textContent=Math.max(0,Math.ceil(adState.countdown));if(adState.countdown<=0){const reward=adState.reward;adState.phase='';adState.reward=null;introPaused=false;ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');document.body.classList.remove('menu-state');ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';applyAdReward(reward);}}
@@ -1898,10 +1817,10 @@ function showPrototypeComplete(){
   ui('prototypeContinue').onclick=()=>{showMainMenu();showHardModePrompt();};
 }
 function showHardModePrompt(){const modal=document.createElement('div');modal.className='hardModeModal';modal.id='hardModeModal';modal.innerHTML=`<div class="hardModeModalCard"><h2>READY FOR A TOUGHER RIDE?</h2><p>Thanks for playing the Underworld Auto playable prototype. Press Drive again to face tougher enemies and see how long you can keep your passengers alive.</p><button class="menuPrimary" id="hardModeOk">OK</button></div>`;ui('card').appendChild(modal);ui('hardModeOk').onclick=()=>{hardModeEnabled=true;try{localStorage.setItem('underworldHardModeV1','1');}catch(_){}modal.remove();showMainMenu();};}
-function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
+function update(dt){if(!game||introPaused||passengerConversationPaused)return;let p=player,oldX=p.x,oldY=p.y;
   const headingChange=Math.abs(angleDelta(playerHistory.lastHeading||p.a,p.a));if(headingChange>.12)playerHistory.sharpTurns=(playerHistory.sharpTurns||0)+dt;playerHistory.lastHeading=p.a;if(getSpeedKmh()>85)playerHistory.highSpeedSeconds=(playerHistory.highSpeedSeconds||0)+dt;
   const roadInfo=playerRoadInfo(),roadAxis=roadInfo.axis;if(roadAxis) {const segment=roadAxis+':'+Math.round(roadInfo.coord/100)*100+':'+roadInfo.dir;playerHistory.routeMemory.push(segment);if(playerHistory.routeMemory.length>24)playerHistory.routeMemory.shift();playerHistory.preferredAxis=playerHistory.routeMemory.filter(x=>x.startsWith(roadAxis+':')).length>=5?roadAxis:playerHistory.preferredAxis;playerHistory.preferredRoad=segment;}
-  playerHistory.style=playerHistory.crashes>7?'reckless':playerHistory.highSpeedSeconds>35?'speedster':playerHistory.sharpTurns>18?'evasive':'balanced';
+  playerHistory.style=playerHistory.crashes>7?'reckless':playerHistory.highSpeedSeconds>35?'speedster':playerHistory.sharpTurns>18?'evasive':'balanced';playerHistorySaveClock-=dt;if(playerHistorySaveClock<=0){playerHistorySaveClock=5;persistPlayerHistory();}
   gameSeconds=(gameSeconds+dt*288)%86400;updateRideRequestTimer(dt);
   if(passenger?.pickupTimerStarted&&!passenger.accepted){passenger.pickupTimeLeft=Math.max(0,(passenger.pickupTimeLeft||0)-dt);const pt=ui('phonePickupTimer');if(pt)pt.textContent=formatPickupClock(passenger.pickupTimeLeft);if(passenger.pickupTimeLeft<=0){const id=passenger.characterId;missedPickupCounts[id]=(missedPickupCounts[id]||0)+1;persistMissedCounts();progressMission('missedPickups',1);notify(passenger.name+' CANCELLED THE RIDE · MISSED PICKUPS: '+missedPickupCounts[id]);scheduleNextRideRequest(rand(7,12));if(phoneOpen)phoneScreen='rides';renderPhoneContent();}}
   if(passenger?.accepted&&passenger.revengeShotTimer>0){passenger.revengeShotTimer=Math.max(0,passenger.revengeShotTimer-dt);if(passenger.revengeShotTimer<=0){notify(passenger.name+' PULLED A GUN!');player.hp=0;playerDied();return;}}
@@ -1913,7 +1832,7 @@ function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
     const buntyLock=!!(passenger?.accepted&&passenger.brakesDisabled);accel=mobileDrive.accelerate&&!mobileDrive.reverse?.16:mobileDrive.reverse&&!mobileDrive.accelerate&&!buntyLock?-.20:0;
     mobileBrake=!buntyLock&&!mobileDrive.accelerate&&!mobileDrive.reverse;
   }
-  const buntyNoBrake=!!(passenger?.accepted&&passenger.brakesDisabled);if(buntyNoBrake&&keys.s)accel=Math.max(0,accel);const maxPlayerV=getSpeedLimitKmh()/20;const brakePressed=!buntyNoBrake&&(keys[' ']||mobileBrake);if(brakePressed&&getSpeedKmh()>20)playerHistory.hardBrakes=(playerHistory.hardBrakes||0)+dt;p.v+=accel*1.3*dt*60;p.v*=Math.pow(brakePressed?.88:.989,dt*60);p.v=clamp(p.v,-(buntyNoBrake?0:3.2),maxPlayerV); // Temporary prototype boost can reach 150 km/h
+  const buntyNoBrake=!!(passenger?.accepted&&passenger.brakesDisabled);if(buntyNoBrake&&keys.s)accel=Math.max(0,accel);const maxPlayerV=getSpeedLimitKmh()/20;const brakePressed=!buntyNoBrake&&(keys[' ']||mobileBrake);if(brakePressed&&getSpeedKmh()>20)playerHistory.hardBrakes=(playerHistory.hardBrakes||0)+dt;p.v+=accel*1.3*dt*60;p.v*=Math.pow(brakePressed?.88:.989,dt*60);p.v=clamp(p.v,-(buntyNoBrake?0:3.2),maxPlayerV);ui('speed').textContent=Math.max(0,Math.min(getSpeedLimitKmh(),Math.round(Math.abs(p.v)*20))-30); // HUD intentionally reads 30 km/h below the auto's actual speed
   p.steer+=(targetSteer-p.steer)*(1-Math.exp(-dt*10));
   let turnRate=.78+Math.min(Math.abs(p.v)/4,1)*.95;p.a+=p.steer*turnRate*dt*Math.sign(p.v||1);
   // Earlier lighter drift feel: a restrained sideways slide above 40 km/h.
@@ -1933,12 +1852,13 @@ function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
   for(const hit of recentDamage)hit.age+=dt;recentDamage=recentDamage.filter(hit=>hit.age<=5);
   adaptiveCombat=recentDamage.reduce((sum,hit)=>sum+hit.amount,0)>=12;
   for(const d of dialogues)d.time-=dt;dialogues=dialogues.filter(d=>d.time>0);
-  fire();updateLaser(dt);updatePassengerSupport(dt);
+  fire();updateLaser(dt);updatePassengerSupport(dt);updateSpecialMission(dt);
   // Road closures become part of the route from passenger five onward.
   roadWatchTimer-=dt;if(roadWatchTimer<=0){if(passenger?.accepted&&passenger.danger&&passengerNumber()>=5&&(passenger.ambushDelay||0)<=0)spawnAdaptiveClosure();roadWatchTimer=rand(13,19);}
+  if(passenger?.accepted&&passenger.forceRoadblock&&!passenger.specialRoadblockSpawned&&(passenger.ambushDelay||0)<=0){spawnAdaptiveClosure(true);passenger.specialRoadblockSpawned=true;notify('AI MISSION DIRECTOR · GANG ROADBLOCK AHEAD');}
   closures=closures.filter(c=>{if(c.adaptive){c.expires-=dt;return c.expires>0;}return true;});
   // Obstacles begin four seconds after the passenger briefing is dismissed.
-  if(passenger?.accepted){if((passenger.ambushDelay||0)>0){passenger.ambushDelay=Math.max(0,passenger.ambushDelay-dt);if(passenger.ambushDelay===0){passenger.enemySpawnElapsed=0;spawnFollowers();spawnInterceptors();}}else{passenger.enemySpawnElapsed=(passenger.enemySpawnElapsed||0)+dt;if(!passenger.followersSpawned)spawnFollowers();if(!passenger.interceptorsSpawned)spawnInterceptors();}if(passengerNumber()===1&&(passenger.ambushDelay||0)<=0)updateOilSpillers(dt);}
+  if(passenger?.accepted){if((passenger.ambushDelay||0)>0){passenger.ambushDelay=Math.max(0,passenger.ambushDelay-dt);if(passenger.ambushDelay===0){passenger.enemySpawnElapsed=0;spawnFollowers();spawnInterceptors();}}else{passenger.enemySpawnElapsed=(passenger.enemySpawnElapsed||0)+dt;if(!passenger.followersSpawned)spawnFollowers();if(!passenger.interceptorsSpawned)spawnInterceptors();}if(reputation>=1&&passengerNumber()===1&&(passenger.ambushDelay||0)<=0)updateOilSpillers(dt);}
   // Rhythmic exhaust puffs: short at low speed, long streaming trail above 40 km/h.
   p.smokeClock+=dt;const fastSmoke=getSpeedKmh()>40,smokeInterval=fastSmoke?.075:.12;
   while(p.smokeClock>=smokeInterval){p.smokeClock-=smokeInterval;const pulse=.72+.28*Math.sin(performance.now()*.012);const back=fastSmoke?42:37;const life=fastSmoke?.48:.30;const spread=fastSmoke?9:3;smokeParticles.push({x:p.x-Math.cos(p.a)*back+rand(-spread,spread),y:p.y-Math.sin(p.a)*back+rand(-spread,spread),vx:-Math.cos(p.a)*(fastSmoke?54:14)+rand(-17,17),vy:-Math.sin(p.a)*(fastSmoke?54:14)+rand(-17,17),life,maxLife:life,size:(fastSmoke?9:6)*pulse});}
@@ -1964,8 +1884,8 @@ function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
   // Street shooters roam along the current road and fire at the auto; eliminations never award cash.
   updateStreetShooters(dt);
   if(passenger?.requestAccepted&&!passenger.accepted&&dist(p,passenger)<115)ui('prompt').textContent='Press G to pick up '+(passenger.name||'passenger');else if(passenger?.requestAccepted&&!passenger.accepted)ui('prompt').textContent='Follow the pickup arrow to '+(passenger.name||'your passenger');else if(passenger?.accepted)ui('prompt').textContent='Passenger aboard · deliver to the gold drop-off marker';else if(passenger?.messagePending)ui('prompt').textContent='New ride request · press TAB to open your phone';else ui('prompt').textContent='Waiting for the next ride request';
-  if(passenger?.accepted){passenger.rideTimer+=dt;const speedNow=getSpeedKmh();if(passenger.rideTimer>4&&speedNow<30)passenger.anger+=dt*3.8*(passenger.angerMultiplier||1);passenger.anger=clamp(passenger.anger,0,100);if(passenger.anger>=100){notify('Passenger lost patience!');endDay();return;}
-    if(dist(p,{x:passenger.destX,y:passenger.destY})<105){const deliveredNumber=passengerNumber(),a=Math.round(passenger.anger);let pay=a<=0?180:a<=20?170:a<=40?160:a<=50?155:130;if(passenger.characterId==='bhau')pay=Math.max(40,pay-Math.round(a*1.15));completePassengerDelivery(pay,deliveredNumber);return;}
+  if(passenger?.accepted){passenger.rideTimer+=dt;const speedNow=getSpeedKmh();if(passenger.rideTimer>6&&speedNow<(reputation===0?22:30))passenger.anger+=dt*(reputation===0?1.4:reputation===1?2.4:3.8)*(passenger.angerMultiplier||1);passenger.anger=clamp(passenger.anger,0,100);if(passenger.anger>=100){notify('Passenger lost patience!');endDay();return;}
+    if(dist(p,{x:passenger.destX,y:passenger.destY})<105){const deliveredNumber=passengerNumber(),a=Math.round(passenger.anger);let pay=passenger.characterId==='unknown'?35:(reputation===0?65:(a<=0?180:a<=20?170:a<=40?160:a<=50?155:130));if(passenger.characterId==='bhau')pay=Math.max(40,pay-Math.round(a*1.15));completePassengerDelivery(pay,deliveredNumber);return;}
   }
   // Adaptive enemy director remembers the driver's style and periodically asks the live AI for a tactical plan.
   updateLocalEnemyStrategy();if(passenger?.accepted){enemyBrainState.requestClock=(enemyBrainState.requestClock||0)-dt;if(enemyBrainState.requestClock<=0){enemyBrainState.requestClock=12;requestEnemyBrainUpdate();}}
@@ -2021,7 +1941,7 @@ function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
         if(!insideBuilding(rx,ry,18)){e.x=rx;e.y=ry;e.a=heading;toX=targetX-e.x;toY=targetY-e.y;targetGap=Math.hypot(toX,toY);}
       }
       const targetAngle=Math.atan2(toY,toX);e.a+=angleDelta(e.a,targetAngle)*(1-Math.exp(-dt*4.4));
-      const catchupKmh=gap>1100?300:gap>800?270:gap>520?235:enemySpeedForGap(gap)*20;
+      const catchupKmh=gap>1000?205:gap>700?195:gap>420?180:enemySpeedForGap(gap)*20;
       const followSpeed=catchupKmh/20;
       if(e.stunTime<=0)moveEnemySafely(e,Math.cos(e.a)*followSpeed*dt*60,Math.sin(e.a)*followSpeed*dt*60);
       /* shooter vehicles never initiate a ram */
@@ -2032,7 +1952,7 @@ function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
       const tx=e.targetX??p.x,ty=e.targetY??p.y,toX=tx-e.x,toY=ty-e.y,targetAngle=Math.atan2(toY,toX),targetGap=Math.hypot(toX,toY);
       e.a+=angleDelta(e.a,targetAngle)*(1-Math.exp(-dt*2.8));
       if(e.stunTime<=0){const approachSpeed=enemySpeedForGap(gap);moveEnemySafely(e,Math.cos(e.a)*approachSpeed*dt*60,Math.sin(e.a)*approachSpeed*dt*60);}
-      if(e.combatType==='rammer'&&isSelected&&gap<610&&(e.ramCooldown||0)<=0)startRamCharge(e,p);
+      if(e.combatType==='rammer'&&isSelected&&gap<430&&(e.ramCooldown||0)<=0)startRamCharge(e,p);
     }
     // Solid enemy-car impact. A committed ram uses its locked charge path above; normal contact bounces both vehicles.
     const nearGap=dist(e,p);if(e.combatType==='rammer'&&e.ramState!=='charging'&&nearGap<56){
@@ -2041,7 +1961,7 @@ function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
       e.bumpCooldown=Math.max(0,(e.bumpCooldown||0)-dt);
       if(e.bumpCooldown<=0){
         const sp=getSpeedKmh(),playerDamage=sp>=40?1:sp>=20?1:1,carDamage=10;
-        applyPlayerDamage(playerDamage,'enemy-vehicle');e.hp=Math.max(0,e.hp-carDamage);e.bumpCooldown=.78;
+        applyPlayerDamage(playerDamage,'enemy-vehicle');e.hp=Math.max(0,e.hp-carDamage);e.bumpCooldown=2.8;
         p.v*=.58;p.x+=nx*25;p.y+=ny*25;p.a+=angleDelta(p.a,Math.atan2(ny,nx))*.16;camera.shake=Math.max(camera.shake,13);p.shake=.48;speakEnemyDialogue('enemyRam',e,'ram');passengerCrashLine('enemy vehicle ram');
         if(e.hp<=0)destroyEnemyVehicle(e,'ram');else notify('ENEMY VEHICLE IMPACT!');
       }
@@ -2050,7 +1970,7 @@ function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
   // Keep rival vehicles separated and prevent their hitboxes entering building footprints.
   for(let i=0;i<enemies.length;i++)for(let j=i+1;j<enemies.length;j++){const a=enemies[i],b=enemies[j];if(a.role==='ramTruck'&&b.role==='ramTruck')continue;const dx=b.x-a.x,dy=b.y-a.y,g=Math.hypot(dx,dy);if(g>0&&g<62){const push=(62-g)*.5,nx=dx/g,ny=dy/g;moveEnemySafely(a,-nx*push,-ny*push);moveEnemySafely(b,nx*push,ny*push);}}
   
-  // Only two enemy vehicles fire in a volley. The next pair waits 1.3 seconds.
+  // Only the two shooter-role cars fire. Each volley has a deliberate cooldown.
   if(passenger?.accepted&&enemies.length&&passenger.enemySpawnElapsed>=3){
     enemyShotTimer=Math.max(0,enemyShotTimer-dt);
     if(enemyShotTimer<=0){
@@ -2061,17 +1981,17 @@ function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
         let aimX=p.x+Math.cos(p.a)*p.v*7,aimY=p.y+Math.sin(p.a)*p.v*7;
         if(pattern>=2){const sideOffsets=[-42,42,-58];const side=sideOffsets[pattern-2];aimX+=-Math.sin(p.a)*side;aimY+=Math.cos(p.a)*side;}
         const shotAng=Math.atan2(aimY-shooter.y,aimX-shooter.x);
-        bullets.push({x:shooter.x+Math.cos(shotAng)*28,y:shooter.y+Math.sin(shotAng)*28,vx:Math.cos(shotAng)*9.5,vy:Math.sin(shotAng)*9.5,dmg:adaptiveCombat?1:(playerCritical?1:2),life:4.5,enemy:true,shooterId:shooter.id,pattern});
-        shooter.shotPattern=(pattern+1)%5;shooter.shotCooldown=2.6;
+        bullets.push({x:shooter.x+Math.cos(shotAng)*28,y:shooter.y+Math.sin(shotAng)*28,vx:Math.cos(shotAng)*9.5,vy:Math.sin(shotAng)*9.5,dmg:adaptiveCombat?1:enemyDifficulty().bulletDamage,life:4.5,enemy:true,shooterId:shooter.id,pattern});
+        shooter.shotPattern=(pattern+1)%5;shooter.shotCooldown=rand(...enemyDifficulty().shotGap);
       }
-      enemyShotTimer=firingPair.length?1.3:.18;
+      enemyShotTimer=firingPair.length?Math.max(2.5,enemyDifficulty().shotGap[0]*.55):1.5;
     }
   }
   // Keep two route-aware interceptors available. If one is destroyed or falls away,
   // the director spawns a replacement ahead on the road the player is currently using.
   if(passenger?.accepted&&passenger.interceptorsSpawned){
     interceptorSpawnTimer-=dt;
-    if(interceptorSpawnTimer<=0){const wanted=2,count=enemies.filter(e=>e.combatType==='rammer'&&e.role==='interceptor'&&!e.dead).length,slots=Math.max(0,wanted-count);if(slots>0)spawnInterceptors(true,slots);spawnFollowers();interceptorSpawnTimer=6;}
+    if(interceptorSpawnTimer<=0){const wanted=2,count=enemies.filter(e=>e.combatType==='rammer'&&e.role==='interceptor'&&!e.dead).length,slots=Math.max(0,wanted-count);if(slots>0)spawnInterceptors(true,slots);spawnFollowers();interceptorSpawnTimer=18;}
   }
   for(let b of bullets){
     const oldBX=b.x,oldBY=b.y;b.x+=b.vx*dt*60;b.y+=b.vy*dt*60;b.life-=dt;
@@ -2087,15 +2007,15 @@ function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
       if(!hitTarget){for(const shooter of streetShooters){if(shooter.dead)continue;if(segmentDistance(shooter.x,shooter.y)<23){shooter.hp-=b.dmg;b.life=0;hitTarget=true;shooter.hitFlash=.16;if(shooter.hp<=0)destroyStreetShooter(shooter,'shot');break;}}}
     }
   }
-  bullets=bullets.filter(b=>b.life>0&&b.x>-100&&b.y>-100&&b.x<world.w+100&&b.y<world.h+100);
+  bullets=bullets.filter(b=>Number.isFinite(b.x)&&Number.isFinite(b.y)&&Number.isFinite(b.life)&&b.life>0&&b.x>-100&&b.y>-100&&b.x<world.w+100&&b.y<world.h+100).slice(-180);
   enemies=enemies.filter(e=>!e.dead&&e.hp>0);streetShooters=streetShooters.filter(s=>!s.dead);
   if(activeRammerId!==null&&!enemies.some(e=>e.id===activeRammerId))activeRammerId=null;
   // Once the full four-car wave has arrived and every enemy is destroyed, send another wave.
   if(passenger?.accepted&&passenger.interceptorsSpawned&&enemies.filter(e=>e.role!=='ramTruck').length===0){
     passenger.emptyEnemyWaveTimer=(passenger.emptyEnemyWaveTimer||0)+dt;
-    if(passenger.emptyEnemyWaveTimer>=2.5){
-      enemyWaveNumber++;passenger.followersSpawned=false;passenger.interceptorsSpawned=false;passenger.enemySpawnElapsed=6;passenger.emptyEnemyWaveTimer=0;
-      spawnFollowers();spawnInterceptors();enemyShotTimer=.65;enemyShotIndex=0;enemyBurstShot=0;notify('Reinforcements incoming! Wave '+(enemyWaveNumber+1));
+    if(passenger.emptyEnemyWaveTimer>=22){
+      enemyWaveNumber++;passenger.followersSpawned=false;passenger.interceptorsSpawned=false;passenger.enemySpawnElapsed=8;passenger.emptyEnemyWaveTimer=0;
+      spawnFollowers();spawnInterceptors();enemyShotTimer=4;enemyShotIndex=0;enemyBurstShot=0;notify('Reinforcements incoming! Wave '+(enemyWaveNumber+1));
     }
   }else if(passenger?.accepted){passenger.emptyEnemyWaveTimer=0;}
   if(p.hp<=0){p.hp=0;notify('AUTO DESTROYED');playerDied();return;}
@@ -2115,6 +2035,7 @@ function update(dt){if(!game||introPaused)return;let p=player,oldX=p.x,oldY=p.y;
   if(toastTimer>0){toastTimer-=dt;if(toastTimer<=0)ui('toast').style.opacity=0;}
   updateHud();
 }
+function fillCityFootprint(x,y,w,h){const cut=Math.max(12,Math.min(w,h)*.10);ctx.beginPath();ctx.moveTo(x+cut,y);ctx.lineTo(x+w-cut,y);ctx.lineTo(x+w,y+cut);ctx.lineTo(x+w,y+h-cut);ctx.lineTo(x+w-cut,y+h);ctx.lineTo(x+cut,y+h);ctx.lineTo(x,y+h-cut);ctx.lineTo(x,y+cut);ctx.closePath();ctx.fill();}
 function drawWorld(){
   ctx.fillStyle='#46594a';ctx.fillRect(0,0,world.w,world.h);
   const viewRange=Math.max(W,H)/camera.zoom+650;
@@ -2131,10 +2052,10 @@ function drawWorld(){
   // Buildings with shadows, roof details and shop signs.
   for(const g of garages){if(Math.abs(g.x-camera.x)<viewRange&&Math.abs(g.y-camera.y)<viewRange){ctx.save();ctx.fillStyle='#4ea8ff';ctx.beginPath();ctx.arc(g.x,g.y,20,0,Math.PI*2);ctx.fill();ctx.fillStyle='#071521';ctx.font='bold 12px Arial';ctx.textAlign='center';ctx.fillText('G',g.x,g.y+4);ctx.restore();}}
   for(const sh of shops){if(Math.abs(sh.x-camera.x)<viewRange&&Math.abs(sh.y-camera.y)<viewRange){ctx.save();ctx.fillStyle='#25c86a';ctx.beginPath();ctx.arc(sh.x,sh.y,20,0,Math.PI*2);ctx.fill();ctx.fillStyle='#062514';ctx.font='bold 12px Arial';ctx.textAlign='center';ctx.fillText('$',sh.x,sh.y+4);ctx.restore();}}
-  for(let b of buildings){if(b.x>camera.x+viewRange||b.x+b.w<camera.x-viewRange||b.y>camera.y+viewRange||b.y+b.h<camera.y-viewRange)continue;ctx.fillStyle='#26312e';ctx.fillRect(b.x+10,b.y+12,b.w,b.h);ctx.fillStyle=b.color;ctx.fillRect(b.x,b.y,b.w,b.h);ctx.fillStyle=b.roof;ctx.fillRect(b.x+9,b.y+9,b.w-18,b.h-18);ctx.fillStyle='#aab2ac';ctx.globalAlpha=.38;for(let wx=b.x+20;wx<b.x+b.w-16;wx+=34){ctx.fillRect(wx,b.y+15,12,7);ctx.fillRect(wx,b.y+b.h-22,12,7);}ctx.globalAlpha=1;if(b.kind==='shop'){ctx.fillStyle='#e8ae4f';ctx.fillRect(b.x+b.w*.28,b.y+b.h*.48,b.w*.44,14);ctx.fillStyle='#382b1c';ctx.font='bold 10px Arial';ctx.fillText('SHOP',b.x+b.w*.34,b.y+b.h*.48+11);}}
+  for(let b of buildings){if(b.x>camera.x+viewRange||b.x+b.w<camera.x-viewRange||b.y>camera.y+viewRange||b.y+b.h<camera.y-viewRange)continue;ctx.save();ctx.fillStyle='#26312e';fillCityFootprint(b.x+10,b.y+12,b.w,b.h);ctx.fillStyle=b.color;fillCityFootprint(b.x,b.y,b.w,b.h);ctx.fillStyle=b.roof;fillCityFootprint(b.x+9,b.y+9,b.w-18,b.h-18);if(b.kind==='marketShop'||b.kind==='marketStall'){ctx.fillStyle='#e8ae4f';ctx.fillRect(b.x+8,b.y+b.h*.38,b.w-16,Math.max(12,b.h*.12));ctx.fillStyle='#8e352c';for(let ax=b.x+12;ax<b.x+b.w-12;ax+=25)ctx.fillRect(ax,b.y+b.h*.32,17,8);ctx.fillStyle='#fff0c5';ctx.font='bold 10px Arial';ctx.fillText(b.kind==='marketStall'?'THELA':'BAZAAR',b.x+12,b.y+b.h*.58);}else if(b.kind==='warehouse'||b.kind==='containerYard'){ctx.fillStyle='#8d4932';for(let cy=b.y+18;cy<b.y+b.h-16;cy+=25)ctx.fillRect(b.x+14,cy,b.w-28,17);ctx.fillStyle='#d3a24d';ctx.fillRect(b.x+b.w*.42,b.y+b.h*.35,b.w*.18,b.h*.4);ctx.fillStyle='#f2d18b';ctx.font='bold 11px Arial';ctx.fillText('PORT CARGO',b.x+12,b.y+14);}else if(b.kind==='factory'||b.kind==='tankYard'){ctx.fillStyle='#58666a';ctx.fillRect(b.x+b.w*.72,b.y-24,18,38);ctx.fillStyle='#b6a18a';ctx.beginPath();ctx.ellipse(b.x+b.w*.28,b.y+b.h*.55,Math.min(30,b.w*.14),Math.min(22,b.h*.16),0,0,Math.PI*2);ctx.fill();ctx.fillStyle='#303b40';ctx.font='bold 10px Arial';ctx.fillText('WORKS',b.x+12,b.y+17);}else if(b.kind==='railDepot'||b.kind==='platform'){ctx.fillStyle='#c6b18a';ctx.fillRect(b.x+10,b.y+b.h*.72,b.w-20,8);ctx.fillStyle='#34383a';for(let tx=b.x+12;tx<b.x+b.w-10;tx+=22)ctx.fillRect(tx,b.y+b.h*.69,4,15);ctx.fillStyle='#d6d4c9';ctx.font='bold 10px Arial';ctx.fillText('RAIL YARD',b.x+12,b.y+17);}else{ctx.fillStyle='#aab2ac';ctx.globalAlpha=.38;for(let wx=b.x+20;wx<b.x+b.w-16;wx+=34){ctx.fillRect(wx,b.y+15,12,7);ctx.fillRect(wx,b.y+b.h-22,12,7);}ctx.globalAlpha=1;if(b.kind==='shop'){ctx.fillStyle='#e8ae4f';ctx.fillRect(b.x+b.w*.28,b.y+b.h*.48,b.w*.44,14);ctx.fillStyle='#382b1c';ctx.font='bold 10px Arial';ctx.fillText('SHOP',b.x+b.w*.34,b.y+b.h*.48+11);}}ctx.restore();}
   for(let c of closures){if(c.stageRoadwork&&!roadworksUnlocked())continue;ctx.save();ctx.fillStyle='#c92f2f';ctx.fillRect(c.x,c.y,c.w,c.h);ctx.beginPath();ctx.rect(c.x,c.y,c.w,c.h);ctx.clip();ctx.strokeStyle='#ffd52e';ctx.lineWidth=10;if(c.w>=c.h){for(let sx=c.x-50;sx<c.x+c.w+50;sx+=25){ctx.beginPath();ctx.moveTo(sx,c.y+c.h);ctx.lineTo(sx+35,c.y);ctx.stroke();}}else{for(let sy=c.y-50;sy<c.y+c.h+50;sy+=25){ctx.beginPath();ctx.moveTo(c.x,sy+28);ctx.lineTo(c.x+c.w,sy-7);ctx.stroke();}}ctx.restore();ctx.strokeStyle='#fff0b0';ctx.lineWidth=2;ctx.strokeRect(c.x,c.y,c.w,c.h);ctx.fillStyle='#fff1b5';ctx.font='bold 13px Arial';ctx.fillText('ROAD WORK',c.x-7,c.y-7);}
 
-  ctx.font='bold 24px Arial';ctx.fillStyle='#ffffff35';[['OLD CITY',780,790],['MARKET DISTRICT',2450,790],['RAILWAY QUARTER',4230,790],['EAST MARKET',6100,790],['AIRPORT ROAD',8700,790],['TOWN A',780,2450],['TOWN B',2450,2450],['BUSINESS DISTRICT',4230,2450],['INDUSTRIAL ZONE',6100,2450],['CINEMA QUARTER',2450,5530],['BURIAL GROUNDS',780,7010],['DOCKYARD',8700,3800],['AIRPORT',8700,7750]].forEach(v=>ctx.fillText(v[0],v[1],v[2]));
+  ctx.font='bold 24px Arial';ctx.fillStyle='#ffffff48';[['OLD CITY',roadX[2]+180,roadY[2]+180],['MARKET BAZAAR',roadX[7]+180,roadY[5]+180],['RAILWAY STATION',roadX[13]+180,roadY[9]+180],['INDUSTRIAL ESTATE',roadX[20]+180,roadY[13]+180],['DOCKYARD PORT',roadX[27]+180,roadY[17]+180],['CINEMA QUARTER',roadX[4]+180,roadY[14]+180],['EASTERN SUBURBS',roadX[23]+180,roadY[5]+180],['WAREHOUSE ROW',roadX[28]+180,roadY[9]+180]].forEach(v=>ctx.fillText(v[0],v[1],v[2]));
   // Give the expanded outer districts landmarks too, so they do not feel like empty map tiles.
   ctx.font='bold 20px Arial';ctx.fillStyle='#ffffff25';
   for(let ix=12;ix<roadX.length-2;ix+=6)for(let iy=10;iy<roadY.length-2;iy+=6){ctx.fillText('OUTER DISTRICT '+(Math.floor(ix/6)),roadX[ix]+110,roadY[iy]+110); }
@@ -2187,9 +2108,9 @@ function render(){ctx.clearRect(0,0,W,H);if(!player)return;if(false){
   for(const s of oilSpillers)drawOilSpiller(s);
   for(const s of streetShooters)drawStreetShooter(s);
   for(const b of menuShots){const a=Math.atan2(b.vy,b.vx);ctx.save();ctx.strokeStyle='#ff6a58';ctx.lineWidth=3;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(b.x-Math.cos(a)*9,b.y-Math.sin(a)*9);ctx.lineTo(b.x+Math.cos(a)*5,b.y+Math.sin(a)*5);ctx.stroke();ctx.restore();}
-  if(passenger?.requestAccepted){if(!passenger.accepted){drawBeacon(passenger.x,passenger.y,'PICKUP');ctx.fillStyle='#f4d7b2';ctx.beginPath();ctx.arc(passenger.x,passenger.y,9,0,Math.PI*2);ctx.fill();ctx.fillStyle='#25333a';ctx.fillRect(passenger.x-5,passenger.y+7,10,15);}else{drawBeacon(passenger.destX,passenger.destY,'DROP OFF');ctx.strokeStyle='#ffd45b';ctx.setLineDash([12,12]);ctx.beginPath();ctx.arc(passenger.destX,passenger.destY,65,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);}}
+  if(passenger?.requestAccepted){if(!passenger.accepted){const pickupLabel=({'Market Bazaar':'MARKET','Railway Station':'RAILWAY','Industrial Estate':'INDUSTRIAL','Dockyard Port':'DOCKS','Old City':'OLD CITY'}[passenger.pickupArea]||'PICKUP');drawBeacon(passenger.x,passenger.y,pickupLabel);ctx.fillStyle='#f4d7b2';ctx.beginPath();ctx.arc(passenger.x,passenger.y,9,0,Math.PI*2);ctx.fill();ctx.fillStyle='#25333a';ctx.fillRect(passenger.x-5,passenger.y+7,10,15);}else{drawBeacon(passenger.destX,passenger.destY,'DROP OFF');ctx.strokeStyle='#ffd45b';ctx.setLineDash([12,12]);ctx.beginPath();ctx.arc(passenger.destX,passenger.destY,65,0,Math.PI*2);ctx.stroke();ctx.setLineDash([]);}}
   for(let e of enemies){if(e.role==='ramTruck')drawTruck(e.x,e.y,e.a);else drawCar(e.x,e.y,e.a,e.id===activeRammerId?'#ff8a25':'#a72f32',1);if(e.hackedTimer>0){ctx.save();ctx.strokeStyle='#57e8ff';ctx.shadowColor='#57e8ff';ctx.shadowBlur=18;ctx.lineWidth=4;ctx.beginPath();ctx.arc(e.x,e.y,38+Math.sin(performance.now()*.018)*4,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#9af3ff';ctx.font='bold 13px Arial';ctx.fillText('HACKED',e.x-25,e.y-39);ctx.restore();}if(e.id===activeRammerId){ctx.save();ctx.strokeStyle='#ffcf42';ctx.lineWidth=3;ctx.beginPath();ctx.arc(e.x,e.y,34+Math.sin(performance.now()*.012)*3,0,Math.PI*2);ctx.stroke();ctx.restore();}if(e.warningFlashOn){ctx.save();ctx.shadowColor='#ff2020';ctx.shadowBlur=15;ctx.fillStyle='#ff2020';ctx.beginPath();ctx.arc(e.x,e.y-29,7,0,Math.PI*2);ctx.fill();ctx.restore();}ctx.fillStyle='#ff6565';ctx.fillRect(e.x-20,e.y-27,40*e.hp/(e.role==='ramTruck'?currentRamTruckHealth():currentEnemyHealth()),4);}
-  for(let b of bullets){const a=Math.atan2(b.vy,b.vx);ctx.save();ctx.strokeStyle=b.enemy?'#ff6255':'#fff1a0';ctx.lineWidth=4;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(b.x-Math.cos(a)*12,b.y-Math.sin(a)*12);ctx.lineTo(b.x+Math.cos(a)*4,b.y+Math.sin(a)*4);ctx.stroke();ctx.restore();}
+  if(game&&!introPaused&&!passengerConversationPaused)for(let b of bullets){const a=Math.atan2(b.vy,b.vx);ctx.save();ctx.strokeStyle=b.enemy?'#ff6255':'#fff1a0';ctx.lineWidth=4;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(b.x-Math.cos(a)*12,b.y-Math.sin(a)*12);ctx.lineTo(b.x+Math.cos(a)*4,b.y+Math.sin(a)*4);ctx.stroke();ctx.restore();}
   // Exhaust smoke is drawn behind the auto and expands into a longer trail above 40 km/h.
   for(const s of smokeParticles){const alpha=Math.max(0,s.life/s.maxLife)*.14;ctx.fillStyle=`rgba(145,154,153,${alpha})`;ctx.beginPath();ctx.arc(s.x,s.y,s.size,0,Math.PI*2);ctx.fill();}
   if(game)drawAuto(player.x,player.y,player.a,player.shake||0,(player.stickyTiresTimer>0?0:(player.steer||0))*(.05+clamp((getSpeedKmh()-25)/55,0,1)*.07));
@@ -2206,11 +2127,11 @@ function render(){ctx.clearRect(0,0,W,H);if(!player)return;if(false){
 async function checkPassengerAiStatus(){const el=ui('aiStatus');if(!el)return;try{const r=await fetch('/api/status');if(!r.ok)throw new Error('offline');const d=await r.json();el.textContent=d.aiConfigured?'READY':'FALLBACK MODE';el.style.color=d.aiConfigured?'#62d69a':'#e5a33a';}catch(_){el.textContent='FALLBACK MODE';el.style.color='#e5a33a';}}
 checkPassengerAiStatus();
 function loop(t){let dt=Math.min(.04,(t-last)/1000||0);last=t;if(!game&&menuAmbient)updateMenuAmbient(dt);updateAdSystem(dt);if(bossOutroTimer>0){bossOutroTimer-=dt;if(bossOutroTimer<=0)showPrototypeComplete();}updateMiniGame(dt);update(dt);render();requestAnimationFrame(loop);}requestAnimationFrame(loop);
-addEventListener('keydown',e=>{let k=e.key.toLowerCase();if(activeMiniGame?.type==='hack'){const dir={arrowup:[0,-1],w:[0,-1],arrowdown:[0,1],s:[0,1],arrowleft:[-1,0],a:[-1,0],arrowright:[1,0],d:[1,0]}[k];if(dir){e.preventDefault();if(!e.repeat)moveHackPlayer(dir[0],dir[1]);}return;}if(activeMiniGame)return;if(k==='tab'){e.preventDefault();togglePhone();return;}keys[k]=true;if(k==='g')accept();if(k==='e'&&game&&!introPaused){const g=nearestPoint(garages);if(g&&dist(player,g)<165)openGaragePanel();}if((k>='1'&&k<='9')||k==='0'){const selected=k==='0'?9:Number(k)-1;if(weaponUnlocked[selected]){weapon=selected;updateHud();}else notify('Weapon '+weapons[selected].name+' is not unlocked.');}});
+addEventListener('keydown',e=>{let k=e.key.toLowerCase();if(activeMiniGame?.type==='hack'){const dir={arrowup:[0,-1],w:[0,-1],arrowdown:[0,1],s:[0,1],arrowleft:[-1,0],a:[-1,0],arrowright:[1,0],d:[1,0]}[k];if(dir){e.preventDefault();if(!e.repeat)moveHackPlayer(dir[0],dir[1]);}return;}if(activeMiniGame)return;if(passengerConversationPaused){if(k===' '||k==='enter'){e.preventDefault();resumePassengerConversation();}return;}if(k==='tab'){e.preventDefault();togglePhone();return;}keys[k]=true;if(k==='g')accept();if(k==='e'&&game&&!introPaused){const g=nearestPoint(garages);if(g&&dist(player,g)<165)openGaragePanel();}if((k>='1'&&k<='9')||k==='0'){const selected=k==='0'?9:Number(k)-1;if(weaponUnlocked[selected]){weapon=selected;updateHud();}else notify('Weapon '+weapons[selected].name+' is not unlocked.');}});
 addEventListener('keyup',e=>keys[e.key.toLowerCase()]=false);canvas.addEventListener('contextmenu',e=>e.preventDefault());canvas.addEventListener('mousedown',e=>{if(e.button===0)mouse.leftDown=true;if(e.button===2)mouse.down=true;mouse.x=e.clientX;mouse.y=e.clientY;});addEventListener('mouseup',e=>{if(e.button===0)mouse.leftDown=false;if(e.button===2)mouse.down=false;});addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
 
 setupMobileControls();
-ui('mobilePickup').addEventListener('click',accept);ui('mobilePhoneToggle').addEventListener('click',togglePhone);ui('phoneClose').addEventListener('click',closePhone);ui('phoneHome').addEventListener('click',phoneAppHome);ui('enterShopBtn').addEventListener('click',()=>useShop());ui('enterGarageBtn').addEventListener('click',()=>openGaragePanel());
+ui('passengerTalkContinue').addEventListener('click',resumePassengerConversation);ui('mobilePickup').addEventListener('click',accept);ui('mobilePhoneToggle').addEventListener('click',togglePhone);ui('phoneClose').addEventListener('click',closePhone);ui('phoneHome').addEventListener('click',phoneAppHome);ui('enterShopBtn').addEventListener('click',()=>useShop());ui('enterGarageBtn').addEventListener('click',()=>openGaragePanel());
 characterApplied={...CHAR_DEFAULT,...characterApplied};if(!characterApplied.hairStyle)characterApplied.hairStyle='classic';if(!characterApplied.glasses)characterApplied.glasses='none';autoCustomizationApplied={...AUTO_DEFAULT,...autoCustomizationApplied};if(!AUTO_TYPES.includes(autoCustomizationApplied.model))autoCustomizationApplied.model='Classic Tuk Tuk';ensureMissionCycle();syncCollectionUnlocks();updateMobileMode();syncPhoneBadge();renderPhoneContent();menuBackdrop();showSplashScreen();
 })();
 

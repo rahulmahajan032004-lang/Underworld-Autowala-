@@ -225,6 +225,52 @@ const server = http.createServer(async (req, res) => {
   }
 
 
+  if (req.method === 'POST' && url.pathname === '/api/mission-director') {
+    if (isRateLimited(getClientIp(req))) return send(res, 429, { error: 'Too many mission director requests.' });
+    if (!process.env.OPENAI_API_KEY) return send(res, 503, { error: 'AI is not configured. Using local mission director.' });
+    try {
+      let raw = '';
+      for await (const chunk of req) { raw += chunk; if (raw.length > MAX_BODY) return send(res, 413, { error: 'Request too large.' }); }
+      const body = JSON.parse(raw || '{}');
+      const allowed = ['risky_delivery', 'informant', 'silent_passenger', 'roadblock', 'vip_escort', 'special_request'];
+      const eligible = body.specialEligible === true;
+      const prompt = [
+        'You are the AI Mission Director for Underworld Autowala, a top-down Indian auto-rickshaw action game.',
+        'Your job is to adapt normal rides to the driver and occasionally select a supported special mission.',
+        'If specialEligible is false, special MUST be false and type must be empty. Return an adaptive enemy plan only.',
+        'If specialEligible is true, select exactly one mission type from: ' + allowed.join(', ') + '.',
+        'Mission mechanics are constrained: risky_delivery = 105-second delivery deadline; informant = standard delivery with gang chase pressure; silent_passenger = avoid crashes (2 crashes fail bonus); roadblock = one existing road closure is spawned; vip_escort = passenger ally protection/shooting support; special_request = standard delivery with a slightly more impatient passenger.',
+        'Never invent new map areas, characters, enemy types, mechanics, or rewards.',
+        'Return JSON only with keys: special(boolean), type(string), objective(string max 180 chars), deadline(integer 0-180), bonus(integer 100-500), enemyPlan(one of pressure/intercept/spread), reason(string max 140 chars).',
+        'For non-special rides use special=false, type="", deadline=0, bonus=0.',
+        'Choose fair difficulty. Reputation is not the only factor; consider recent player failures and style.',
+        'INPUT: ' + JSON.stringify({ specialEligible: eligible, reputation: body.reputation, rides: body.rides, history: body.history, passenger: body.passenger, recentSpecialType: body.recentSpecialType })
+      ].join('\n');
+      const response = await fetch('https://api.openai.com/v1/responses', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ model: process.env.OPENAI_MODEL || 'gpt-5.5', instructions: 'You are a constrained game-system planner. Return valid JSON only. Never exceed the allowed mechanics or numeric bounds.', input: prompt, max_output_tokens: 180, store: false }),
+        signal: AbortSignal.timeout(6000)
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) return send(res, 502, { error: 'Mission director AI failed.' });
+      const parsed = JSON.parse(getOutputText(data).replace(/^```(?:json)?\s*|\s*```$/g, '').trim());
+      const special = eligible && parsed.special === true && allowed.includes(parsed.type);
+      return send(res, 200, {
+        special,
+        type: special ? parsed.type : '',
+        objective: String(parsed.objective || '').slice(0, 180),
+        deadline: special ? Math.max(0, Math.min(180, Number(parsed.deadline) || 0)) : 0,
+        bonus: special ? Math.max(100, Math.min(500, Number(parsed.bonus) || 250)) : 0,
+        enemyPlan: ['pressure', 'intercept', 'spread'].includes(parsed.enemyPlan) ? parsed.enemyPlan : 'pressure',
+        reason: String(parsed.reason || 'Adapted to your recent driving.').slice(0, 140)
+      });
+    } catch (error) {
+      console.error('Mission director error:', error.message);
+      return send(res, 502, { error: 'Could not generate mission decision.' });
+    }
+  }
+
   if (req.method === 'POST' && url.pathname === '/api/enemy-brain') {
     if (isRateLimited(getClientIp(req))) return send(res, 429, { error: 'Too many enemy AI requests.' });
     if (!process.env.OPENAI_API_KEY) return send(res, 503, { error: 'AI is not configured.' });

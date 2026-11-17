@@ -45,3 +45,48 @@ LATEST PASSENGER / ENEMY / REPUTATION UPDATE
 - Picking up a passenger with G opens a wide bottom-screen ride briefing. It gives driving orders and enemy-role information, and the live AI can comment on the last ride with that same passenger. Per-passenger driving summaries are saved locally.
 - Added a reputation progress meter beside the speed HUD. Reputation levels unlock at 2, 4, 7 and 8 total successful rides. Each new level unlocks a passenger and displays an unlock popup.
 - Reputation and per-passenger ride memory persist in the browser's local storage and ride checkpoint save.
+
+LATEST UPDATE (v4):
+- Passenger pickup conversations now pause gameplay until SPACE (desktop) or TAP TO CONTINUE (mobile) is pressed.
+- Auto base top speed is 150 km/h. The HUD intentionally displays the actual speed minus 30 km/h; passenger bonuses and temporary boosts remain supported.
+- Enemy pressure has been reduced: first ambush delay increased, shooter volleys spaced farther apart, ram attempts have longer cooldowns, and replacement waves wait longer.
+- Enemy chase speed was rebalanced to stay challenging without the previous extreme catch-up speeds.
+- City districts now have distinct visual identities: market stalls and shop awnings, dockyard cargo warehouses, industrial factory/tank details, railway yards/platforms, and irregular chamfered building footprints.
+- Pickup names and beacon labels now reflect the actual district where the passenger is waiting.
+
+
+UPDATE v5 - REPUTATION-BASED DIFFICULTY
+- Early rides are easier: one shooter and one rammer at reputation 0, with a longer ambush delay.
+- Enemy attacks, bullet damage, ram cooldowns and chase speed scale up as reputation increases.
+- Street shooters and oil-spill hazards are held back at reputation 0; street shooter count grows with reputation.
+- Passenger patience drains more slowly at reputation 0.
+- Removed no-cash reward notifications when enemy cars, street shooters or oil spillers are eliminated. Enemy takedown mission progress remains.
+
+AI MISSION DIRECTOR UPDATE
+- Added /api/mission-director for constrained AI mission selection.
+- Normal passenger rides now receive adaptive enemy strategy decisions based on persistent player driving history.
+- Special jobs are offered occasionally, after a randomized 3-5 successful rides.
+- Supported templates: Risky Delivery, The Informant, Silent Passenger, Roadblock, VIP Escort, and Special Request.
+- Special Jobs are visible in the in-game phone. Successful completion adds a validated bonus to passenger fare; failed special objectives still allow the normal fare unless the ride itself fails.
+- Player driving history and Mission Director progress persist in localStorage and save checkpoints.
+- If the AI endpoint is unavailable, a local constrained mission selector and existing gameplay systems remain available.
+- Live AI requires OPENAI_API_KEY in Render. No API key is exposed to the browser.
+
+
+UNDERWORLD AUTOWALA V7 - REPUTATION LADDER & BOSS CONTRACT
+- Reputation 0: Unknown Criminal. Only Lamboo Lala sends ride requests, no enemies spawn, and successful rides pay a small beginner fare (₹65).
+- Passenger unlocks: Rep 1 Bunty Brakefail; Rep 2 Chikna Chintu; Rep 3 Battery Baban; Rep 4 Koita Kumar; Rep 5 Bhau Karkhanis; Rep 6 Pappan Batli; Rep 7 Mobile Mangesh; Rep 8 Danger Bhai.
+- Locked passengers are excluded from the ride request pool and cannot send ride messages.
+- Reputation 9 unlocks a one-time Danger Bhai boss contract. The boss ride uses double the standard gang car count (4 shooters + 4 rammers).
+- Reputation progression requires 2, 4, 7, 8, 9, 10, 11, 12, and 13 successful rides respectively to advance from levels 0 through 8.
+- Existing standard enemy roles/behaviour are retained from the previous build; the boss contract doubles the number of those enemies.
+- The old 8-delivery prototype ending is removed so the full reputation ladder and boss contract can be reached.
+
+
+LATEST GAMEPLAY FIXES (V8)
+- Added Unknown Criminal as a real reputation-0 passenger. His ride has no pursuing enemies and pays only ₹35.
+- Lamboo Lala remains available at reputation 0; his ride and other non-Unknown rides still use the normal four-enemy encounter.
+- Restored the regular enemy setup on reputation-0 rides: two shooter cars and two rammer cars. Danger Bhai's boss contract still doubles the force.
+- Moved enemy spawn positions closer and improved follower catch-up speed so the four cars stay in the chase instead of falling far behind.
+- Removed Debug Mode and its developer-only menu/tools.
+- Fixed frozen projectile visuals during paused dialogue/overlays and added stricter projectile cleanup for expired or invalid bullets.
