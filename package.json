@@ -1,0 +1,13 @@
+{
+  "name": "underworld-autowala-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Underworld Autowala with hosted AI passenger reactions",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
