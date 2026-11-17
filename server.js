@@ -175,21 +175,23 @@ const server = http.createServer(async (req, res) => {
       const context = body.context || {};
       if (!passenger.name || !context.event) return send(res, 400, { error: 'Missing passenger or event context.' });
 
+      const isPickupBriefing = String(context.event || '').toLowerCase().includes('pickup briefing');
       const prompt = [
         'GAME: Underworld Autowala, a chaotic Indian street-crime auto-rickshaw game.',
-        'Write exactly ONE short spoken passenger reaction to the event.',
+        isPickupBriefing ? 'Write a short passenger-to-driver pickup conversation/briefing in 1–2 natural spoken sentences.' : 'Write exactly ONE short spoken passenger reaction to the event.',
         'Use natural Mumbai/Hinglish street dialogue in Roman script, like a real passenger speaking.',
         'Stay faithful to the passenger personality. Do not make all passengers sound alike.',
-        'Use the supplied live game facts when relevant, especially exact auto health and health percentage.',
-        'React to the specific event, not a generic crash. Personality details and game facts are fictional game context.',
-        'Keep it punchy: ideally 6–18 words, maximum 24 words. No narration, labels, quotation marks, emojis, or multiple alternatives.',
+        'Use the supplied live game facts and last-ride memory. If the same passenger rode before, specifically comment on that driving performance and give one practical order for this ride.',
+        'For pickup briefings, explain the two shooter cars and two rammer cars accurately: shooters follow and fire but never ram; rammers do not shoot and try to hit the auto.',
+        'Avoid repeating any recent dialogue included in the context. Make the line feel fresh and specific.',
+        isPickupBriefing ? 'Keep the briefing under 260 characters. No narration, labels, quotation marks, emojis, or multiple alternatives.' : 'Keep it punchy: ideally 6–18 words, maximum 24 words. No narration, labels, quotation marks, emojis, or multiple alternatives.',
         'Do not invent a different health value or claim an event that is not in the context.',
         'Avoid slurs, explicit sexual content, and extreme graphic violence.',
         '',
         'PASSENGER:', JSON.stringify(passenger),
         'LIVE GAME CONTEXT:', JSON.stringify(context),
         '',
-        'Return only the dialogue line.'
+        'Return only the dialogue text.'
       ].join('\n');
 
       const apiResponse = await fetch('https://api.openai.com/v1/responses', {
@@ -214,7 +216,7 @@ const server = http.createServer(async (req, res) => {
         return send(res, 502, { error: 'AI service request failed.' });
       }
       const dialogue = getOutputText(data).replace(/[\r\n]+/g, ' ').replace(/^['"“”]+|['"“”]+$/g, '').trim();
-      if (!dialogue || dialogue.length > 180) return send(res, 502, { error: 'AI returned an invalid dialogue.' });
+      if (!dialogue || dialogue.length > (isPickupBriefing ? 260 : 180)) return send(res, 502, { error: 'AI returned an invalid dialogue.' });
       return send(res, 200, { dialogue });
     } catch (error) {
       console.error('Passenger AI error:', error.message);
@@ -229,7 +231,7 @@ const server = http.createServer(async (req, res) => {
     try {
       let raw=''; for await (const chunk of req) { raw+=chunk; if(raw.length>MAX_BODY) return send(res,413,{error:'Request too large.'}); }
       const body=JSON.parse(raw||'{}');
-      const allowed=['close_pressure','road_intercept','spread_attack','hold_fire'];
+      const allowed=['close_pressure','road_intercept','spread_attack'];
       const prompt=['Choose one tactical strategy for enemy drivers in Underworld Autowala.','Use the player history to counter their habits.','Return JSON only: {"strategy":"one_allowed_value"}.','Allowed: '+allowed.join(', '),'PLAYER HISTORY: '+JSON.stringify(body.history||{}),'CURRENT GAME: '+JSON.stringify(body.context||{})].join('\n');
       const response=await fetch('https://api.openai.com/v1/responses',{method:'POST',headers:{'Authorization':`Bearer ${process.env.OPENAI_API_KEY}`,'Content-Type':'application/json'},body:JSON.stringify({model:process.env.OPENAI_MODEL||'gpt-5.5',instructions:'You are a constrained tactical game AI. Never invent game entities or mechanics. Return valid JSON only.',input:prompt,max_output_tokens:70,store:false}),signal:AbortSignal.timeout(5000)});
       const data=await response.json().catch(()=>({}));if(!response.ok)return send(res,502,{error:'Enemy AI failed.'});

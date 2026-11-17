@@ -21,7 +21,7 @@ DEPLOY
 
 IMPORTANT
 - Never put the OpenAI API key in index.html, GitHub, or any public file.
-- The hosted backend limits each IP to 12 AI requests per minute across dialogue and gameplay decisions. The game uses cooldowns so AI is not called every frame.
+- The hosted backend limits each IP to 30 AI requests per minute across dialogue and gameplay decisions. The game uses cooldowns so AI is not called every frame.
 - AI reactions require internet access and API billing/credits. Fallback reactions work without AI.
 - Render's free service may sleep after inactivity. The first load after sleeping can take longer, so open the game once before an interview and test it.
 - This folder is a deployment-ready project, not yet a live deployment. A Render account connection and a GitHub repository are required to publish it.
@@ -37,3 +37,11 @@ LATEST DRIVING + AI UPDATE
 - Oil patches are pure black and larger.
 
 Deploy all five project files together. Configure OPENAI_API_KEY in Render for live AI. Without it, local adaptive enemy behaviour and prepared dialogue fallbacks remain available.
+
+LATEST PASSENGER / ENEMY / REPUTATION UPDATE
+- Gang car roles are now fixed: two shooter cars follow and fire but never ram; two rammer cars do not fire and focus on hitting the auto. The Chikna shooter-only ride keeps its special no-gang-car setup.
+- Ramming now slows the auto and physically knocks it away from the side of impact. Enemy car and street-shooter eliminations do not award cash; ride fares are the only source of cash income.
+- Passenger fallback dialogue tracks recent lines to avoid repeating the same reaction. Live AI reactions avoid the recent dialogue history where possible; prepared lines remain available when AI or internet is unavailable.
+- Picking up a passenger with G opens a wide bottom-screen ride briefing. It gives driving orders and enemy-role information, and the live AI can comment on the last ride with that same passenger. Per-passenger driving summaries are saved locally.
+- Added a reputation progress meter beside the speed HUD. Reputation levels unlock at 2, 4, 7 and 8 total successful rides. Each new level unlocks a passenger and displays an unlock popup.
+- Reputation and per-passenger ride memory persist in the browser's local storage and ride checkpoint save.
