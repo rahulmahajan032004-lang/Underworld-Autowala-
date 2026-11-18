@@ -189,6 +189,10 @@ body.menu-state canvas{visibility:visible!important}
 .menuNotice{position:fixed;z-index:30;top:18px;left:50%;transform:translate(-50%,-14px);opacity:0;pointer-events:none;padding:10px 18px;border:1px solid #f2c76c;border-radius:9px;background:#111b23f2;color:#ffe2a1;font-size:13px;font-weight:1000;letter-spacing:1px;box-shadow:0 7px 24px #000b;transition:opacity .18s ease,transform .18s ease}
 .menuNotice.visible{opacity:1;transform:translate(-50%,0)}
 @media(max-width:620px){.newMainMenu{padding:14px}.newMenuPanel{padding:23px 18px}.newMenuTitle{font-size:34px;margin-bottom:22px}.newMenuButton{min-height:60px}.newIntroPanel{padding:24px 18px}}
+@media (orientation:portrait) and (pointer:coarse){.newMainMenu{justify-content:center;align-items:center;padding:20px 16px}.newMenuPanel{width:min(440px,92vw);max-height:90dvh;overflow:auto;padding:clamp(22px,5vh,38px) 20px}.newMenuTitle{font-size:clamp(31px,8vw,42px);margin:12px 0 24px}.newMenuButton{min-height:64px}.newIntroRoot,.quitConfirmRoot{justify-content:center;align-items:center;padding:18px}.newIntroPanel{width:min(520px,92vw);max-height:90dvh;overflow:auto;padding:24px 20px}}
+#pedalControls.conversation-hidden{display:none!important;pointer-events:none!important}
+#pedalControls.conversation-hidden .driveControl{pointer-events:none!important}
+
 
 /* In-game phone and ride-request messages */
 #phonePanel{position:fixed;inset:0;z-index:18;display:none;align-items:center;justify-content:flex-end;padding:clamp(12px,3vw,38px);pointer-events:none;background:linear-gradient(90deg,transparent 45%,rgba(0,0,0,.18));}
@@ -288,26 +292,30 @@ const canvas=document.getElementById('game'),ctx=canvas.getContext('2d');let W=0
 function resize(){dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}
 addEventListener('resize',resize);resize();
 const ui=id=>document.getElementById(id);
-let mobileMode=false;
+let mobileMode=false,fullscreenRequestPending=false,landscapeLockAfterFullscreen=false;
 
 function updateMobileMode(){mobileMode=window.matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0;if(ui('mobileControls'))ui('mobileControls').style.display=mobileMode?'block':'none';}
 addEventListener('resize',updateMobileMode);
 function requestLandscapeLock(){
   try{const pending=screen.orientation?.lock?.('landscape');if(pending&&pending.catch)pending.catch(()=>{});}catch(_){}
 }
-// Try on load for installed/mobile webviews that permit it, then retry on the first touch and fullscreen gesture.
-requestLandscapeLock();
-function enterImmersiveMode(){
-  requestLandscapeLock();
+function enterMenuFullscreen(){
+  // Mobile browsers require a user gesture for fullscreen. Keep the launch menu
+  // portrait; do not lock orientation until the player chooses New Game/Continue.
+  if(!mobileMode||document.fullscreenElement||fullscreenRequestPending)return;
   const root=document.documentElement;
-  const lockLandscape=requestLandscapeLock;
-  // Fullscreen/orientation lock are requested from the user's Play or Start tap,
-  // because mobile browsers do not permit forced orientation without a gesture.
-  lockLandscape();
-  try{if(!document.fullscreenElement&&root.requestFullscreen){const request=root.requestFullscreen({navigationUI:'hide'});if(request&&request.then)request.then(lockLandscape).catch(()=>{});}}catch(_){}
+  try{if(root.requestFullscreen){fullscreenRequestPending=true;const request=root.requestFullscreen({navigationUI:'hide'});if(request&&request.then)request.then(()=>{fullscreenRequestPending=false;if(landscapeLockAfterFullscreen)requestLandscapeLock();}).catch(()=>{fullscreenRequestPending=false;});else fullscreenRequestPending=false;}}catch(_){fullscreenRequestPending=false;}
 }
-addEventListener('fullscreenchange',()=>{resize();updateMobileMode();if(document.fullscreenElement){try{const result=screen.orientation?.lock?.('landscape');if(result&&result.catch)result.catch(()=>{});}catch(_){}}});
-addEventListener('pointerdown',requestLandscapeLock,{once:true,passive:true});addEventListener('orientationchange',()=>setTimeout(resize,100));
+function enterImmersiveMode(){
+  landscapeLockAfterFullscreen=true;
+  requestLandscapeLock();
+  if(document.fullscreenElement)return;
+  if(fullscreenRequestPending)return;
+  const root=document.documentElement;
+  try{if(root.requestFullscreen){fullscreenRequestPending=true;const request=root.requestFullscreen({navigationUI:'hide'});if(request&&request.then)request.then(()=>{fullscreenRequestPending=false;requestLandscapeLock();}).catch(()=>{fullscreenRequestPending=false;});else fullscreenRequestPending=false;}}catch(_){fullscreenRequestPending=false;}
+}
+addEventListener('fullscreenchange',()=>{resize();updateMobileMode();});
+addEventListener('pointerdown',enterMenuFullscreen,{once:true,passive:true});addEventListener('orientationchange',()=>setTimeout(resize,100));
 // City streets now use uneven block spacing and a mix of long highways, divided avenues and tight local roads.
 const world={w:38600,h:29600};
 const roadW=148,sideW=30;
@@ -590,9 +598,19 @@ function awardSuccessfulRideReputation(){if(reputation>=9)return 0;repProgress++
 function showReputationUnlock(level,afterContinue=null){const reward=REP_UNLOCKS[level];if(!reward)return;const weaponUnlocks=weapons.map((w,i)=>WEAPON_REQUIRED_REP[i]===level?w.name:null).filter(Boolean);introPaused=true;renderOverlay(`<div class="menuScreen" style="max-width:560px;text-align:center"><div class="menuTag">REPUTATION LEVEL ${level} REACHED</div><div class="editorTitle" style="margin:12px 0">${level===9?'BOSS LEVEL UNLOCKED!':'NEW PASSENGER UNLOCKED!'}</div><div style="font-size:58px;margin:10px">${({1:'🛠️',2:'😎',3:'🔋',4:'🔪',5:'👔',6:'🍾',7:'📱',8:'🔫',9:'👑'})[level]||'⭐'}</div><h2 style="color:#ffe09a;margin:8px 0">${escapeHtml(reward.name)}</h2><p>${escapeHtml(reward.desc)}</p><div class="noticeStrip">${level===9?'FINAL BOSS CONTRACT · DOUBLE ENEMY FORCE':'PASSENGER · NOW ADDED TO YOUR RIDE REQUEST POOL'}</div>${weaponUnlocks.length?`<div class="storyBox" style="margin:12px auto"><b style="color:#ffe09a">WEAPONS NOW AVAILABLE IN THE SHOP</b><br>${weaponUnlocks.map(escapeHtml).join(' · ')}</div>`:''}<button class="menuPrimary" id="repUnlockContinue">CONTINUE DRIVING</button></div>`);ui('repUnlockContinue').onclick=()=>{if(afterContinue){afterContinue();return;}introPaused=false;ui('overlay').style.display='none';ui('overlay').className='';ui('card').className='';document.body.classList.remove('menu-state');ui('hud').style.visibility='visible';ui('mobileControls').style.display=mobileMode?'block':'none';updateHud();};}
 function recordPassengerRideMemory(p){persistPlayerHistory();if(!p?.characterId)return;const before=p.rideStartHistory||{crashes:0,highSpeedSeconds:0,hardBrakes:0,sharpTurns:0};const summary={crashes:Math.max(0,(playerHistory.crashes||0)-before.crashes),highSpeedSeconds:Math.round(Math.max(0,(playerHistory.highSpeedSeconds||0)-before.highSpeedSeconds)),hardBrakes:Math.round(Math.max(0,(playerHistory.hardBrakes||0)-before.hardBrakes)),sharpTurns:Math.round(Math.max(0,(playerHistory.sharpTurns||0)-before.sharpTurns)),style:(Math.max(0,(playerHistory.crashes||0)-before.crashes)>=3?'reckless':Math.max(0,(playerHistory.highSpeedSeconds||0)-before.highSpeedSeconds)>=25?'speedster':Math.max(0,(playerHistory.sharpTurns||0)-before.sharpTurns)>=8?'evasive':'careful'),deliveredAt:Date.now()};const prior=passengerRideMemory[p.characterId]||{};passengerRideMemory[p.characterId]={count:(prior.count||0)+1,last:summary};try{localStorage.setItem('underworldPassengerRideMemoryV1',JSON.stringify(passengerRideMemory));}catch(_){}}
 function pickupBriefingFallback(p){const memory=passengerRideMemory[p.characterId]?.last;const name=p.name||'Passenger';if(p.characterId==='unknown')return `${name}: Is ride mein koi gang tumhara peecha nahi karegi. Mujhe chup-chaap drop kar dena. Fare kam hai, par kaam aasan hai.`;if(!memory)return p.shootersOnly?`${name}: Is ride mein gang cars nahi, sirf street shooters aur enemy bikes se bachna. Bikes speed match karke fire karengi, par tu ram karne aaye toh woh bachne ke liye mudengi.`:`${name}: Seedha destination tak le chal. Do shooter cars fire karengi, do rammers takkar ki koshish karenge, aur enemy bikes speed match karke fire karengi. Bikes ko seedha ram karne jaoge toh woh swerve karengi.`;let feedback=memory.crashes>=3?'Pichhli baar tune kaafi takkar maari thi, iss baar auto sambhaal ke chala.':memory.highSpeedSeconds>=25?'Last ride mein tu bahut tez bhaaga tha. Speed ka faayda le, par junction pe dhyaan rakh.':memory.hardBrakes>=5?'Pichhli baar brakes bahut maare the. Smooth drive kar, warna peeche wale pakad lenge.':memory.sharpTurns>=8?'Pichhli ride mein tu har mod pe zigzag kar raha tha. Is baar route pakad ke chal.':'Pichhli ride theek thi. Is baar bhi clean driving rakh.';let briefing=p.shootersOnly?`${feedback} Is ride mein street shooters aur enemy bikes ka khatra hai. Bikes speed match karke fire karengi, aur ram ke liye line-up karoge toh swerve karengi. Mujhe destination tak safely pahunchana.`:`${feedback} Ab mujhe destination tak jaldi aur safely pahunchana. Do shooters peeche se fire karenge, do rammers takkar maarne ki koshish karenge, aur enemy bikes speed match karke fire karengi. Bike ko ram karne aaoge toh woh bachne ke liye mudegi.`;return briefing;}
-async function showPassengerPickupTalk(p){const box=ui('passengerTalk'),line=ui('passengerTalkLine');if(!box||!line)return;passengerConversationPaused=true;keys={};mobileDrive={left:false,right:false,accelerate:false,reverse:false};box.style.display='block';if(window.passengerTalkTimeout)clearTimeout(window.passengerTalkTimeout);ui('passengerTalkName').textContent=(p.name||'PASSENGER').toUpperCase()+' · RIDE ORDERS';const continueBtn=ui('passengerTalkContinue');if(continueBtn)continueBtn.textContent=mobileMode?'TAP TO CONTINUE':'SPACE TO CONTINUE';let fallback=pickupBriefingFallback(p);if(passengerRecentLines.slice(-6).includes(fallback))fallback+=' Is baar naya route hai, dhyaan se chala.';line.textContent=fallback;passengerRecentLines.push(fallback);if(passengerRecentLines.length>12)passengerRecentLines.shift();try{localStorage.setItem('underworldPassengerRecentLinesV1',JSON.stringify(passengerRecentLines));}catch(_){}const memory=passengerRideMemory[p.characterId]||null;try{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5000);const response=await fetch('/api/passenger-reaction',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({passenger:{name:p.name,characterId:p.characterId,category:p.category,personality:p.personality||PASSENGER_PERSONALITIES[p.characterId]},context:{event:'pickup briefing and ride orders',lastRideMemory:memory,recentDialogue:passengerRecentLines.slice(-6),enemySetup:p.characterId==='unknown'?'No enemies at all on this Unknown Criminal ride. This passenger pays a very low fare.':(p.shootersOnly?'No gang cars on this passenger ride; street shooters and enemy bikes are active. Bikes match the auto speed, shoot and swerve away if the driver lines up a ram.':'Two shooter cars follow and fire but never ram. Two rammer cars do not shoot and try to hit the auto. Enemy bikes keep pace and shoot, but swerve away if you line up a ram.'),instructions:'Speak directly to the driver. Give one or two practical orders and comment on how the driver performed with this same passenger on the previous ride if memory exists. If no previous ride memory, welcome them and explain the enemy roles. Unknown Criminal rides have no enemies and pay very little. Do not invent unlisted missions or extra objectives.'}}),signal:controller.signal});clearTimeout(timer);if(!response.ok)throw Error('offline');const data=await response.json();if(data.dialogue&&passenger?.accepted&&passenger.requestId===p.requestId&&!passengerRecentLines.slice(-5).includes(data.dialogue)){line.textContent=data.dialogue;passengerRecentLines.push(data.dialogue);if(passengerRecentLines.length>12)passengerRecentLines.shift();try{localStorage.setItem('underworldPassengerRecentLinesV1',JSON.stringify(passengerRecentLines));}catch(_){}}}catch(_){/* prepared passenger briefing remains visible offline */}}
-function resumePassengerConversation(){if(!passengerConversationPaused)return;passengerConversationPaused=false;hidePassengerTalk();notify('RIDE STARTED · DRIVE TO DROP-OFF MARKER!');if(!tutorialsSeen.firstRide)showFirstRideTutorial();}
-function hidePassengerTalk(){const box=ui('passengerTalk');if(box)box.style.display='none';}
+function setPassengerTalkControls(hidden){
+  const pedals=ui('pedalControls');if(!pedals)return;
+  pedals.classList.toggle('conversation-hidden',!!hidden);
+  pedals.querySelectorAll('[data-drive="accelerate"],[data-drive="reverse"]').forEach(button=>{
+    button.disabled=!!hidden;
+    button.setAttribute('aria-hidden',hidden?'true':'false');
+    button.classList.remove('pressed');
+  });
+  mobileDrive.accelerate=false;mobileDrive.reverse=false;
+}
+async function showPassengerPickupTalk(p){const box=ui('passengerTalk'),line=ui('passengerTalkLine');if(!box||!line)return;passengerConversationPaused=true;keys={};mobileDrive={left:false,right:false,accelerate:false,reverse:false};setPassengerTalkControls(true);box.style.display='block';if(window.passengerTalkTimeout)clearTimeout(window.passengerTalkTimeout);ui('passengerTalkName').textContent=(p.name||'PASSENGER').toUpperCase()+' · RIDE ORDERS';const continueBtn=ui('passengerTalkContinue');if(continueBtn)continueBtn.textContent=mobileMode?'TAP TO CONTINUE':'SPACE TO CONTINUE';let fallback=pickupBriefingFallback(p);if(passengerRecentLines.slice(-6).includes(fallback))fallback+=' Is baar naya route hai, dhyaan se chala.';line.textContent=fallback;passengerRecentLines.push(fallback);if(passengerRecentLines.length>12)passengerRecentLines.shift();try{localStorage.setItem('underworldPassengerRecentLinesV1',JSON.stringify(passengerRecentLines));}catch(_){}const memory=passengerRideMemory[p.characterId]||null;try{const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),5000);const response=await fetch('/api/passenger-reaction',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({passenger:{name:p.name,characterId:p.characterId,category:p.category,personality:p.personality||PASSENGER_PERSONALITIES[p.characterId]},context:{event:'pickup briefing and ride orders',lastRideMemory:memory,recentDialogue:passengerRecentLines.slice(-6),enemySetup:p.characterId==='unknown'?'No enemies at all on this Unknown Criminal ride. This passenger pays a very low fare.':(p.shootersOnly?'No gang cars on this passenger ride; street shooters and enemy bikes are active. Bikes match the auto speed, shoot and swerve away if the driver lines up a ram.':'Two shooter cars follow and fire but never ram. Two rammer cars do not shoot and try to hit the auto. Enemy bikes keep pace and shoot, but swerve away if you line up a ram.'),instructions:'Speak directly to the driver. Give one or two practical orders and comment on how the driver performed with this same passenger on the previous ride if memory exists. If no previous ride memory, welcome them and explain the enemy roles. Unknown Criminal rides have no enemies and pay very little. Do not invent unlisted missions or extra objectives.'}}),signal:controller.signal});clearTimeout(timer);if(!response.ok)throw Error('offline');const data=await response.json();if(data.dialogue&&passenger?.accepted&&passenger.requestId===p.requestId&&!passengerRecentLines.slice(-5).includes(data.dialogue)){line.textContent=data.dialogue;passengerRecentLines.push(data.dialogue);if(passengerRecentLines.length>12)passengerRecentLines.shift();try{localStorage.setItem('underworldPassengerRecentLinesV1',JSON.stringify(passengerRecentLines));}catch(_){}}}catch(_){/* prepared passenger briefing remains visible offline */}}
+function resumePassengerConversation(){if(!passengerConversationPaused)return;passengerConversationPaused=false;setPassengerTalkControls(false);hidePassengerTalk();notify('RIDE STARTED · DRIVE TO DROP-OFF MARKER!');if(!tutorialsSeen.firstRide)showFirstRideTutorial();}
+function hidePassengerTalk(){const box=ui('passengerTalk');if(box)box.style.display='none';setPassengerTalkControls(false);}
 
 function makePlayer(){const spawn=mapSpawnPoint();return{x:spawn.x,y:spawn.y,a:0,v:0,steer:0,skidX:0,skidY:0,hp:100,fire:0,hitCooldown:0,buildingHitCooldown:0,smokeClock:0,shake:0,oilSlipTimer:0,oilSlipDir:1,oilSlipStrength:0};}
 function closest(arr,v){return arr.reduce((best,n)=>Math.abs(n-v)<Math.abs(best-v)?n:best,arr[0])}
@@ -881,7 +899,7 @@ function showMainMenu(message=''){
   ui('quitGameBtn').onclick=showQuitConfirm;
 }
 function showNewGameIntro(){
-  game=false;dead=false;introPaused=true;menuAmbient=true;hideGameLayers();
+  enterImmersiveMode();game=false;dead=false;introPaused=true;menuAmbient=true;hideGameLayers();
   renderOverlay(`<div class="newIntroRoot"><section class="newIntroPanel">
     <div class="menuTag">YOUR FIRST CONTRACT</div>
     <h1 class="newIntroTitle">UNDERWORLD <span>AUTOWALA</span></h1>
@@ -1877,7 +1895,7 @@ function setupMobileControls(){
   document.querySelectorAll('[data-drive]').forEach(button=>{
     const action=button.dataset.drive;
     const release=()=>{mobileDrive[action]=false;button.classList.remove('pressed');};
-    button.addEventListener('pointerdown',e=>{if(!game||!mobileMode||introPaused)return;e.preventDefault();mobileDrive[action]=true;button.classList.add('pressed');try{button.setPointerCapture(e.pointerId);}catch(_){}});
+    button.addEventListener('pointerdown',e=>{if(!game||!mobileMode||introPaused||passengerConversationPaused||button.disabled)return;e.preventDefault();mobileDrive[action]=true;button.classList.add('pressed');try{button.setPointerCapture(e.pointerId);}catch(_){}});
     button.addEventListener('pointerup',e=>{e.preventDefault();release();});
     button.addEventListener('pointercancel',release);
     button.addEventListener('lostpointercapture',release);
