@@ -471,7 +471,7 @@ function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
 function lerp(a,b,t){return a+(b-a)*t}
 function angleDelta(a,b){return Math.atan2(Math.sin(b-a),Math.cos(b-a))}
 function notify(t){const msg=String(t||'');const keep=/(NEW RIDE REQUEST|RIDE ACTIVATED|DRIVE TO PICKUP|PICKUP|PICKED UP|RIDE STARTED|DRIVE TO DROP.OFF|DROP.OFF|FARE|STOLEN|PICKPOCKET|DELIVERED|RIDE COMPLETED)/i;if(!keep.test(msg))return;ui('toast').textContent=msg;ui('toast').style.opacity=1;toastTimer=2.2}
-function applyPlayerDamage(amount,source='enemy'){if(!player||amount<=0)return;const impactSources=['crash','traffic','enemy-vehicle','ram','ram-truck'];const isImpact=impactSources.includes(source);if(passenger?.accepted&&passenger.characterId==='pappan'&&isImpact){passenger.bottleHp=Math.max(0,(passenger.bottleHp??100)-7);if(passenger.bottleHp<=0&&!passenger.bossShot){passenger.bossShot=true;notify('PAPPAN BATLI: THE BOTTLES ARE GONE. HE SHOOTS YOU!');player.hp=0;}updateHud();}if((player.shieldTimer||0)>0)return;if(passenger?.accepted)passenger.rideTookDamage=true;let total=amount;if(passenger?.accepted&&passenger.characterId==='koita'&&isImpact&&(passenger.koitaBeatCooldown||0)<=0&&Math.random()<.70){total+=8;passenger.koitaBeatCooldown=4;addDialogue('passenger','player','You smashed my ride! Take this!');notify('KOITA KUMAR BEATS YOU! -8 AUTO HEALTH');}let absorbed=Math.min(player.armor||0,total);player.armor=Math.max(0,(player.armor||0)-absorbed);total-=absorbed;if(total>0)player.hp=Math.max(0,player.hp-total);if(passenger?.accepted)passenger.rideMinHp=Math.min(passenger.rideMinHp??player.hp,player.hp);recentDamage.push({amount:total,age:0,source});updateHud();}
+function applyPlayerDamage(amount,source='enemy'){if(!player||amount<=0)return;const impactSources=['crash','traffic','enemy-vehicle','ram','ram-truck'];const isImpact=impactSources.includes(source);if(passenger?.accepted&&passenger.characterId==='pappan'&&isImpact){passenger.bottleHp=Math.max(0,(passenger.bottleHp??100)-7);if(passenger.bottleHp<=0&&!passenger.bossShot){passenger.bossShot=true;notify('PAPPAN BATLI: THE BOTTLES ARE GONE. HE SHOOTS YOU!');player.hp=0;}updateHud();}if((player.shieldTimer||0)>0)return;if(passenger?.accepted)passenger.rideTookDamage=true;let total=amount;if(passenger?.accepted&&passenger.characterId==='koita'&&isImpact&&(passenger.koitaBeatCooldown||0)<=0&&Math.random()<.50){total+=5;passenger.koitaBeatCooldown=4;addDialogue('passenger','player','You smashed my ride! Take this!');notify('KOITA KUMAR BEATS YOU! -5 AUTO HEALTH');}let absorbed=Math.min(player.armor||0,total);player.armor=Math.max(0,(player.armor||0)-absorbed);total-=absorbed;if(total>0)player.hp=Math.max(0,player.hp-total);if(passenger?.accepted)passenger.rideMinHp=Math.min(passenger.rideMinHp??player.hp,player.hp);recentDamage.push({amount:total,age:0,source});updateHud();}
 function addDialogue(type,id,text){const entry={type,id,text,time:9,maxTime:9};dialogues.push(entry);if(dialogues.length>12)dialogues.shift();return entry;}
 const ENEMY_FOLLOW_LINES=[
   'Ae rickshaw wale! Ruk zara, tere se kuch hisaab karna hai!',
@@ -775,7 +775,7 @@ function destroyStreetShooter(s,reason='runover'){
 }
 function destroyOilSpiller(s){if(!s||s.dead)return;s.dead=true;s.state='gone';progressMission('oilSpillers',1);updateHud();}
 function passengerNumber(){return passenger?.number||rides+1;}
-function enemyDifficulty(){const r=Math.max(0,Math.min(9,reputation));if(passenger?.characterId==='unknown')return {shooters:0,rammers:0,ambush:999,shotGap:[99,99],ramGap:[99,99],ramGlobal:99,bulletDamage:0,speedBonus:0};const boss=!!(passenger?.bossLevel);return {shooters:boss?4:2,rammers:boss?4:2,ambush:r<=1?10:r<=3?8:7,shotGap:r<=1?[8,10]:r<=3?[7,8.5]:[6,7.5],ramGap:r<=1?[12,15]:r<=3?[10,13]:[9,12],ramGlobal:r<=1?8:r<=3?7:6,bulletDamage:r<=3?1:r<=6?2:3,speedBonus:Math.min(.18,r*.02)};}
+function enemyDifficulty(){const r=Math.max(0,Math.min(9,reputation));if(passenger?.characterId==='unknown')return {shooters:0,rammers:0,ambush:999,shotGap:[99,99],ramGap:[99,99],ramGlobal:99,bulletDamage:0,speedBonus:0};const boss=!!(passenger?.bossLevel);return {shooters:boss?4:2,rammers:boss?4:2,ambush:r<=1?10:r<=3?8:7,shotGap:r<=1?[8,10]:r<=3?[7,8.5]:[6,7.5],ramGap:r<=1?[12,15]:r<=3?[10,13]:[9,12],ramGlobal:r<=1?8:r<=3?7:6,bulletDamage:r<=3?1:r<=6?1:2,speedBonus:Math.min(.18,r*.02)};}
 function currentEnemyHealth(){return 190+Math.max(0,Math.min(9,reputation))*18+(hardModeEnabled?40:0);}
 function currentStreetShooterHealth(){return 74+Math.max(0,Math.min(9,reputation))*9+(hardModeEnabled?20:0);}
 function currentRamTruckHealth(){return currentEnemyHealth()*2;}
@@ -1351,7 +1351,7 @@ function updatePassengerSupport(dt){
   if(p.characterId==='koita'){
     p.koitaBeatCooldown=Math.max(0,(p.koitaBeatCooldown||0)-dt);
     const speed=getSpeedKmh();
-    if(speed<28){p.koitaSlowClock=(p.koitaSlowClock||0)+dt;if(p.koitaSlowClock>=1.5){p.koitaSlowClock=0;if(p.koitaBeatCooldown<=0&&Math.random()<.70){p.koitaBeatCooldown=4;applyPlayerDamage(8,'koita-beat');addDialogue('passenger','player','Move it, driver! I did not hire you to crawl!');notify('KOITA KUMAR BEATS YOU! -8 AUTO HEALTH');}}}else p.koitaSlowClock=0;
+    if(speed<28){p.koitaSlowClock=(p.koitaSlowClock||0)+dt;if(p.koitaSlowClock>=1.5){p.koitaSlowClock=0;if(p.koitaBeatCooldown<=0&&Math.random()<.50){p.koitaBeatCooldown=4;applyPlayerDamage(5,'koita-beat');addDialogue('passenger','player','Move it, driver! I did not hire you to crawl!');notify('KOITA KUMAR BEATS YOU! -5 AUTO HEALTH');}}}else p.koitaSlowClock=0;
   }
 }
 
@@ -2025,8 +2025,8 @@ function update(dt){if(!game||introPaused||passengerConversationPaused)return;le
   p.x=blockedX?oldX:wantedX;p.y=blockedY?oldY:wantedY;
   if(blockedX)p.skidX=0;if(blockedY)p.skidY=0;
   if(blockedX||blockedY){
-    let sp=getSpeedKmh();const crashDamage=sp>=40?10:sp>=30?7:sp>=20?4:sp>=10?2:0;
-    if(p.buildingHitCooldown<=0){applyPlayerDamage(crashDamage||1,'crash');p.buildingHitCooldown=4;passengerCrashLine('building collision');}
+    let sp=getSpeedKmh();const crashDamage=sp>=40?6:sp>=30?4:sp>=20?2:sp>=10?1:0;
+    if(p.buildingHitCooldown<=0){applyPlayerDamage(crashDamage,'crash');p.buildingHitCooldown=4;passengerCrashLine('building collision');}
     p.v*=blockedX&&blockedY?-.16:.62;camera.shake=Math.max(camera.shake,5);p.shake=.18;
   }
   // Safety net for old saves or a rare spawn/map-layout overlap: never leave the
@@ -2064,7 +2064,7 @@ function update(dt){if(!game||introPaused||passengerConversationPaused)return;le
     else{c.x+=c.dir*c.speed*dt*60;if(c.x< -100)c.x=world.w+100;if(c.x>world.w+100)c.x=-100;}
     const dx=p.x-c.x,dy=p.y-c.y,gap=Math.hypot(dx,dy);
     if(gap<57){const nx=dx/(gap||1),ny=dy/(gap||1),overlap=57-gap;p.x+=nx*overlap*.38;p.y+=ny*overlap*.38;c.x-=nx*overlap*.62;c.y-=ny*overlap*.62;
-      if(c.hitCooldown<=0){const sp=getSpeedKmh(),crashDamage=sp>=40?8:sp>=20?5:2;applyPlayerDamage(crashDamage,'traffic');p.v*=.48;c.hitTimer=.42;c.hitVx=-nx*(1.5+Math.abs(p.v)*.52);c.hitVy=-ny*(1.5+Math.abs(p.v)*.52);c.hitCooldown=.55;camera.shake=Math.max(camera.shake,11);p.shake=.42;passengerCrashLine('traffic collision');notify('TRAFFIC IMPACT!');}
+      if(c.hitCooldown<=0){const sp=getSpeedKmh(),crashDamage=sp>=40?4:sp>=20?3:1;applyPlayerDamage(crashDamage,'traffic');p.v*=.48;c.hitTimer=.42;c.hitVx=-nx*(1.5+Math.abs(p.v)*.52);c.hitVy=-ny*(1.5+Math.abs(p.v)*.52);c.hitCooldown=.55;camera.shake=Math.max(camera.shake,11);p.shake=.42;passengerCrashLine('traffic collision');notify('TRAFFIC IMPACT!');}
     }
   }
   // Street shooters roam along the current road and fire at the auto; eliminations never award cash.
@@ -2095,7 +2095,7 @@ function update(dt){if(!game||introPaused||passengerConversationPaused)return;le
       if(e.retarget<=0){const route=playerRoadInfo(),ahead=Math.max(240,Math.min(620,gap*.45));if(route.axis==='v'){e.targetX=route.coord;e.targetY=clamp(p.y+route.dir*ahead,150,world.h-150);}else{e.targetX=clamp(p.x+route.dir*ahead,150,world.w-150);e.targetY=route.coord;}e.retarget=2.6;}
       const tx=e.targetX??p.x,ty=e.targetY??p.y,angle=Math.atan2(ty-e.y,tx-e.x);e.a+=angleDelta(e.a,angle)*(1-Math.exp(-dt*1.8));
       if(e.stunTime<=0)moveEnemySafely(e,Math.cos(e.a)*(e.speed||enemySpeedForBase(120)/20)*dt*60,Math.sin(e.a)*(e.speed||enemySpeedForBase(120)/20)*dt*60);
-      const truckGap=dist(e,p);if(truckGap<68&&e.hitCooldown<=0){applyPlayerDamage(10,'ram-truck');{const nx=(p.x-e.x)/(truckGap||1),ny=(p.y-e.y)/(truckGap||1);p.v*=.48;p.x+=nx*42;p.y+=ny*42;p.a+=angleDelta(p.a,Math.atan2(ny,nx))*.28;}e.hitCooldown=3.2;camera.shake=Math.max(camera.shake,20);p.shake=.75;notify('RAM TRUCK HIT! -10 HEALTH');speakEnemyDialogue('enemyRam',e,'ram');passengerCrashLine('ram truck impact');}
+      const truckGap=dist(e,p);if(truckGap<68&&e.hitCooldown<=0){applyPlayerDamage(7,'ram-truck');{const nx=(p.x-e.x)/(truckGap||1),ny=(p.y-e.y)/(truckGap||1);p.v*=.48;p.x+=nx*42;p.y+=ny*42;p.a+=angleDelta(p.a,Math.atan2(ny,nx))*.28;}e.hitCooldown=3.2;camera.shake=Math.max(camera.shake,20);p.shake=.75;notify('RAM TRUCK HIT! -7 HEALTH');speakEnemyDialogue('enemyRam',e,'ram');passengerCrashLine('ram truck impact');}
       continue;
     }
     if(e.ramState==='charging'){
@@ -2146,7 +2146,7 @@ function update(dt){if(!game||introPaused||passengerConversationPaused)return;le
       p.x+=nx*overlap*.42;p.y+=ny*overlap*.42;e.x-=nx*overlap*.58;e.y-=ny*overlap*.58;
       e.bumpCooldown=Math.max(0,(e.bumpCooldown||0)-dt);
       if(e.bumpCooldown<=0){
-        const sp=getSpeedKmh(),playerDamage=sp>=40?1:sp>=20?1:1,carDamage=10;
+        const sp=getSpeedKmh(),playerDamage=1,carDamage=10;
         applyPlayerDamage(playerDamage,'enemy-vehicle');e.hp=Math.max(0,e.hp-carDamage);e.bumpCooldown=2.8;
         p.v*=.58;p.x+=nx*25;p.y+=ny*25;p.a+=angleDelta(p.a,Math.atan2(ny,nx))*.16;camera.shake=Math.max(camera.shake,13);p.shake=.48;speakEnemyDialogue('enemyRam',e,'ram');passengerCrashLine('enemy vehicle ram');
         if(e.hp<=0)destroyEnemyVehicle(e,'ram');else notify('ENEMY VEHICLE IMPACT!');
