@@ -62,16 +62,6 @@ UPDATE v5 - REPUTATION-BASED DIFFICULTY
 - Passenger patience drains more slowly at reputation 0.
 - Removed no-cash reward notifications when enemy cars, street shooters or oil spillers are eliminated. Enemy takedown mission progress remains.
 
-AI MISSION DIRECTOR UPDATE
-- Added /api/mission-director for constrained AI mission selection.
-- Normal passenger rides now receive adaptive enemy strategy decisions based on persistent player driving history.
-- Special jobs are offered occasionally, after a randomized 3-5 successful rides.
-- Supported templates: Risky Delivery, The Informant, Silent Passenger, Roadblock, VIP Escort, and Special Request.
-- Special Jobs are visible in the in-game phone. Successful completion adds a validated bonus to passenger fare; failed special objectives still allow the normal fare unless the ride itself fails.
-- Player driving history and Mission Director progress persist in localStorage and save checkpoints.
-- If the AI endpoint is unavailable, a local constrained mission selector and existing gameplay systems remain available.
-- Live AI requires OPENAI_API_KEY in Render. No API key is exposed to the browser.
-
 
 UNDERWORLD AUTOWALA V7 - REPUTATION LADDER & BOSS CONTRACT
 - Reputation 0: Unknown Criminal. Only Lamboo Lala sends ride requests, no enemies spawn, and successful rides pay a small beginner fare (₹65).
@@ -90,3 +80,25 @@ LATEST GAMEPLAY FIXES (V8)
 - Moved enemy spawn positions closer and improved follower catch-up speed so the four cars stay in the chase instead of falling far behind.
 - Removed Debug Mode and its developer-only menu/tools.
 - Fixed frozen projectile visuals during paused dialogue/overlays and added stricter projectile cleanup for expired or invalid bullets.
+
+
+LATEST UPDATE (V9) - WEAPON ECONOMY, ENEMY HEALTH & TUTORIALS
+- Increased all paid weapon prices by 350 in their existing currency. The starter pistol remains free.
+- Cash weapon prices: Revolver ₹600; Submachine Gun ₹800; Shotgun ₹1,050; Machine Gun ₹1,300; Assault Rifle ₹1,650; Heavy Rifle ₹2,150.
+- Premium weapon prices: Grenade Launcher 850 gold bars; Plasma Cannon 1,350 gold bars; Laser 1,850 gold bars.
+- Weapon reputation gates: Rep 2 Revolver; Rep 3 Submachine Gun and Shotgun; Rep 4 Machine Gun; Rep 5 Assault Rifle; Rep 6 Heavy Rifle; Rep 7 Grenade Launcher; Rep 8 Plasma Cannon and Laser. Guns remain purchasable after their reputation gate is reached, and reputation unlock popups list the newly available weapons.
+- Increased gang vehicle health from 140 to 190 (+50). Hard Mode adds its existing 40-point bonus on top. Street shooter health increased from 24 to 74. Ram trucks retain double vehicle health.
+- Added a first-ride guide covering drop-off navigation, driving controls, auto-targeting and passenger-specific enemy behaviour.
+- Added first-visit tutorials for the garage and weapon shop. Each tutorial is remembered in localStorage and shown once per new game profile.
+- Fixed saved reputation loading to preserve levels 0-9, so the late-game weapon unlock gates work after Continue Game.
+- Passenger fare logic is unchanged.
+
+
+LATEST UPDATE (V10) - CRIMINAL CONTACTS, FIRST-RIDE ONBOARDING & REPUTATION DIFFICULTY
+- Removed AI Mission Director and all occasional special-job offers, bonus mission objectives and the Special Jobs phone screen.
+- Replaced Special Jobs with a Criminal Contacts directory showing each criminal, their ride behaviour and the reputation level required to unlock them. Locked contacts cannot send ride requests.
+- Kept the separate daily Missions app, passenger dialogue AI, player-history tracking and adaptive enemy tactics.
+- First-session tutorial now appears before driving and explains W/A/S/D, SPACE, mobile steering/pedals and waiting for the first ride request.
+- When the first ride request arrives, a second tutorial explains TAB -> Rides Request -> tap the incoming message card to activate the pickup timer -> follow the pickup arrow -> press G beside the passenger.
+- After the first passenger briefing, a third tutorial explains the gold drop-off marker, automatic weapon targeting and earning the fare.
+- Enemy vehicle health, street-shooter health and chase speed now increase with reputation. Hard Mode bonuses remain on top.
