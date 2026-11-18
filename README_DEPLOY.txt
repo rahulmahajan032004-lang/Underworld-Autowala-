@@ -17,7 +17,7 @@ DEPLOY
 5. In the service's Environment settings, add OPENAI_API_KEY with your own OpenAI API key.
 6. Keep OPENAI_MODEL as gpt-5.5 unless you intentionally choose another model available to your API account.
 7. Deploy. Render will provide a public https://...onrender.com URL.
-8. Open that URL. The game should show PASSENGER AI: READY when the key is configured. Test Danger Bhai during a chase and Mobile Mangesh when at least two enemy cars are nearby.
+8. Open that URL and start the game. There is no technical AI-status banner in the player HUD. Test passenger reactions, Danger Bhai during a chase, and Mobile Mangesh when at least two enemy cars are nearby.
 
 IMPORTANT
 - Never put the OpenAI API key in index.html, GitHub, or any public file.
@@ -64,7 +64,7 @@ UPDATE v5 - REPUTATION-BASED DIFFICULTY
 
 
 UNDERWORLD AUTOWALA V7 - REPUTATION LADDER & BOSS CONTRACT
-- Reputation 0: Unknown Criminal. Only Lamboo Lala sends ride requests, no enemies spawn, and successful rides pay a small beginner fare (₹65).
+- Reputation 0: Unknown Criminal and Lamboo Lala are available. Unknown Criminal rides have no pursuing enemies and pay ₹35; Lamboo rides use the regular enemy encounter.
 - Passenger unlocks: Rep 1 Bunty Brakefail; Rep 2 Chikna Chintu; Rep 3 Battery Baban; Rep 4 Koita Kumar; Rep 5 Bhau Karkhanis; Rep 6 Pappan Batli; Rep 7 Mobile Mangesh; Rep 8 Danger Bhai.
 - Locked passengers are excluded from the ride request pool and cannot send ride messages.
 - Reputation 9 unlocks a one-time Danger Bhai boss contract. The boss ride uses double the standard gang car count (4 shooters + 4 rammers).
@@ -102,3 +102,55 @@ LATEST UPDATE (V10) - CRIMINAL CONTACTS, FIRST-RIDE ONBOARDING & REPUTATION DIFF
 - When the first ride request arrives, a second tutorial explains TAB -> Rides Request -> tap the incoming message card to activate the pickup timer -> follow the pickup arrow -> press G beside the passenger.
 - After the first passenger briefing, a third tutorial explains the gold drop-off marker, automatic weapon targeting and earning the fare.
 - Enemy vehicle health, street-shooter health and chase speed now increase with reputation. Hard Mode bonuses remain on top.
+
+LATEST UPDATE (V11)
+- Enemy gang-car bullets and street-shooter bullets now use the same projectile speed as player bullets.
+
+LATEST UPDATE (V12) - CRIMINAL REQUESTS, LAMBOO PROBABILITY, CITY ROADS & ENEMY BIKES
+- Removed the technical "Passenger AI READY / FALLBACK MODE" status from the HUD. Passenger dialogue/reaction functionality remains available without the status indicator.
+- Reworked ride contact selection so every newly unlocked passenger is prioritised for their first ride request before the normal shuffled rotation resumes. The contact deck was versioned so an old saved rotation does not hide newly unlocked contacts.
+- Lamboo Lala now has a real pickpocket probability: 42% chance to find the fare if the player moves it to another square, and 68% if the player leaves it in the original square. The minigame tutorial explains the odds.
+- Rebuilt the city spacing with long unevenly spaced routes, wide divided highways, medium divided roads and narrow local streets.
+- Increased the number of shortcut gullies and added diagonal connectors through selected blocks. Building footprints are split around the shortcut paths so they remain drivable.
+- Added enemy motorcycles on criminal rides (never on Unknown Criminal rides). Bikes shoot but do not initiate ram attacks, match the player's current speed, keep a close flank, and swerve toward the open side, away from the player's approach line, when the player lines up a high-speed ram. A direct high-speed ram knocks the bike down; player weapons can also destroy them.
+- Enemy bikes spawn in greater numbers on later rides and on the Danger Bhai boss contract. Their bullets use the shared player/enemy projectile speed.
+- Updated roadside placement, traffic lanes, street-shooter spawn positions, road interception and oil-spiller placement to use the new road widths.
+- Final V12 polish: updated Chikna's repeat-ride briefing, AI dialogue context, criminal-directory description and first-ride enemy tips so players are clearly warned that enemy bikes also appear on Chikna and regular criminal rides.
+
+V13 UPDATE
+- Reduced HUD toast notifications to ride requests, pickup/drop-off guidance, and fare received/stolen outcomes. Building, traffic, enemy-vehicle and enemy-bullet collision chatter is suppressed.
+- Lamboo pickpocket tutorial no longer reveals probability percentages; it says: "Hide your money and pray to God." Fare theft outcomes show the exact rupee amount stolen.
+- Map selection now changes the environment palette and district building styles for Market, Railway, Industrial and Dockyard maps. Selecting or purchasing a map rebuilds the city dressing and traffic/services.
+- Increased spacing between main avenues for longer highway stretches and added more angled shortcut connectors to break up the regular grid.
+
+V14 UPDATE - FRESH NEW GAME + CONNECTED CITY ROADS
+- New Game now clears the previous Underworld profile and resets cash, gold, reputation, rides, vehicle upgrades, weapons, map purchases, cosmetics, unlocks, boss progress, and tutorials to starter state.
+- Continue still restores the saved run; only choosing New Game performs the full reset.
+- Removed interior gully/shortcut roads and all dead-end road segments. The connected main road network remains.
+
+V15 UPDATE - DAILY REWARDS AND MISSION STREAKS
+- Added a Daily Rewards app inside the in-game phone.
+- Players can claim one login reward per local calendar day. Seven consecutive claim days grant the special reward: ₹500, 100 Gold Bars and 5 bonus collection cards.
+- Added a seven-day progress bar and day-by-day reward track.
+- Daily Missions now have a separate seven-day streak. Complete all three missions and claim the mission reward each day; the seventh day grants ₹500 and 5 extra collection cards.
+- Daily mission sets now refresh 24 hours after their reward is claimed.
+- Starting New Game resets the current mission set and its partial objectives, while preserving account-level daily login and mission streak data.
+
+V16 DAILY REWARD UPDATE
+- Daily login rewards now grant collection cards only. No cash, gold, or reputation is awarded.
+- Login Day 1-6: 1-3 random collection cards; Day 7: 1-3 cards plus 5 extra random collection cards.
+- Daily mission completion rewards remain collection cards only; the 7-day mission streak grants 5 extra random collection cards.
+
+V17 BUILDING COLLISION / AUTO RECOVERY UPDATE
+- Player collision now resolves the horizontal and vertical movement axes independently, allowing the auto to slide along building walls instead of getting stuck at corners.
+- Collision checks account for the auto's wider footprint.
+- If an old save or rare map overlap leaves the auto inside a building, it is automatically moved to the nearest safe road intersection and its velocity/skid are reset.
+- New game now builds the selected map before choosing the player's spawn point, preventing a spawn selected against stale building data.
+
+
+LATEST MAP STORE UPDATE (V18)
+- Added MAP STORE inside the in-game Weapon Shop.
+- Buy Market District (₹300), Railway Quarter (₹500), Industrial Zone (₹750), and Dockyard (₹1,000) with earned cash.
+- Purchased districts remain unlocked across saves and can be travelled to later.
+- Travel is blocked while a ride is accepted/in progress. Travelling moves the auto to the destination district, rebuilds its city environment and resets nearby combat entities.
+- Old City remains the free starting district.
